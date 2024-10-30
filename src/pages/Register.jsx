@@ -2,42 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ButtonMain from "../components/ButtonMain";
 import ButtonSos from "../components/ButtonSos";
+import Step from "../components/Step";
+import FormSign from "../components/FormSign";
 
 function Register() {
   return (
     <>
       <div>
-        <div className="bg-avengers relative items-center py-16 px-10 w-screen h-screen bg-no-repeat bg-cover flex flex-col gap-5 text-maintext">
+        <div className="bg-[url(/src/assets/images/avengers-darken.png)] items-center py-16 px-10 w-screen h-screen bg-no-repeat bg-cover flex flex-col gap-5 text-maintext">
           <div className="h-1/6 flex justify-center items-end">
             <span className="font-bold text-5xl text-white">Funtastix</span>
           </div>
           <div className="flex flex-col gap-6 bg-white rounded-md w-full min-w-80 max-w-xl h-full px-20 py-14">
-            <div className="step"></div>
+            <div className="flex items-center gap-3">
+              <Step content={"1"} content2={"Fill Form"} status={"done"} />
+              <div>........................</div>
+              <Step content={"2"} content2={"Activate"} />
+              <div>........................</div>
+              <Step content={"3"} content2={"Done"} />
+            </div>
             <form action="" className="flex flex-col gap-6">
-              <div className="w-full flex flex-col gap-3">
-                <label htmlFor="email">Email</label>
-                <div className="w-full h-16">
-                  <input
-                    className="w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix box-border"
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Enter your email"
-                  />
-                </div>
-              </div>
-              <div className="w-full flex flex-col gap-3">
-                <label htmlFor="email">Password</label>
-                <div className="w-full h-16">
-                  <input
-                    className="w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix box-border"
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Enter your password"
-                  />
-                </div>
-              </div>
+              <FormSign />
               <div className="flex items-center gap-5">
                 <input
                   className="w-5 h-5"

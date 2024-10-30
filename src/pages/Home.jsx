@@ -1,8 +1,8 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import Movies from "../components/Movies";
 import Subscribe from "../components/Subscribe";
+import MovieCard from "../components/MovieCard";
 
 function Home() {
   return (
@@ -71,7 +71,13 @@ function Home() {
               Exciting Movies That Should Be Watched Today
             </div>
           </div>
-          <Movies />
+          <div className="flex w-full justify-between py-12">
+            <MovieCard />
+            <MovieCard />
+            <MovieCard />
+            <MovieCard />
+            <MovieCard />
+          </div>
           <div>View All</div>
         </div>
         <div>
@@ -93,7 +99,13 @@ function Home() {
               </div>
             </div>
           </div>
-          <Movies />
+          <div className="flex w-full justify-between py-12">
+            <MovieCard date={"December 2024"} />
+            <MovieCard date={"December 2024"} />
+            <MovieCard date={"December 2024"} />
+            <MovieCard date={"December 2024"} />
+            <MovieCard date={"December 2024"} />
+          </div>
         </div>
         <Subscribe />
       </main>

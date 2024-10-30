@@ -3,7 +3,7 @@ import React from "react";
 function Subscribe() {
   return (
     <div className="rounded-2xl flex flex-col gap-12 items-center justify-center text-center py-20 bg-secondtix">
-      <div className="text-white text-5xl font-light">
+      <div className="text-maintix text-5xl font-light">
         Subscribe to our newsletter
       </div>
       <div className="flex gap-5 items-center">

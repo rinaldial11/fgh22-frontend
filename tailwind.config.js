@@ -11,11 +11,15 @@ export default {
       maintext: "#1E3E62",
       secondtix: "#405D72",
       grey: "#A0A3BD",
-      silver: "#ecebff",
-      bubblegum: "#ff77e9",
-      bermuda: "#78dcca",
+      black: "#000",
+      blue: "#0000FF",
+      birmud: "#4267B2",
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        avengers: "url('/src/assets/images/avengers.png')",
+      },
+    },
   },
   plugins: [],
 };

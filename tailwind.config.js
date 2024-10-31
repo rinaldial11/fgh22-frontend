@@ -14,6 +14,7 @@ export default {
       black: "#000",
       blue: "#1D4ED8",
       birmud: "#4267B2",
+      abumuda: "#A0A3BD1A",
     },
     extend: {
       backgroundImage: {

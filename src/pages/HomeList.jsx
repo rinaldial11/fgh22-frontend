@@ -63,25 +63,85 @@ function HomeList() {
         </div>
         <div className="flex flex-col">
           <div className="flex w-full justify-between py-12">
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
+            <MovieCard
+              tittle={"Black Widow"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"The Witches"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Tenet"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Spiderman"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Black Widow"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
           </div>
           <div className="flex w-full justify-between py-12">
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
+            <MovieCard
+              tittle={"Black Widow"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"The Witches"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Tenet"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Spiderman"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Black Widow"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
           </div>
           <div className="flex w-full justify-between py-12">
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
+            <MovieCard
+              tittle={"Black Widow"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"The Witches"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Tenet"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Spiderman"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Black Widow"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
           </div>
           <div className="w-full flex gap-5 py-10 justify-center text-sm">
             <button className="w-10 h-10 rounded-full bg-maintix hover:bg-secondtix hover:text-maintix">

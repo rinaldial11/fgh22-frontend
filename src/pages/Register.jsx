@@ -16,9 +16,9 @@ function Register() {
             <div className="hidden md:flex items-center gap-3">
               <Step content={"1"} content2={"Fill Form"} status={"done"} />
               <div>........................</div>
-              <Step content={"2"} content2={"Activate"} />
+              <Step content={"2"} content2={"Activate"} status="ongoing" />
               <div>........................</div>
-              <Step content={"3"} content2={"Done"} />
+              <Step content={"3"} content2={"Done"} status="ongoing" />
             </div>
             <form action="" className="flex flex-col gap-6">
               <FormSign />

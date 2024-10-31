@@ -16,6 +16,7 @@ export default {
       birmud: "#4267B2",
       abumuda: "#A0A3BD1A",
       abu: "#DEDEDE",
+      pink: "#ffd1dc",
     },
     extend: {
       backgroundImage: {

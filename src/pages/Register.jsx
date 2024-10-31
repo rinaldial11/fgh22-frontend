@@ -13,8 +13,8 @@ function Register() {
           <div className="h-1/6 flex justify-center items-end">
             <span className="font-bold text-5xl text-white">Funtastix</span>
           </div>
-          <div className="flex flex-col gap-6 bg-white rounded-md w-full min-w-80 max-w-xl h-full px-20 py-14">
-            <div className="flex items-center gap-3">
+          <div className="flex flex-col gap-6 bg-white rounded-md w-full min-w-80 max-w-xl md:h-full px-5 md:px-20 py-14">
+            <div className="hidden md:flex items-center gap-3">
               <Step content={"1"} content2={"Fill Form"} status={"done"} />
               <div>........................</div>
               <Step content={"2"} content2={"Activate"} />
@@ -23,7 +23,7 @@ function Register() {
             </div>
             <form action="" className="flex flex-col gap-6">
               <FormSign />
-              <div className="flex items-center gap-5">
+              <div className="hidden md:flex items-center gap-5">
                 <input
                   className="w-5 h-5"
                   type="checkbox"

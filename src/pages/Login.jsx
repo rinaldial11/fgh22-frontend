@@ -11,9 +11,11 @@ function Login() {
           <div className="h-1/6 flex justify-center items-end">
             <span className="font-bold text-5xl text-white">Funtastix</span>
           </div>
-          <div className="flex flex-col gap-6 bg-white rounded-md w-full min-w-80 max-w-xl h-full px-20 py-14">
+          <div className="flex flex-col gap-6 bg-white rounded-md w-full min-w-80 max-w-xl h-full px-5 md:px-20 py-14">
             <div className="flex flex-col gap-6">
-              <div className="text-3xl font-semibold">Welcome Back👋</div>
+              <div className="text-2xl md:text-3xl font-semibold">
+                Welcome Back👋
+              </div>
               <div className="text-grey text-lg">
                 Sign in with your data that you entered during your registration
               </div>

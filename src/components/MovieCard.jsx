@@ -5,16 +5,16 @@ function MovieCard(props) {
     <>
       <div className="flex flex-col gap-5 text-start">
         <div className="w-64 rounded-lg h-96 bg-maintext"></div>
-        <div className="text-2xl font-semibold">Black Widow</div>
+        <div className="text-2xl font-semibold">{props.tittle}</div>
         {!props.date || (
           <div className="text-lg text-grey font-semibold">{props.date}</div>
         )}
         <div className="flex gap-3">
           <div className="bg-maintix text-secondtix px-3 py-1 rounded-3xl">
-            Action
+            {props.genre1}
           </div>
           <div className="bg-maintix text-secondtix px-3 py-1 rounded-3xl">
-            Adventure
+            {props.genre2}
           </div>
         </div>
       </div>

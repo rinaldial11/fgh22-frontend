@@ -71,12 +71,32 @@ function Home() {
               Exciting Movies That Should Be Watched Today
             </div>
           </div>
-          <div className="flex w-full justify-between py-12">
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
+          <div className="flex w-full gap-6 justify-between py-12 overflow-x-scroll">
+            <MovieCard
+              tittle={"Black Widow"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"The Witches"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Tenet"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Spiderman"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              tittle={"Black Widow"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
           </div>
           <div>View All</div>
         </div>
@@ -99,12 +119,37 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className="flex w-full justify-between py-12">
-            <MovieCard date={"December 2024"} />
-            <MovieCard date={"December 2024"} />
-            <MovieCard date={"December 2024"} />
-            <MovieCard date={"December 2024"} />
-            <MovieCard date={"December 2024"} />
+          <div className="flex w-full gap-6 justify-between py-12 overflow-x-scroll">
+            <MovieCard
+              date={"December 2024"}
+              tittle={"Black Widow"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              date={"January 2024"}
+              tittle={"The Witches"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              date={"Juny 2024"}
+              tittle={"Tenet"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              date={"March 2024"}
+              tittle={"Spiderman"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
+            <MovieCard
+              date={"December 2024"}
+              tittle={"Black Widow"}
+              genre1={"Action"}
+              genre2={"Adventure"}
+            />
           </div>
         </div>
         <Subscribe />

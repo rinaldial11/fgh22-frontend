@@ -2,21 +2,21 @@ import React from "react";
 import ButtonMain from "../components/ButtonMain";
 import ButtonSos from "../components/ButtonSos";
 import FormSign from "../components/FormSign";
+import { Link } from "react-router-dom";
+import LogoBrand from "../components/LogoBrand";
 
 function Login() {
   return (
     <>
       <div>
         <div className="bg-[url(/src/assets/images/avengers-darken.png)] items-center py-16 px-10 w-screen h-screen bg-no-repeat bg-cover flex flex-col gap-5 text-maintext">
-          <div className="h-1/6 flex justify-center items-end">
-            <span className="font-bold text-5xl text-white">Funtastix</span>
-          </div>
+          <LogoBrand />
           <div className="flex flex-col gap-6 bg-white rounded-md w-full min-w-80 max-w-xl h-full px-5 md:px-20 py-14">
             <div className="flex flex-col gap-6">
               <div className="text-2xl md:text-3xl font-semibold">
                 Welcome Back👋
               </div>
-              <div className="text-grey text-lg">
+              <div className="text-grey w-full max-w-80 md:w-full md:max-w-full text-lg">
                 Sign in with your data that you entered during your registration
               </div>
             </div>
@@ -26,7 +26,10 @@ function Login() {
                 <a href="#">Forgot your password?</a>
               </div>
               <div className="w-full h-16">
-                <ButtonMain content={"Login"} />
+                <Link to="/">
+                  {" "}
+                  <ButtonMain content={"Login"} />{" "}
+                </Link>
               </div>
             </form>
 

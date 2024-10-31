@@ -1,4 +1,5 @@
 import React from "react";
+import LogoBrand from "./LogoBrand";
 
 function Footer() {
   return (
@@ -6,7 +7,7 @@ function Footer() {
       <footer className="flex text-sm flex-col items-start bg-secondtix py-24 px-28 gap-12 text-white">
         <div className="flex gap-24 items-start">
           <div className="flex flex-col gap-4">
-            <div className="font-bold text-3xl text-maintix">Funtastix</div>
+            <LogoBrand />
             <div className="text-base max-w-72">
               Stop waiting in line. Buy tickets conveniently, watch movies
               quietly.

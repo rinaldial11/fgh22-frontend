@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LogoBrand from "./LogoBrand";
 
 function NavBar() {
   return (
     <nav className="flex justify-between items-center px-28 py-7 bg-secondtix h-28 text-white text-sm shadow-lg">
-      <div className="font-bold text-3xl text-maintix">Funtastix</div>
+      <LogoBrand />
       <ul className="flex gap-14">
         <li>
           <a href="#">Home</a>

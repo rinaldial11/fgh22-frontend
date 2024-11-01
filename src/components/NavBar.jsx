@@ -8,13 +8,13 @@ function NavBar() {
       <LogoBrand />
       <ul className="flex gap-14">
         <li>
-          <a href="#">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <a href="#">Movie</a>
+          <Link to="/home">Movie</Link>
         </li>
         <li>
-          <a href="#">Buy Ticket</a>
+          <Link to="/order">Buy Ticket</Link>
         </li>
       </ul>
       <div className="flex gap-3">

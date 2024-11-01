@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import HomeList from "./pages/HomeList";
 import Details from "./pages/Details";
 import OrderPage from "./pages/OrderPage";
+import Payment from "./pages/Payment";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/order",
     element: <OrderPage />,
+  },
+  {
+    path: "/payment",
+    element: <Payment />,
   },
 ]);
 

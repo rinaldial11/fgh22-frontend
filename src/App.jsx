@@ -8,6 +8,7 @@ import Details from "./pages/Details";
 import OrderPage from "./pages/OrderPage";
 import Payment from "./pages/Payment";
 import PaymentModal from "./pages/PaymentModal";
+import TicketResult from "./pages/TicketResult";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: "/payment-modal",
     element: <PaymentModal />,
+  },
+  {
+    path: "/ticket-result",
+    element: <TicketResult />,
   },
 ]);
 

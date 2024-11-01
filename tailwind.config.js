@@ -17,6 +17,7 @@ export default {
       abumuda: "#A0A3BD1A",
       abu: "#DEDEDE",
       pink: "#ffd1dc",
+      red: "#ff6961",
     },
     extend: {
       backgroundImage: {

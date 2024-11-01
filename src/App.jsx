@@ -7,6 +7,7 @@ import HomeList from "./pages/HomeList";
 import Details from "./pages/Details";
 import OrderPage from "./pages/OrderPage";
 import Payment from "./pages/Payment";
+import PaymentModal from "./pages/PaymentModal";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/payment",
     element: <Payment />,
+  },
+  {
+    path: "/payment-modal",
+    element: <PaymentModal />,
   },
 ]);
 

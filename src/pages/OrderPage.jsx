@@ -5,12 +5,13 @@ import Step from "../components/Step";
 import Spiderman from "../assets/images/Spiderman.png";
 import ButtonMain from "../components/ButtonMain";
 import Cineone from "../assets/icons/cineone.png";
+import AnchorMain from "../components/AnchorMain";
 
 function OrderPage() {
   return (
     <>
       <NavBar />
-      <main className="px-28 py-14 text-base items-center flex flex-col bg-abumuda gap-5 text-maintext">
+      <main className="px-28 pt-14 pb-32 text-base items-center flex flex-col bg-abumuda gap-5 text-maintext">
         <div className="hidden md:flex items-center gap-3 w-full justify-center">
           <Step content2={"Dates And Time"} status={"activated"} />
           <div>........................</div>
@@ -40,7 +41,7 @@ function OrderPage() {
               </div>
               <div className="h-full flex items-end">
                 <div className="w-28 h-8">
-                  <ButtonMain content="Change" />
+                  <AnchorMain content="Change" page="/home" />
                 </div>
               </div>
             </div>
@@ -257,9 +258,33 @@ function OrderPage() {
                 </div>
                 <div className="text-2xl font-semibold">CineOne21 Cinema</div>
               </div>
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-between gap-5">
+                  <div className="text-sm text-grey">Movie selected</div>
+                  <div className="text-sm font-semibold">
+                    Spider-Man: Homecoming
+                  </div>
+                </div>
+                <div className="flex justify-between gap-5">
+                  <div className="text-sm text-grey">Tuesday, 07 July 2020</div>
+                  <div className="text-sm font-semibold">13:00pm</div>
+                </div>
+                <div className="flex justify-between gap-5">
+                  <div className="text-sm text-grey">One ticket price</div>
+                  <div className="text-sm font-semibold">$10</div>
+                </div>
+                <div className="flex justify-between gap-5">
+                  <div className="text-sm text-grey">Seat choosed</div>
+                  <div className="text-sm font-semibold">C4, C5, C6</div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center py-6 border-t border-maintix w-full">
+                <div className="text-lg font-semibold">Total Payment</div>
+                <div className="text-2xl font-bold text-secondtix">$30</div>
+              </div>
             </div>
-            <div className="shadow-lg w-full h-14">
-              <ButtonMain content="Checkout now" />
+            <div className="shadow-xl flex w-full h-14">
+              <AnchorMain content="Checkout now" page="/" />
             </div>
           </div>
         </div>

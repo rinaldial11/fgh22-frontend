@@ -11,6 +11,8 @@ import PaymentModal from "./pages/PaymentModal";
 import TicketResult from "./pages/TicketResult";
 import Profile from "./pages/Profile";
 import OrderHistory from "./pages/OrderHistory";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminMovie from "./pages/AdminMovie";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +58,14 @@ const router = createBrowserRouter([
   {
     path: "/order-history",
     element: <OrderHistory />,
+  },
+  {
+    path: "/admin-dashboard",
+    element: <AdminDashboard />,
+  },
+  {
+    path: "/add-movie",
+    element: <AdminMovie />,
   },
 ]);
 

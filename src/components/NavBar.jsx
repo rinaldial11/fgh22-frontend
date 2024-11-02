@@ -8,17 +8,40 @@ function NavBar(props) {
   return (
     <nav className="flex justify-between items-center px-28 py-7 bg-secondtix h-28 text-white text-sm shadow-lg">
       <LogoBrand />
-      <ul className="flex gap-14">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/home">Movie</Link>
-        </li>
-        <li>
-          <Link to="/order">Buy Ticket</Link>
-        </li>
-      </ul>
+      {props.isAdmin && props.page === "admin-dashboard" && (
+        <ul className="flex gap-14">
+          <li className="text-maintix">
+            <Link to="/admin-dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/add-movie">Movie</Link>
+          </li>
+        </ul>
+      )}
+      {props.isAdmin && props.page === "add-movie" && (
+        <ul className="flex gap-14">
+          <li>
+            <Link to="/admin-dashboard">Dashboard</Link>
+          </li>
+          <li className="text-maintix">
+            <Link to="/add-movie">Movie</Link>
+          </li>
+        </ul>
+      )}
+      {!props.isAdmin && (
+        <ul className="flex gap-14">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/home">Movie</Link>
+          </li>
+          <li>
+            <Link to="/order">Buy Ticket</Link>
+          </li>
+        </ul>
+      )}
+
       {props.isLog && (
         <div className="flex gap-3 items-center">
           <div>
@@ -38,9 +61,14 @@ function NavBar(props) {
           <div>
             <FaMagnifyingGlass />
           </div>
-          <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center">
+          <Link
+            className="w-14 h-14 rounded-full overflow-hidden flex items-center
+            justify-center"
+            to="/profile"
+          >
+            {" "}
             <img className="w-full h-full" src={ProfilePicture} alt="Profile" />
-          </div>
+          </Link>
         </div>
       )}
       {!props.isLog && (

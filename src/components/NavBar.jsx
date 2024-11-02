@@ -7,7 +7,9 @@ import ProfilePicture from "../assets/images/profile-picture.png";
 function NavBar(props) {
   return (
     <nav className="flex justify-between items-center px-28 py-7 bg-secondtix h-28 text-white text-sm shadow-lg">
-      <LogoBrand />
+      <Link to="/">
+        <LogoBrand />
+      </Link>
       {props.isAdmin && props.page === "admin-dashboard" && (
         <ul className="flex gap-14">
           <li className="text-maintix">

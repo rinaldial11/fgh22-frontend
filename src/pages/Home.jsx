@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Subscribe from "../components/Subscribe";
 import MovieCard from "../components/MovieCard";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -119,7 +120,7 @@ function Home() {
               genre2={"Adventure"}
             />
           </div>
-          <div>View All</div>
+          <Link to="/home">View All</Link>
         </div>
         <div>
           <div className="flex justify-between items-end">

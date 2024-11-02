@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Funtastix from "../assets/icons/funtastix-logo.png";
 import Barcode from "../assets/images/barcode.png";
 import AnchorMain from "../components/AnchorMain";
+import { GoDownload } from "react-icons/go";
 
 function TicketResult() {
   return (
@@ -73,7 +74,8 @@ function TicketResult() {
             </div>
           </div>
           <div className="flex flex-col gap-3">
-            <button className="w-96 h-14 border border-secondtix text-secondtix rounded">
+            <button className="flex justify-center items-center gap-6 w-96 h-14 border border-secondtix text-secondtix rounded">
+              <GoDownload className="text-2xl" />
               Download
             </button>
             <div className="w-96 h-14">

@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import MovieCard from "../components/MovieCard";
 import Subscribe from "../components/Subscribe";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 function HomeList() {
   return (
@@ -20,7 +21,8 @@ function HomeList() {
         <div className="flex gap-5">
           <div className="flex flex-col gap-3">
             <label htmlFor="search">Cari Event</label>
-            <div className="w-96 h-16">
+            <div className="relative w-96 h-16">
+              <FaMagnifyingGlass className="absolute top-1/3 left-6" />
               <input
                 className="border px-14 outline-none rounded-md w-full h-full border-grey "
                 type="text"

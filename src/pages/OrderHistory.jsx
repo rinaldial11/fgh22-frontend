@@ -41,6 +41,7 @@ function OrderHistory() {
               </div>
               <div>
                 <button
+                  type="button"
                   onClick={() => setShow1(!isShow1)}
                   className="flex items-center text-grey text-lg gap-4"
                 >
@@ -105,6 +106,7 @@ function OrderHistory() {
               </div>
               <div>
                 <button
+                  type="button"
                   onClick={() => setShow2(!isShow2)}
                   className="flex items-center text-grey text-lg gap-4"
                 >
@@ -172,6 +174,7 @@ function OrderHistory() {
               </div>
               <div>
                 <button
+                  type="button"
                   onClick={() => setShow3(!isShow3)}
                   className="flex items-center text-grey text-lg gap-4"
                 >

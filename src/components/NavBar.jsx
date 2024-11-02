@@ -36,7 +36,7 @@ function NavBar(props) {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/home">Movie</Link>
+            <Link to="/admin-dashboard">Movie</Link>
           </li>
           <li>
             <Link to="/order">Buy Ticket</Link>

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function MovieCard(props) {
   return (
     <>
-      <div className="flex flex-col gap-5 text-start">
+      <div className="group relative flex flex-col gap-5 text-start">
         <div className="w-64 rounded-lg h-96 overflow-hidden">
           {props.tittle === "Black Widow" && (
             <img
@@ -38,6 +38,30 @@ function MovieCard(props) {
               alt="Spiderman"
             />
           )}
+        </div>
+        {props.tittle === "Tenet" && !props.date && (
+          <div className="absolute bg-secondtix mt-2 -ml-2 text-maintix text-sm py-1 px-4 w-32 rounded-e-2xl rounded-tl-xl">
+            Recommended
+          </div>
+        )}
+        {props.tittle === "The Witches" && !props.date && (
+          <div className="absolute bg-secondtix mt-2 -ml-2 text-maintix text-sm py-1 px-4 w-32 rounded-e-2xl rounded-tl-xl">
+            Recommended
+          </div>
+        )}
+        <div className="absolute hidden group-hover:flex h-96 w-64 flex-col justify-center items-center gap-3 bg-[#00000066]">
+          <Link
+            className="w-44 h-12 border border-maintix flex justify-center items-center text-maintix rounded-md"
+            to="/details"
+          >
+            Details
+          </Link>
+          <Link
+            className="w-44 h-12 bg-secondtix flex justify-center items-center text-maintix rounded-md"
+            to="/order"
+          >
+            Buy Ticket
+          </Link>
         </div>
         <div className="text-2xl font-semibold">{props.tittle}</div>
         {!props.date || (

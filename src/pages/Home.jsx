@@ -4,6 +4,11 @@ import Footer from "../components/Footer";
 import Subscribe from "../components/Subscribe";
 import MovieCard from "../components/MovieCard";
 import { Link } from "react-router-dom";
+import { BsShieldFillCheck } from "react-icons/bs";
+import { FaCircleCheck } from "react-icons/fa6";
+import { HiChatAlt2 } from "react-icons/hi";
+import { GoArrowRight } from "react-icons/go";
+import { GoArrowLeft } from "react-icons/go";
 
 function Home() {
   return (
@@ -61,7 +66,9 @@ function Home() {
           </div>
           <div className="flex gap-36">
             <div className="flex flex-col gap-3 max-w-96">
-              <div className="w-14 h-14 bg-maintix rounded-full"></div>
+              <div className="flex justify-center items-center w-14 h-14 bg-maintix rounded-full">
+                <BsShieldFillCheck className="text-xl" />
+              </div>
               <div className="text-lg font-semibold">Guaranteed</div>
               <div className="text-grey">
                 Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim
@@ -69,16 +76,20 @@ function Home() {
               </div>
             </div>
             <div className="flex flex-col gap-3 max-w-96">
-              <div className="w-14 h-14 bg-maintix rounded-full"></div>
-              <div className="text-lg font-semibold">Guaranteed</div>
+              <div className="flex justify-center items-center w-14 h-14 bg-maintix rounded-full">
+                <FaCircleCheck className="text-xl" />
+              </div>
+              <div className="text-lg font-semibold">Affordable</div>
               <div className="text-grey">
                 Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim
                 nec, proin faucibus nibh et sagittis a. Lacinia purus ac amet.
               </div>
             </div>
             <div className="flex flex-col gap-3 max-w-96">
-              <div className="w-14 h-14 bg-maintix rounded-full"></div>
-              <div className="text-lg font-semibold">Guaranteed</div>
+              <div className="flex justify-center items-center w-14 h-14 bg-maintix rounded-full">
+                <HiChatAlt2 className="text-3xl" />
+              </div>
+              <div className="text-lg font-semibold">24/7 Customer Support</div>
               <div className="text-grey">
                 Lorem ipsum dolor sit amet, consectetur adipis elit. Sit enim
                 nec, proin faucibus nibh et sagittis a. Lacinia purus ac amet.
@@ -120,7 +131,9 @@ function Home() {
               genre2={"Adventure"}
             />
           </div>
-          <Link to="/home">View All</Link>
+          <Link className="flex items-center gap-2" to="/home">
+            View All <GoArrowRight className="text-xl" />
+          </Link>
         </div>
         <div>
           <div className="flex justify-between items-end">
@@ -133,12 +146,12 @@ function Home() {
               </div>
             </div>
             <div className="flex gap-3">
-              <div className="w-16 h-16 bg-maintix rounded-full">
-                <a href="#"></a>
-              </div>
-              <div className="w-16 h-16 bg-maintix rounded-full">
-                <a href="#"></a>
-              </div>
+              <button className="flex justify-center hover:bg-secondtix hover:text-maintix items-center w-16 h-16 bg-maintix rounded-full">
+                <GoArrowLeft className="text-3xl" />
+              </button>
+              <button className="flex justify-center hover:bg-secondtix hover:text-maintix items-center w-16 h-16 bg-maintix rounded-full">
+                <GoArrowRight className="text-3xl" />
+              </button>
             </div>
           </div>
           <div className="flex w-full gap-6 justify-between py-12 overflow-x-scroll">

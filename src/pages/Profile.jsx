@@ -3,8 +3,34 @@ import NavBar from "../components/NavBar";
 import ProfileCard from "../components/ProfileCard";
 import ProfileSection from "../components/ProfileSection";
 import AnchorMain from "../components/AnchorMain";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 
 function Profile() {
+  const [type, setType] = React.useState("password");
+  const [icon, setIcon] = React.useState(<FiEye />);
+  const [type2, setType2] = React.useState("password");
+  const [icon2, setIcon2] = React.useState(<FiEye />);
+
+  function hidePassword() {
+    if (type === "password") {
+      setType("text");
+      setIcon(<FiEyeOff />);
+    } else {
+      setType("password");
+      setIcon(<FiEye />);
+    }
+  }
+  function hidePasswordDua() {
+    if (type2 === "password") {
+      setType2("text");
+      setIcon2(<FiEyeOff />);
+    } else {
+      setType2("password");
+      setIcon2(<FiEye />);
+    }
+  }
+
   return (
     <>
       <NavBar isLog={true} />
@@ -74,26 +100,40 @@ function Profile() {
             <div className="text-secondtix grid grid-cols-2 gap-6">
               <div className=" flex flex-col gap-3">
                 <label htmlFor="password">New Password</label>
-                <div className="w-full">
+                <div className="relative flex w-full">
                   <input
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
-                    type="password"
+                    type={type}
                     id="password"
                     name="password"
                     placeholder="Write your password"
                   />
+                  <button
+                    type="button"
+                    onClick={hidePassword}
+                    className="absolute right-6 top-1/3 text-xl"
+                  >
+                    {icon}
+                  </button>
                 </div>
               </div>
               <div className=" flex flex-col gap-3">
                 <label htmlFor="confirm-password">Confirm Password</label>
-                <div className="w-full">
+                <div className="relative flex w-full">
                   <input
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
-                    type="password"
+                    type={type2}
                     id="confirm-password"
                     name="confirm-password"
                     placeholder="Confirm your password"
                   />
+                  <button
+                    type="button"
+                    onClick={hidePasswordDua}
+                    className="absolute right-6 top-1/3 text-xl"
+                  >
+                    {icon2}
+                  </button>
                 </div>
               </div>
             </div>

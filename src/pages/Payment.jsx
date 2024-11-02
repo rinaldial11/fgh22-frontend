@@ -57,7 +57,7 @@ function Payment() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-7">
+          <form className="flex flex-col gap-7">
             <div className="text-2xl font-bold">Personal Information</div>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-4">
@@ -92,9 +92,20 @@ function Payment() {
                 <label className="text-grey" htmlFor="phone">
                   Phone Number
                 </label>
-                <div className="w-full h-16">
+                <div className="flex items-center w-full h-16 border-maintix rounded border overflow-hidden">
+                  <select
+                    className="px-5 h-10 border-r border-maintix"
+                    name="phone-code"
+                    id="phone-code"
+                  >
+                    <option value="">+62</option>
+                    <option value="">+12</option>
+                    <option value="">+22</option>
+                    <option value="">+32</option>
+                    <option value="">+42</option>
+                  </select>
                   <input
-                    className="placeholder:text-maintext outline-none w-full h-full border border-maintix rounded pl-11"
+                    className="placeholder:text-maintext outline-none w-full h-full pl-5 "
                     type="number"
                     name="phone"
                     id="phone"
@@ -103,7 +114,7 @@ function Payment() {
                 </div>
               </div>
             </div>
-          </div>
+          </form>
           <div className="flex flex-col gap-7">
             <div className="text-2xl font-bold">Payment Method</div>
             <div className="grid grid-cols-4 gap-8">

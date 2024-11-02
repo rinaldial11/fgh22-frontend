@@ -284,7 +284,7 @@ function OrderPage() {
               </div>
             </div>
             <div className="shadow-xl flex w-full h-14">
-              <AnchorMain content="Checkout now" page="/" />
+              <AnchorMain content="Checkout now" page="/payment" />
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import ButtonMain from "../components/ButtonMain";
 import { CiCalendar } from "react-icons/ci";
 import { IoMdTime } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
+import AnchorMain from "../components/AnchorMain";
 
 function Details() {
   return (
@@ -238,7 +239,7 @@ function Details() {
           </div>
           <div className="w-full flex justify-center">
             <div className="w-44 h-14">
-              <ButtonMain content="Book Now" />
+              <AnchorMain content="Book Now" page="/order" />
             </div>
           </div>
         </div>

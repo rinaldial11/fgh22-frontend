@@ -10,13 +10,17 @@ import Bca from "../assets/icons/BCA.png";
 import Bri from "../assets/icons/BRI.png";
 import Ovo from "../assets/icons/ovo.png";
 import AnchorMain from "../components/AnchorMain";
+import { Link } from "react-router-dom";
 
 function PaymentModal() {
   return (
     <>
       <NavBar />
       <main className="relative px-28 pb-32 text-base items-center flex flex-col bg-abumuda gap-5 text-maintext">
-        <div className="w-full h-full bg-[#00000099] absolute flex justify-center items-center">
+        <Link
+          to="/payment"
+          className="w-full h-full bg-[#00000099] absolute flex justify-center items-center"
+        >
           <div className="bg-white rounded-2xl pt-6 pb-14 px-4 flex flex-col gap-9">
             <div className="text-2xl font-bold text-center">Payment Info</div>
             <div className="flex gap-24 w-full items-center">
@@ -57,7 +61,7 @@ function PaymentModal() {
               </div>
             </div>
           </div>
-        </div>
+        </Link>
         <div className="hidden md:flex pt-10 items-center gap-3 w-full justify-center">
           <Step content2={"Dates And Time"} status={"activated"} />
           <div>........................</div>

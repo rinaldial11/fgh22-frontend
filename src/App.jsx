@@ -13,6 +13,7 @@ import Profile from "./pages/Profile";
 import OrderHistory from "./pages/OrderHistory";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminMovie from "./pages/AdminMovie";
+import AdminAddMovie from "./pages/AdminAddMovie";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
   {
     path: "/add-movie",
     element: <AdminMovie />,
+  },
+  {
+    path: "/register-movie",
+    element: <AdminAddMovie />,
   },
 ]);
 

@@ -36,7 +36,7 @@ function AdminMovie() {
                 </select>
               </div>
               <div className="w-36">
-                <AnchorMain content="Add Movies" page="/admin-add-movies" />
+                <AnchorMain content="Add Movies" page="/register-movie" />
               </div>
             </div>
           </div>

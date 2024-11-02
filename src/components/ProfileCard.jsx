@@ -6,7 +6,7 @@ import Star from "../assets/icons/star.png";
 function ProfileCard() {
   return (
     <>
-      <div className="flex w-80 flex-col px-10 pt-10 pb-28 gap-10 bg-white rounded-3xl">
+      <div className="flex w-80 flex-col px-10 pb-28 h-fit pt-10 gap-10 bg-white rounded-3xl">
         <div className="flex justify-between items-center">
           <div className="text-grey">INFO</div>
           <div>

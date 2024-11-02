@@ -10,6 +10,7 @@ import Payment from "./pages/Payment";
 import PaymentModal from "./pages/PaymentModal";
 import TicketResult from "./pages/TicketResult";
 import Profile from "./pages/Profile";
+import OrderHistory from "./pages/OrderHistory";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/order-history",
+    element: <OrderHistory />,
   },
 ]);
 

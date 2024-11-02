@@ -17,7 +17,7 @@ function ProfileSection(props) {
       {props.page === "order-history" && (
         <div className="text-lg px-12 h-20 items-center bg-white rounded-2xl flex gap-14">
           <div className="text-grey">
-            <Link to="/order-history">Account Settings</Link>
+            <Link to="/profile">Account Settings</Link>
           </div>
           <div className="border-b-2 h-full flex items-center border-secondtix">
             Order History

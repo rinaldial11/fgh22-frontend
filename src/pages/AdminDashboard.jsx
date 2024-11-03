@@ -7,12 +7,12 @@ function AdminDashboard() {
   return (
     <>
       <NavBar isLog={true} isAdmin={true} page="admin-dashboard" />
-      <main className="px-28 pt-11 pb-32 text-base flex flex-col bg-abumuda gap-12 text-maintext">
-        <div className="flex flex-col gap-9 px-14 py-10 bg-white rounded-2xl w-full">
+      <main className="px-6 md:px-28 pt-11 pb-32 text-base flex flex-col bg-abumuda gap-12 text-maintext">
+        <div className="flex flex-col gap-9 px-8 md:px-14 py-10 bg-white rounded-2xl w-full">
           <div className="text-2xl font-bold">Sales Chart</div>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap gap-5">
             <select
-              className="bg-abumuda w-56 h-12 px-5 rounded-lg"
+              className="bg-abumuda w-full md:w-56 h-12 px-5 rounded-lg"
               name="movie"
               id="movie"
             >
@@ -21,7 +21,7 @@ function AdminDashboard() {
               </option>
             </select>
             <select
-              className="bg-abumuda w-40 h-12 px-5 rounded-lg"
+              className="bg-abumuda w-full md:w-40 h-12 px-5 rounded-lg"
               name="weekly"
               id="Weekly"
             >
@@ -29,13 +29,13 @@ function AdminDashboard() {
                 Weekly
               </option>
             </select>
-            <div className="w-32">
+            <div className="w-full h-12 md:w-32">
               <ButtonMain content="Filter" />
             </div>
           </div>
           <div>Avengers: End Game</div>
-          <div className="flex flex-col w-full max-w-5xl gap-5">
-            <div className="flex gap-8 h-80 items-end">
+          <div className="flex flex-col  overflow-scroll gap-5">
+            <div className="flex gap-8 h-80 w-[1000px] items-end">
               <div className="text-grey pb-8 text-[11px] h-full flex flex-col justify-between">
                 <div>$800</div>
                 <div>$600</div>
@@ -47,7 +47,7 @@ function AdminDashboard() {
                 <img src={Graph} alt="" />
               </div>
             </div>
-            <div className="text-grey pb-8 text-[11px] h-full flex justify-around pr-10">
+            <div className="text-grey pl-20 gap-36 pb-8 text-[11px] h-full flex pr-10">
               <div>Jan</div>
               <div>Feb</div>
               <div>Mar</div>
@@ -57,11 +57,11 @@ function AdminDashboard() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-9 px-14 py-10 bg-white rounded-2xl w-full">
+        <div className="flex flex-col gap-9 px-8 md:px-14 py-10 bg-white rounded-2xl w-full">
           <div className="text-2xl font-bold">Ticket Sales</div>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap gap-5">
             <select
-              className="bg-abumuda w-56 h-12 px-5 rounded-lg"
+              className="bg-abumuda w-full md:w-56 h-12 px-5 rounded-lg"
               name="category"
               id="category"
             >
@@ -70,7 +70,7 @@ function AdminDashboard() {
               </option>
             </select>
             <select
-              className="bg-abumuda w-40 h-12 px-5 rounded-lg"
+              className="bg-abumuda w-full md:w-40 h-12 px-5 rounded-lg"
               name="weekly"
               id="location"
             >
@@ -78,13 +78,13 @@ function AdminDashboard() {
                 Location
               </option>
             </select>
-            <div className="w-32">
+            <div className="w-full md:w-32 h-12">
               <ButtonMain content="Filter" />
             </div>
           </div>
           <div>Adventure, Purwokerto</div>
-          <div className="flex flex-col w-full max-w-5xl gap-5">
-            <div className="flex gap-8 h-80 items-end">
+          <div className="flex flex-col  overflow-scroll gap-5">
+            <div className="flex gap-8 h-80 w-[1000px] items-end">
               <div className="text-grey pb-8 text-[11px] h-full flex flex-col justify-between">
                 <div>$800</div>
                 <div>$600</div>
@@ -96,7 +96,7 @@ function AdminDashboard() {
                 <img src={Graph} alt="" />
               </div>
             </div>
-            <div className="text-grey pb-8 text-[11px] h-full flex justify-around pr-10">
+            <div className="text-grey pl-20 gap-36 pb-8 text-[11px] h-full flex pr-10">
               <div>Jan</div>
               <div>Feb</div>
               <div>Mar</div>

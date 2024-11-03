@@ -17,8 +17,8 @@ function HomeList() {
           </div>
         </div>
       </div>
-      <main className="px-28 py-14 text-base flex flex-col gap-5 text-maintext">
-        <div className="flex gap-5">
+      <main className="px-6 md:px-28 py-14 text-base flex flex-col gap-5 text-maintext">
+        <div className="flex flex-col md:flex-row gap-5">
           <div className="flex flex-col gap-3">
             <label htmlFor="search">Cari Event</label>
             <div className="relative w-96 h-16">
@@ -34,7 +34,7 @@ function HomeList() {
           </div>
           <div className="flex flex-col gap-3">
             <div>Filter</div>
-            <div className="flex gap-8 items-center">
+            <div className="flex gap-8 flex-wrap items-center">
               <div className="h-16 w-24 flex items-center">
                 <button className="h-10 w-24 rounded-xl hover:bg-secondtix hover:text-maintix">
                   Thriller
@@ -64,7 +64,7 @@ function HomeList() {
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="flex w-full justify-between py-12">
+          <div className="flex w-full overflow-scroll gap-5 justify-between py-12">
             <MovieCard
               tittle={"Black Widow"}
               genre1={"Action"}
@@ -91,7 +91,7 @@ function HomeList() {
               genre2={"Adventure"}
             />
           </div>
-          <div className="flex w-full justify-between py-12">
+          <div className="flex w-full overflow-scroll gap-5 justify-between py-12">
             <MovieCard
               tittle={"Black Widow"}
               genre1={"Action"}
@@ -118,7 +118,7 @@ function HomeList() {
               genre2={"Adventure"}
             />
           </div>
-          <div className="flex w-full justify-between py-12">
+          <div className="flex w-full overflow-scroll gap-5 justify-between py-12">
             <MovieCard
               tittle={"Black Widow"}
               genre1={"Action"}

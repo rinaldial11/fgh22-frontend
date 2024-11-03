@@ -6,19 +6,27 @@ import { CiCalendar } from "react-icons/ci";
 import { IoMdTime } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
 import AnchorMain from "../components/AnchorMain";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 
 function Details() {
+  const [isShow, setShow] = React.useState(false);
+  const [isShow2, setShow2] = React.useState(false);
+  const [isShow3, setShow3] = React.useState(false);
+
   return (
     <>
       <NavBar />
       <div className="bg-[url(/src/assets/images/spiderman-details.png)] w-screen h-[550px] bg-no-repeat bg-cover"></div>
-      <main className="px-28 py-14 text-base flex flex-col gap-8 text-maintext">
-        <div className="flex -mt-48 items-end gap-5">
+      <main className="px-6 md:px-28 py-14 text-base flex flex-col gap-8 text-maintext">
+        <div className="flex justify-center md:justify-start flex-wrap -mt-80 md:-mt-48 items-end gap-5">
           <div className="">
             <img src="/src/assets/images/Spiderman.png" alt="Spiderman" />
           </div>
-          <div className="flex flex-col gap-5">
-            <div className="text-3xl font-bold">Spider-Man: Homecoming</div>
+          <div className="flex items-center md:items-start flex-col gap-5">
+            <div className="text-3xl text-center md:text-left font-bold">
+              Spider-Man: Homecoming
+            </div>
             <div className="flex gap-2">
               <div className="bg-abumuda text-secondtix px-3 py-1 rounded-3xl">
                 Action
@@ -59,14 +67,23 @@ function Details() {
             will be threatened.{" "}
           </div>
         </div>
-        <div className="flex flex-col gap-9">
+        <div className="flex text-center md:text-left flex-col gap-9">
           <div className="text-4xl">Book Tickets</div>
-          <div className="flex gap-8 items-end">
-            <div className="flex flex-col gap-3">
-              <label className="text-xl font-semibold" htmlFor="date">
+          <div className="flex flex-wrap gap-8 items-end">
+            <div className="flex w-full md:w-72 flex-col gap-3">
+              <label
+                className="hidden md:block text-xl font-semibold"
+                htmlFor="date"
+              >
                 Choose Date
               </label>
-              <div className="relative w-72 h-14">
+              <label
+                className="block md:hidden pb-5 text-xl font-semibold"
+                htmlFor="date"
+              >
+                Showtimes and Tickets
+              </label>
+              <div className="relative w-full md:w-72 h-14">
                 <CiCalendar className="absolute top-1/3 left-6" />
                 <select
                   className="w-full h-full bg-maintix px-16 rounded-sm"
@@ -84,7 +101,7 @@ function Details() {
                 </select>
               </div>
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="hidden md:flex flex-col gap-3">
               <label className="text-xl font-semibold" htmlFor="date">
                 Choose Time
               </label>
@@ -105,11 +122,14 @@ function Details() {
                 </select>
               </div>
             </div>
-            <div className="flex flex-col gap-3">
-              <label className="text-xl font-semibold" htmlFor="date">
+            <div className="flex w-full md:w-72 flex-col gap-3">
+              <label
+                className="hidden md:block text-xl font-semibold"
+                htmlFor="date"
+              >
                 Choose Location
               </label>
-              <div className="relative w-72 h-14">
+              <div className="relative w-full md:w-72 h-14">
                 <CiLocationOn className="absolute top-1/3 left-6" />
                 <select
                   className="w-full h-full bg-maintix px-16 rounded-sm"
@@ -127,17 +147,21 @@ function Details() {
                 </select>
               </div>
             </div>
-            <div className="h-14 w-44">
+            <div className="h-14 w-full md:w-44">
               <ButtonMain content="Filter" />
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-9 py-5">
           <div className="flex gap-9">
-            <div className="text-xl font-semibold">Choose Cinema</div>
-            <div className="text-lg text-grey font-bold">39 Result </div>
+            <div className="text-xl md:block hidden font-semibold">
+              Choose Cinema
+            </div>
+            <div className="text-lg text-center w-full md:max-w-xs md:text-left text-grey font-bold">
+              39 Result{" "}
+            </div>
           </div>
-          <div className="flex w-full max-w-full min-w-full gap-4 overflow-x-clip">
+          <div className="hidden md:flex w-full max-w-full min-w-full gap-4 overflow-x-scroll">
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
@@ -221,6 +245,308 @@ function Details() {
                 src="/src/assets/icons/cineone.png"
                 alt="cineone"
               />
+            </div>
+          </div>
+          <div className="flex flex-col md:hidden gap-11">
+            <div className="flex flex-col w-full border border-maintix rounded-xl px-8 py-5">
+              <div className="flex justify-between pb-6">
+                <div className="flex w-full max-w-56 flex-col gap-5">
+                  <div className="w-20">
+                    <img src="/src/assets/icons/ebv.png" alt="ebv" />
+                  </div>
+                  <div className="text-2xl font-bold">EBV.id</div>
+                  <div className="text-xs text-grey">
+                    Whatever street No.12, South Purwokerto
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShow(!isShow)}
+                  className=" flex justify-end items-center w-28 text-2xl"
+                >
+                  {isShow && <IoIosArrowUp />}
+                  {!isShow && <IoIosArrowDown />}
+                </button>
+              </div>
+              {isShow && (
+                <div className="flex flex-col gap-7 py-6 border-t border-maintix">
+                  <div className="flex flex-col gap-7">
+                    <div className="text-xl font-semibold">REGULAR</div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-7">
+                    <div className="text-xl font-semibold">GOLD</div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-7">
+                    <div className="text-xl font-semibold">PLATINUM S</div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col w-full border border-maintix rounded-xl px-8 py-5">
+              <div className="flex justify-between pb-6">
+                <div className="flex w-full max-w-56 flex-col gap-5">
+                  <div className="w-20">
+                    <img src="/src/assets/icons/cineone.png" alt="Cineone" />
+                  </div>
+                  <div className="text-2xl font-bold">Cineone 21</div>
+                  <div className="text-xs text-grey">
+                    Whatever street No.12, South Purwokerto
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShow2(!isShow2)}
+                  className=" flex justify-end items-center w-28 text-2xl"
+                >
+                  {isShow2 && <IoIosArrowUp />}
+                  {!isShow2 && <IoIosArrowDown />}
+                </button>
+              </div>
+              {isShow2 && (
+                <div className="flex flex-col gap-7 py-6 border-t border-maintix">
+                  <div className="flex flex-col gap-7">
+                    <div className="text-xl font-semibold">REGULAR</div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-7">
+                    <div className="text-xl font-semibold">GOLD</div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-7">
+                    <div className="text-xl font-semibold">PLATINUM S</div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col w-full border border-maintix rounded-xl px-8 py-5">
+              <div className="flex justify-between pb-6">
+                <div className="flex w-full max-w-56 flex-col gap-5">
+                  <div className="w-20">
+                    <img src="/src/assets/icons/hiflix.png" alt="ebv" />
+                  </div>
+                  <div className="text-2xl font-bold">Hiflix Cinema</div>
+                  <div className="text-xs text-grey">
+                    Whatever street No.12, South Purwokerto
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShow3(!isShow3)}
+                  className=" flex justify-end items-center w-28 text-2xl"
+                >
+                  {isShow3 && <IoIosArrowUp />}
+                  {!isShow3 && <IoIosArrowDown />}
+                </button>
+              </div>
+              {isShow3 && (
+                <div className="flex flex-col gap-7 py-6 border-t border-maintix">
+                  <div className="flex flex-col gap-7">
+                    <div className="text-xl font-semibold">REGULAR</div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-7">
+                    <div className="text-xl font-semibold">GOLD</div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-7">
+                    <div className="text-xl font-semibold">PLATINUM S</div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6 w-2/3">
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        08:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        10:30 AM
+                      </div>
+                      <div className="hover:bg-secondtix hover:text-maintix flex justify-center items-center rounded-3xl bg-maintix w-24 h-8 text-sm">
+                        13:30 AM
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex gap-2 justify-center w-full">
@@ -238,7 +564,7 @@ function Details() {
             </button>
           </div>
           <div className="w-full flex justify-center">
-            <div className="w-44 h-14">
+            <div className="hidden md:block w-44 h-14">
               <AnchorMain content="Book Now" page="/order" />
             </div>
           </div>

@@ -3,7 +3,7 @@ import { BsThreeDots } from "react-icons/bs";
 import ProfilePicture from "../assets/images/profile-picture.png";
 import Star from "../assets/icons/star.png";
 
-function ProfileCard() {
+function ProfileCard(props) {
   return (
     <>
       <div className="flex w-80 flex-col px-10 pb-28 h-fit pt-10 gap-10 bg-white rounded-3xl">
@@ -38,11 +38,20 @@ function ProfileCard() {
           </div>
           <div className="flex flex-col gap-2 text-center">
             <div>180 points become a master</div>
-            <div className="relative flex">
-              <div className="h-4 w-32 bg-secondtix absolute rounded-lg"></div>
+            <div className="flex">
+              <div className="h-4 w-32 md:absolute bg-secondtix rounded-lg"></div>
               <div className="shadow-inner h-4 w-full bg-maintix rounded-lg"></div>
             </div>
           </div>
+        </div>
+        <div className="h-14 mt-4 block md:hidden">
+          <button
+            type="button"
+            onClick={props.fungsi}
+            className="w-full h-full border border-secondtix text-secondtix rounded-2xl"
+          >
+            Edit Profile
+          </button>
         </div>
       </div>
     </>

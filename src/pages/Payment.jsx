@@ -16,7 +16,7 @@ function Payment() {
   return (
     <>
       <NavBar />
-      <main className="relative px-6 md:px-28 pb-32 md:pt-14 text-base items-center flex flex-col bg-abumuda gap-5 text-maintext">
+      <main className="relative px-6 md:px-28 pb-32 text-base items-center flex flex-col bg-abumuda gap-5 text-maintext">
         {isShow && (
           <button
             type="button"
@@ -67,7 +67,7 @@ function Payment() {
             </div>
           </button>
         )}
-        <div className="hidden md:flex items-center gap-3 w-full justify-center">
+        <div className="hidden md:flex mt-14 items-center gap-3 w-full justify-center">
           <Step content2={"Dates And Time"} status={"activated"} />
           <div>........................</div>
           <Step content={"2"} content2={"Seat"} status="activated" />

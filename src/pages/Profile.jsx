@@ -5,6 +5,7 @@ import ProfileSection from "../components/ProfileSection";
 import AnchorMain from "../components/AnchorMain";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
+import { IoIosArrowBack } from "react-icons/io";
 
 function Profile() {
   const [type, setType] = React.useState("password");
@@ -40,13 +41,20 @@ function Profile() {
           <ProfileSection page="profile" />
         </div>
         {isShow && (
-          <button
-            type="button"
-            onClick={() => setShow(!isShow)}
-            className="flex justify-center items-center text-left px-6 w-full h-full md:hidden bg-[#00000099] absolute"
-          >
+          <div className="flex justify-center items-center text-left px-6 w-full h-full md:hidden bg-[#00000099] absolute">
             <form className="text-lg w-full px-6 py-10 bg-white rounded-3xl flex flex-col gap-12">
-              <div className="text-2xl font-bold w-full">Account Settings</div>
+              <div>
+                <button
+                  className="text-2xl"
+                  type="button"
+                  onClick={() => setShow(!isShow)}
+                >
+                  <IoIosArrowBack />
+                </button>
+                <div className="text-2xl font-bold w-full">
+                  Account Settings
+                </div>
+              </div>
               <div className="w-full pb-4 border-b border-maintix">
                 Details Information
               </div>
@@ -137,7 +145,7 @@ function Profile() {
                 </button>
               </div>
             </form>
-          </button>
+          </div>
         )}
         <ProfileCard fungsi={() => setShow(!isShow)} />
         <div className="hidden md:flex flex-col gap-12 w-full max-w-screen-xl">

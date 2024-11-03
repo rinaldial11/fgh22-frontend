@@ -49,7 +49,7 @@ function OrderHistory() {
               <div className="w-full">
                 <PaidStatus status="active" />
               </div>
-              <div>
+              <div className="md:w-44">
                 <button
                   type="button"
                   onClick={() => setShow1(!isShow1)}
@@ -117,7 +117,7 @@ function OrderHistory() {
               <div className="w-full">
                 <PaidStatus status="used" isPaid={true} />
               </div>
-              <div>
+              <div className="md:w-44">
                 <button
                   type="button"
                   onClick={() => setShow2(!isShow2)}
@@ -188,7 +188,7 @@ function OrderHistory() {
               <div className="w-full">
                 <PaidStatus status="used" isPaid={true} />
               </div>
-              <div>
+              <div className="md:w-44">
                 <button
                   type="button"
                   onClick={() => setShow3(!isShow3)}

@@ -68,7 +68,7 @@ function OrderPage() {
             </button>
           )}
           <div className="bg-white mt-14 px-5 py-10 rounded-2xl md:rounded-md flex flex-col gap-9">
-            <div className="w-full px-6 py-3 border md:flex-row flex-col items-center flex border-maintix gap-4 rounded-sm">
+            <div className="w-full px-6 py-3 border md:flex-row flex-col items-center md:items-end flex border-maintix gap-4 rounded-sm">
               <div className="w-64 h-44 md:w-48 md:h-32 overflow-hidden">
                 <img src={Spiderman} alt="" />
               </div>

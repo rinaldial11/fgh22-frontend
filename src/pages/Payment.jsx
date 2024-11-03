@@ -16,7 +16,7 @@ function Payment() {
   return (
     <>
       <NavBar />
-      <main className="relative px-6 md:px-28 pb-32 text-base items-center flex flex-col bg-abumuda gap-5 text-maintext">
+      <main className="relative px-6 md:px-28 pb-32 md:pt-14 text-base items-center flex flex-col bg-abumuda gap-5 text-maintext">
         {isShow && (
           <button
             type="button"
@@ -74,7 +74,7 @@ function Payment() {
           <div>........................</div>
           <Step content={"3"} content2={"Payment"} status="done" />
         </div>
-        <div className="bg-white w-full max-w-3xl min-w-96 py-14 px-9 flex flex-col gap-12 rounded-md">
+        <div className="bg-white w-full max-w-3xl min-w-96 py-14 px-9 flex mt-14 flex-col gap-12 rounded-md">
           <div className="flex flex-col gap-7">
             <div className="text-2xl font-bold">Payment Info</div>
             <div className="flex flex-col gap-4">

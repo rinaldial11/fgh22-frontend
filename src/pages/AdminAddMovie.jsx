@@ -55,16 +55,16 @@ function AdminAddMovie() {
                 </div>
                 <div className="flex flex-col gap-3">
                   <label htmlFor="hour">Duration (hour / minute)</label>
-                  <div className="flex md:flex-row flex-col gap-6">
+                  <div className="flex md:flex-row flex-col md:h-16 gap-6">
                     <input
-                      className="placeholder:text-center w-full px-9 h-16 md:h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
+                      className="placeholder:md:text-center w-full px-9 h-16 md:h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
                       type="number"
                       id="hour"
                       name="hour"
                       placeholder="2"
                     />
                     <input
-                      className="placeholder:text-center w-full px-9 h-16 md:h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
+                      className="placeholder:md:text-center w-full px-9 h-16 md:h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
                       type="number"
                       id="minute"
                       name="minute"

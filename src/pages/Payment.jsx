@@ -12,10 +12,61 @@ import Ovo from "../assets/icons/ovo.png";
 import AnchorMain from "../components/AnchorMain";
 
 function Payment() {
+  const [isShow, setShow] = React.useState(false);
   return (
     <>
       <NavBar />
-      <main className="px-28 pt-14 pb-32 text-base items-center flex flex-col bg-abumuda gap-5 text-maintext">
+      <main className="relative px-6 md:px-28 pb-32 text-base items-center flex flex-col bg-abumuda gap-5 text-maintext">
+        {isShow && (
+          <button
+            type="button"
+            onClick={() => setShow(!isShow)}
+            className="w-full h-full bg-[#00000099] px-6 absolute flex justify-center items-center"
+          >
+            <div className="bg-white rounded-2xl pt-6 pb-14 px-4 flex flex-col gap-9">
+              <div className="text-2xl font-bold text-center">Payment Info</div>
+              <div className="flex flex-col md:flex-row md:gap-24 w-full gap-3 md:items-center">
+                <div className="flex text-sm text-grey">
+                  <div className="w-40 text-left md:w-40">
+                    No. Rekening Virtual
+                  </div>
+                  <div>:</div>
+                </div>
+                <div className="flex justify-between md:justify-end items-center gap-5">
+                  <div className="text-lg font-bold">12321328913829724</div>
+                  <button className="border border-secondtix text-secondtix py-3 px-4 rounded">
+                    Copy
+                  </button>
+                </div>
+              </div>
+              <div className="flex flex-col md:flex-row md:gap-24 w-full gap-3 md:items-center">
+                <div className="flex text-sm text-grey">
+                  <div className="w-40 text-left md:w-40">Total Payment</div>
+                  <div>:</div>
+                </div>
+                <div className="flex items-center gap-5">
+                  <div className="text-lg font-bold text-secondtix">$30</div>
+                </div>
+              </div>
+              <div className="max-w-lg text-left text-grey">
+                Pay this payment bill before it is due,{" "}
+                <span className="text-red font-semibold">on June 23, 2023</span>
+                . If the bill has not been paid by the specified time, it will
+                be forfeited
+              </div>
+              <div className="flex flex-col gap-6">
+                <div className="h-14">
+                  <AnchorMain content="Check Payment" page="/ticket-result" />
+                </div>
+                <div className="h-14">
+                  <button className="w-full h-full text-secondtix font-bold">
+                    Pay Later
+                  </button>
+                </div>
+              </div>
+            </div>
+          </button>
+        )}
         <div className="hidden md:flex items-center gap-3 w-full justify-center">
           <Step content2={"Dates And Time"} status={"activated"} />
           <div>........................</div>
@@ -117,7 +168,7 @@ function Payment() {
           </form>
           <div className="flex flex-col gap-7">
             <div className="text-2xl font-bold">Payment Method</div>
-            <div className="grid grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="w-36 h-14 border-2 border-maintix flex justify-center items-center rounded-lg">
                 <img src={GooglePay} alt="" />
               </div>
@@ -148,7 +199,13 @@ function Payment() {
             </div>
           </div>
           <div className="h-14">
-            <AnchorMain content="Pay your order" page="/payment-modal" />
+            <button
+              type="button"
+              onClick={() => setShow(!isShow)}
+              className="w-full h-full bg-secondtix text-maintix rounded-lg"
+            >
+              Pay Your Order
+            </button>
           </div>
         </div>
       </main>

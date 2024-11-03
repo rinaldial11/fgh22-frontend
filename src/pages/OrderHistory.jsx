@@ -17,12 +17,22 @@ function OrderHistory() {
   return (
     <>
       <NavBar isLog={true} />
-      <main className="px-20 pt-14 pb-32 text-base flex bg-abumuda gap-8 text-maintext">
-        <ProfileCard />
-        <div className="flex flex-col gap-12 w-full max-w-screen-xl">
+      <main className="justify-center md:px-20 md:pt-14 md:pb-32 text-base flex items-center md:items-start flex-col md:flex-row bg-abumuda gap-8 text-maintext">
+        <div className="flex w-full items-start md:hidden">
           <ProfileSection page="order-history" />
+        </div>
+        <div className="hidden lg:block">
+          <ProfileCard />
+        </div>
+        <div className="flex flex-col gap-12 px-6 md:px-0 w-full max-w-screen-xl">
+          <div className="hidden md:block">
+            <ProfileSection page="order-history" />
+          </div>
           <div className="text-lg px-12 py-10 bg-white rounded-3xl flex flex-col gap-12">
-            <div className="flex items-center pb-12 border-b border-maintix justify-between">
+            <div className="flex flex-col md:flex-row md:gap-0 gap-5 md:items-center pb-12 border-b border-maintix md:justify-between">
+              <div className="block md:hidden">
+                <img src={Cineone} alt="Cineone" />
+              </div>
               <div className="flex flex-col gap-1">
                 <div className="text-grey text-sm">
                   Tuesday, 07 July 2020 - 04:30pm
@@ -31,12 +41,12 @@ function OrderHistory() {
                   Spider-Man: Homecoming
                 </div>
               </div>
-              <div>
+              <div className="hidden md:block">
                 <img src={Cineone} alt="Cineone" />
               </div>
             </div>
-            <div className="flex items-center justify-between">
-              <div>
+            <div className="flex md:flex-row flex-col md:gap-0 gap-6 items-center justify-between">
+              <div className="w-full">
                 <PaidStatus status="active" />
               </div>
               <div>
@@ -53,7 +63,7 @@ function OrderHistory() {
             {isShow1 && (
               <div className="flex flex-col gap-7">
                 <div className="text-lg">Ticket Information</div>
-                <div className="flex gap-24 w-full justify-between items-center">
+                <div className="flex flex-col md:flex-row md:gap-24 w-full md:justify-between items-start md:items-center">
                   <div className="flex text-sm text-grey">
                     <div className="w-40">No. Rekening Virtual</div>
                     <div>:</div>
@@ -65,7 +75,7 @@ function OrderHistory() {
                     </button>
                   </div>
                 </div>
-                <div className="flex justify-between w-full items-center">
+                <div className="flex flex-col md:flex-row justify-between w-full items-start gap-4 md:items-center">
                   <div className="flex text-sm text-grey">
                     <div className="w-40">Total Payment</div>
                     <div>:</div>
@@ -82,26 +92,29 @@ function OrderHistory() {
                   . If the bill has not been paid by the specified time, it will
                   be forfeited
                 </div>
-                <div className="h-12 w-48 text-sm">
+                <div className="h-12 w-full md:w-48 text-sm">
                   <ButtonMain content="Cek Pembayaran" />
                 </div>
               </div>
             )}
           </div>
           <div className="text-lg px-12 py-10 bg-white rounded-3xl flex flex-col gap-12">
-            <div className="flex items-center pb-12 border-b border-maintix justify-between">
+            <div className="flex flex-col md:flex-row md:gap-0 gap-5 md:items-center pb-12 border-b border-maintix md:justify-between">
+              <div className="block md:hidden">
+                <img src={Ebv} alt="Ebv" />
+              </div>
               <div className="flex flex-col gap-1">
                 <div className="text-grey text-sm">
                   Monday, 14 June 2020 - 02:00pm
                 </div>
                 <div className="text-2xl font-semibold">Avengers: End Game</div>
               </div>
-              <div>
+              <div className="hidden md:block">
                 <img src={Ebv} alt="Ebv" />
               </div>
             </div>
-            <div className="flex items-center justify-between">
-              <div>
+            <div className="flex md:flex-row flex-col md:gap-0 gap-6 items-center justify-between">
+              <div className="w-full">
                 <PaidStatus status="used" isPaid={true} />
               </div>
               <div>
@@ -118,7 +131,7 @@ function OrderHistory() {
             {isShow2 && (
               <div className="flex flex-col gap-1">
                 <div className="text-lg">Ticket Information</div>
-                <div className="flex items-center gap-11">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-11">
                   <div>
                     <img src={Barcode} alt="barcode" />
                   </div>
@@ -157,19 +170,22 @@ function OrderHistory() {
             )}
           </div>
           <div className="text-lg px-12 py-10 bg-white rounded-3xl flex flex-col gap-12">
-            <div className="flex items-center pb-12 border-b border-maintix justify-between">
+            <div className="flex flex-col md:flex-row md:gap-0 gap-5 md:items-center pb-12 border-b border-maintix md:justify-between">
+              <div className="md:hidden block">
+                <img src={Ebv} alt="Ebv" />
+              </div>
               <div className="flex flex-col gap-1">
                 <div className="text-grey text-sm">
                   Monday, 14 June 2020 - 02:00pm
                 </div>
                 <div className="text-2xl font-semibold">Avengers: End Game</div>
               </div>
-              <div>
+              <div className="hidden md:block">
                 <img src={Ebv} alt="Ebv" />
               </div>
             </div>
-            <div className="flex items-center justify-between">
-              <div>
+            <div className="flex md:flex-row flex-col md:gap-0 gap-6 items-center justify-between">
+              <div className="w-full">
                 <PaidStatus status="used" isPaid={true} />
               </div>
               <div>
@@ -186,7 +202,7 @@ function OrderHistory() {
             {isShow3 && (
               <div className="flex flex-col gap-1">
                 <div className="text-lg">Ticket Information</div>
-                <div className="flex items-center gap-11">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-11">
                   <div>
                     <img src={Barcode} alt="barcode" />
                   </div>

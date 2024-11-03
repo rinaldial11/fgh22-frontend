@@ -8,10 +8,10 @@ function AdminAddMovie() {
   return (
     <>
       <NavBar isLog={true} isAdmin={true} page="add-movie" />
-      <main className="bg-abumuda py-14 px-80">
+      <main className="bg-abumuda py-14 px-6 lg:px-52">
         <div className="bg-white rounded-md flex flex-col gap-6 py-14">
           <div className="text-2xl font-bold px-9">Add New Movie</div>
-          <div className="flex flex-col px-14 gap-4">
+          <div className="flex flex-col px-6 md:px-14 gap-4">
             <div className="text-grey">Upload Image</div>
             <div className="w-28 h-8 text-xs">
               <ButtonMain content="Upload" />
@@ -41,7 +41,7 @@ function AdminAddMovie() {
                   />
                 </div>
               </div>
-              <div className="flex justify-between gap-11">
+              <div className="flex md:flex-row flex-col justify-between gap-11">
                 <div className="flex flex-col gap-3 w-full">
                   <label htmlFor="date">Release date</label>
                   <div className="h-16">
@@ -55,16 +55,16 @@ function AdminAddMovie() {
                 </div>
                 <div className="flex flex-col gap-3">
                   <label htmlFor="hour">Duration (hour / minute)</label>
-                  <div className="flex h-16 gap-6">
+                  <div className="flex md:flex-row flex-col gap-6">
                     <input
-                      className="placeholder:text-center w-full px-9 h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
+                      className="placeholder:text-center w-full px-9 h-16 md:h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
                       type="number"
                       id="hour"
                       name="hour"
                       placeholder="2"
                     />
                     <input
-                      className="placeholder:text-center w-full px-9 h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
+                      className="placeholder:text-center w-full px-9 h-16 md:h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
                       type="number"
                       id="minute"
                       name="minute"
@@ -123,7 +123,7 @@ function AdminAddMovie() {
               </div>
               <div className="flex flex-col gap-3">
                 <label htmlFor="location">Set Date & Time</label>
-                <div className="relative w-56 h-10">
+                <div className="relative w-full md:w-56 h-10">
                   <CiCalendar className="absolute top-1/3 left-6" />
                   <select
                     className="outline-none w-full h-full bg-maintix pl-16 rounded-lg"

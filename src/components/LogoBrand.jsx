@@ -3,7 +3,7 @@ import FuntastixLogo from "../assets/icons/funtastix-logo.png";
 
 function LogoBrand() {
   return (
-    <div className="shadow-2xl w-56 flex justify-center items-end">
+    <div className="shadow-2xl w-40 md:w-56 flex justify-center items-end">
       <img className="w-full" src={FuntastixLogo} alt="" />
     </div>
   );

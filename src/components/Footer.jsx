@@ -11,8 +11,8 @@ import { FiYoutube } from "react-icons/fi";
 function Footer() {
   return (
     <>
-      <footer className="flex text-sm flex-col items-start bg-secondtix py-24 px-28 gap-12 text-white">
-        <div className="flex gap-24 items-start">
+      <footer className="flex text-sm flex-col items-start bg-secondtix py-24 px-6 lg:px-28 gap-12 text-white">
+        <div className="flex flex-col lg:flex-row gap-24 items-start">
           <div className="flex flex-col gap-4">
             <LogoBrand />
             <div className="text-base max-w-72">
@@ -20,53 +20,59 @@ function Footer() {
               quietly.
             </div>
           </div>
-          <div className="flex gap-28">
+          <div className="flex flex-col md:flex-row gap-12 md:gap-28">
             <div className="flex flex-col gap-3.5">
               <div className="text-base text-maintix pb-4 font-bold">
                 Explore
               </div>
-              <div>Cinemas</div>
-              <div>Movies List</div>
-              <div>My Ticket</div>
-              <div>Notification</div>
+              <div className="flex gap-11 flex-wrap md:flex-col md:gap-3.5">
+                <div>Cinemas</div>
+                <div>Movies List</div>
+                <div>My Ticket</div>
+                <div>Notification</div>
+              </div>
             </div>
             <div className="flex flex-col gap-3.5">
               <div className="text-base text-maintix pb-4 font-bold">
                 Our Sponsor
               </div>
-              <div>
-                <img src={Ebv} alt="Ebv" />
-              </div>
-              <div>
-                <img
-                  className="brightness-0 invert"
-                  src={Cineone}
-                  alt="Cineone"
-                />
-              </div>
-              <div>
-                <img src={Hiflix} alt="Hiflix" />
+              <div className="flex gap-11 items-center md:items-start flex-wrap md:flex-col md:gap-3.5">
+                <div>
+                  <img src={Ebv} alt="Ebv" />
+                </div>
+                <div>
+                  <img
+                    className="brightness-0 invert"
+                    src={Cineone}
+                    alt="Cineone"
+                  />
+                </div>
+                <div>
+                  <img src={Hiflix} alt="Hiflix" />
+                </div>
               </div>
             </div>
             <div className="flex flex-col gap-3.5">
               <div className="text-base text-maintix pb-4 font-bold">
                 Follow us
               </div>
-              <div className="flex items-center gap-4">
-                <FiFacebook className="text-lg" />
-                Funtastix Cinema id
-              </div>
-              <div className="flex items-center gap-4">
-                <FiInstagram className="text-lg" />
-                funtastix.id
-              </div>
-              <div className="flex items-center gap-4">
-                <FiTwitter className="text-lg" />
-                funtastix.id
-              </div>
-              <div className="flex items-center gap-4">
-                <FiYoutube className="text-lg" />
-                Funtastix Cinema id
+              <div className="flex gap-11 items-center md:items-start flex-wrap md:flex-col md:gap-3.5">
+                <div className="flex items-center gap-4">
+                  <FiFacebook className="text-lg" />
+                  <span className="hidden md:block">Funtastix Cinema id</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <FiInstagram className="text-lg" />
+                  <span className="hidden md:block">funtastix.id</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <FiTwitter className="text-lg" />
+                  <span className="hidden md:block">funtastix.id</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <FiYoutube className="text-lg" />
+                  <span className="hidden md:block">Funtastix Cinema id</span>
+                </div>
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ function Subscribe() {
       <div className="text-maintix text-5xl font-light">
         Subscribe to our newsletter
       </div>
-      <div className="flex gap-5 items-center">
+      <div className="flex flex-col lg:flex-row gap-5 px-9 items-center">
         <div className="h-16 w-64">
           <input
             className="w-full h-full px-5 bg-secondtix border border-maintix rounded-md placeholder-maintix placeholder:text-lg"
@@ -21,7 +21,7 @@ function Subscribe() {
             placeholder="Email address"
           />
         </div>
-        <div className="h-16 w-56">
+        <div className="h-16 w-64 lg:w-56">
           <button className="bg-maintix text-secondtix w-full h-full rounded-xl text-xl font-medium">
             Subscribe Now
           </button>

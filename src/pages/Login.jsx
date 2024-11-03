@@ -11,7 +11,7 @@ function Login() {
       <div>
         <div className="bg-[url(/src/assets/images/avengers-darken.png)] items-center py-16 px-10 w-screen h-screen bg-no-repeat bg-cover flex flex-col gap-5 text-maintext">
           <LogoBrand />
-          <div className="flex flex-col gap-6 bg-white rounded-md w-full min-w-80 max-w-xl h-full px-5 md:px-20 py-14">
+          <div className="flex flex-col gap-6 bg-white rounded-md w-full min-w-80 max-w-xl h-fit px-5 md:px-20 py-14">
             <div className="flex flex-col gap-6">
               <div className="text-2xl md:text-3xl font-semibold">
                 Welcome Back👋

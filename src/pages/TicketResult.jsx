@@ -7,6 +7,9 @@ import AnchorMain from "../components/AnchorMain";
 import { GoDownload } from "react-icons/go";
 
 function TicketResult() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <NavBar />

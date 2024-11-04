@@ -6,6 +6,9 @@ import Subscribe from "../components/Subscribe";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
 function HomeList() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <NavBar />

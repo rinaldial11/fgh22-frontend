@@ -10,6 +10,9 @@ import { FaArrowDown, FaArrowRight } from "react-icons/fa6";
 
 function OrderPage() {
   const [isShow, setShow] = React.useState(false);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <NavBar />

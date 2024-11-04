@@ -4,6 +4,9 @@ import ButtonMain from "../components/ButtonMain";
 import Graph from "../assets/images/graph.png";
 
 function AdminDashboard() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <NavBar isLog={true} isAdmin={true} page="admin-dashboard" />

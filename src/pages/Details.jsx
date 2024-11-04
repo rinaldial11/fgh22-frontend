@@ -8,6 +8,7 @@ import { CiLocationOn } from "react-icons/ci";
 import AnchorMain from "../components/AnchorMain";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import Spiderman from "../assets/images/Spiderman.png";
 
 function Details() {
   const [isShow, setShow] = React.useState(false);
@@ -21,7 +22,7 @@ function Details() {
       <main className="px-6 md:px-28 py-14 text-base flex flex-col gap-8 text-maintext">
         <div className="flex justify-center md:justify-start flex-wrap -mt-80 md:-mt-48 items-end gap-5">
           <div className="">
-            <img src="/src/assets/images/Spiderman.png" alt="Spiderman" />
+            <img src={Spiderman} alt="Spiderman" />
           </div>
           <div className="flex items-center md:items-start flex-col gap-5">
             <div className="text-3xl text-center md:text-left font-bold">

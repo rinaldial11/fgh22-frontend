@@ -2,8 +2,8 @@ import React from "react";
 
 function Subscribe() {
   return (
-    <div className="rounded-2xl flex flex-col gap-12 items-center justify-center text-center py-20 bg-secondtix">
-      <div className="text-maintix text-5xl font-light">
+    <div className="rounded-2xl px-2 flex flex-col gap-12 items-center justify-center text-center py-20 bg-secondtix">
+      <div className="text-maintix text-3xl md:text-5xl font-light">
         Subscribe to our newsletter
       </div>
       <div className="flex flex-col lg:flex-row gap-5 px-9 items-center">

@@ -9,10 +9,10 @@ function HomeList() {
   return (
     <>
       <NavBar />
-      <div className="bg-[url(/src/assets/images/avengers-darken2.png)] w-screen h-[600px] bg-no-repeat bg-cover py-28 px-28">
-        <div className="text-white flex h-full flex-col gap-3 justify-center">
+      <div className="bg-[url(/src/assets/images/avengers-darken2.png)] w-screen h-[600px] bg-no-repeat bg-cover py-28 px-6 md:px-28">
+        <div className="text-white md:text-left text-center flex h-full flex-col gap-3 justify-center">
           <div className="text-lg font-semibold">LIST MOVIE OF THE WEEK</div>
-          <div className="text-5xl font-medium w-full max-w-2xl">
+          <div className="text-3xl md:text-5xl  font-medium w-full max-w-2xl">
             Experience the Magic of Cinema: Book Your Tickets Today
           </div>
         </div>

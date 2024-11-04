@@ -5,6 +5,9 @@ import { CiCalendar } from "react-icons/ci";
 import { HiPlus } from "react-icons/hi";
 
 function AdminAddMovie() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <NavBar isLog={true} isAdmin={true} page="add-movie" />

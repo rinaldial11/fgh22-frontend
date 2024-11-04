@@ -8,7 +8,7 @@ import { CiLocationOn } from "react-icons/ci";
 import AnchorMain from "../components/AnchorMain";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-import Spiderman from "../assets/images/Spidermanf.png";
+import Spiderman from "../assets/images/Spiderman.png";
 import Ebv from "../assets/icons/ebv.png";
 import Cineone from "../assets/icons/cineone.png";
 import Hiflix from "../assets/icons/hiflix.png";

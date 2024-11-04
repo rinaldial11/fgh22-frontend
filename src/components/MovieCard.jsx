@@ -64,7 +64,7 @@ function MovieCard(props) {
           </Link>
         </div>
         <div className="text-2xl font-semibold">{props.tittle}</div>
-        {!props.date || (
+        {props.date && (
           <div className="text-lg text-grey font-semibold">{props.date}</div>
         )}
         <div className="flex gap-3">

@@ -13,7 +13,7 @@ function Profile() {
   const [type2, setType2] = React.useState("password");
   const [icon2, setIcon2] = React.useState(<FiEye />);
   const [isShow, setShow] = React.useState(false);
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 

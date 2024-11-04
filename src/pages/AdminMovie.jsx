@@ -10,7 +10,7 @@ import { FaTrash } from "react-icons/fa";
 import Blackwidow from "../assets/images/Black-Widow.png";
 
 function AdminMovie() {
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (

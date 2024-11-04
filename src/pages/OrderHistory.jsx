@@ -14,7 +14,7 @@ function OrderHistory() {
   const [isShow1, setShow1] = React.useState(false);
   const [isShow2, setShow2] = React.useState(false);
   const [isShow3, setShow3] = React.useState(false);
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (

@@ -13,7 +13,7 @@ import AnchorMain from "../components/AnchorMain";
 
 function Payment() {
   const [isShow, setShow] = React.useState(false);
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (

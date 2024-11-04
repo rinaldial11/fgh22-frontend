@@ -7,7 +7,7 @@ import FormSign from "../components/FormSign";
 import LogoBrand from "../components/LogoBrand";
 
 function Register() {
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (

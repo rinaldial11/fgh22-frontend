@@ -4,7 +4,7 @@ import ButtonMain from "../components/ButtonMain";
 import Graph from "../assets/images/graph.png";
 
 function AdminDashboard() {
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (

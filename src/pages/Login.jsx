@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import LogoBrand from "../components/LogoBrand";
 
 function Login() {
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (

@@ -13,7 +13,7 @@ import AnchorMain from "../components/AnchorMain";
 import { Link } from "react-router-dom";
 
 function PaymentModal() {
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (

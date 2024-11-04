@@ -8,7 +8,10 @@ import { CiLocationOn } from "react-icons/ci";
 import AnchorMain from "../components/AnchorMain";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-import Spiderman from "../assets/images/Spiderman.png";
+import Spiderman from "../assets/images/Spidermanf.png";
+import Ebv from "../assets/icons/ebv.png";
+import Cineone from "../assets/icons/cineone.png";
+import Hiflix from "../assets/icons/hiflix.png";
 
 function Details() {
   const [isShow, setShow] = React.useState(false);
@@ -166,84 +169,84 @@ function Details() {
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/ebv.png"
+                src={Ebv}
                 alt="ebv"
               />
             </div>
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/hiflix.png"
+                src={Hiflix}
                 alt="hiflix"
               />
             </div>
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/cineone.png"
+                src={Cineone}
                 alt="cineone"
               />
             </div>
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/ebv.png"
+                src={Ebv}
                 alt="ebv"
               />
             </div>
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/hiflix.png"
+                src={Hiflix}
                 alt="hiflix"
               />
             </div>
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/cineone.png"
+                src={Cineone}
                 alt="cineone"
               />
             </div>
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/ebv.png"
+                src={Ebv}
                 alt="ebv"
               />
             </div>
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/hiflix.png"
+                src={Hiflix}
                 alt="hiflix"
               />
             </div>
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/cineone.png"
+                src={Cineone}
                 alt="cineone"
               />
             </div>
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/ebv.png"
+                src={Ebv}
                 alt="ebv"
               />
             </div>
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/hiflix.png"
+                src={Hiflix}
                 alt="hiflix"
               />
             </div>
             <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
-                src="/src/assets/icons/cineone.png"
+                src={Cineone}
                 alt="cineone"
               />
             </div>
@@ -253,7 +256,7 @@ function Details() {
               <div className="flex justify-between pb-6">
                 <div className="flex w-full max-w-56 flex-col gap-5">
                   <div className="w-20">
-                    <img src="/src/assets/icons/ebv.png" alt="ebv" />
+                    <img src={Ebv} alt="ebv" />
                   </div>
                   <div className="text-2xl font-bold">EBV.id</div>
                   <div className="text-xs text-grey">
@@ -353,7 +356,7 @@ function Details() {
               <div className="flex justify-between pb-6">
                 <div className="flex w-full max-w-56 flex-col gap-5">
                   <div className="w-20">
-                    <img src="/src/assets/icons/cineone.png" alt="Cineone" />
+                    <img src={Cineone} alt="Cineone" />
                   </div>
                   <div className="text-2xl font-bold">Cineone 21</div>
                   <div className="text-xs text-grey">
@@ -453,7 +456,7 @@ function Details() {
               <div className="flex justify-between pb-6">
                 <div className="flex w-full max-w-56 flex-col gap-5">
                   <div className="w-20">
-                    <img src="/src/assets/icons/hiflix.png" alt="ebv" />
+                    <img src={Hiflix} alt="Hiflix" />
                   </div>
                   <div className="text-2xl font-bold">Hiflix Cinema</div>
                   <div className="text-xs text-grey">

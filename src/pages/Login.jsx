@@ -1,14 +1,17 @@
 import React from "react";
 import ButtonMain from "../components/ButtonMain";
 import ButtonSos from "../components/ButtonSos";
-import { Link } from "react-router-dom";
 import LogoBrand from "../components/LogoBrand";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [type, setType] = React.useState("password");
   const [icon, setIcon] = React.useState(<FiEye />);
+  const registered = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   function formSubmit(e) {
     e.preventDefault();
@@ -21,15 +24,15 @@ function Login() {
       window.alert("form login harus diisi");
       return;
     }
-    if (email !== "rinaldi@gmail.com") {
-      window.alert("email belum terdaftar");
+    if (email !== registered.email) {
+      window.alert("email salah");
       return;
     }
-    if (password !== "1234") {
+    if (password !== registered.password) {
       window.alert("password salah");
       return;
     }
-    window.open("/");
+    navigate("/");
   }
 
   function hidePassword() {

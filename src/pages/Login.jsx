@@ -17,7 +17,7 @@ function Login() {
   const [showAlert, setShowAlert] = React.useState(false);
   const [textAlert, setTextAlert] = React.useState("");
 
-  const registered = useSelector((state) => state.profile.data);
+  const registered = useSelector((state) => state.user.data);
   const navigate = useNavigate();
 
   function formSubmit(e) {
@@ -32,22 +32,22 @@ function Login() {
       setTextAlert("Email dan Password harus diisi!");
       return;
     }
-    if (email !== registered.email) {
-      setTextAlert("Email belum terdaftar");
-      setShowAlert(true);
-      return;
-    }
-    if (password !== registered.password) {
-      setTextAlert("Password salah");
-      setShowAlert(true);
-      return;
-    }
-
-    // setShowAlert(false);
-    if (showAlert === false) {
-      dispatch(setProfile({ email, password }));
+    const registeredData = registered.find((e) => e.email);
+    // console.log(registeredData.email);
+    // console.log(registeredData.password);
+    if (
+      email === registeredData.email &&
+      password === registeredData.password
+    ) {
+      dispatch(
+        setProfile({
+          email,
+          password,
+        })
+      );
       navigate("/");
     }
+    // setShowAlert(false);
   }
 
   function hidePassword() {
@@ -73,6 +73,7 @@ function Login() {
               <div className="text-2xl md:text-3xl font-semibold">
                 Welcome Back👋
               </div>
+              <div>{registered.email}</div>
               <div className="text-grey w-full max-w-80 md:w-full md:max-w-full text-lg">
                 Sign in with your data that you entered during your registration
               </div>
@@ -82,11 +83,7 @@ function Login() {
                 {textAlert}
               </div>
             )}
-            <form
-              action=""
-              onSubmit={formSubmit}
-              className="flex flex-col gap-6"
-            >
+            <form onSubmit={formSubmit} className="flex flex-col gap-6">
               <div className="w-full flex flex-col gap-3">
                 <label htmlFor="email">Email</label>
                 <div className="w-full h-16">

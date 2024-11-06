@@ -38,7 +38,7 @@ function Register() {
     }
 
     const found = registered.find((e) => e.email === email);
-    console.log(found);
+    // console.log(found);
 
     if (found !== registered.email) {
       setShowAlert(true);
@@ -56,9 +56,8 @@ function Register() {
     setTextAlert(
       `Selamat! Email ${email} telah terdaftar, anda akan dialihkan ke halaman login.`
     );
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
+
+    // navigate("/login");
   }
 
   function hidePassword() {

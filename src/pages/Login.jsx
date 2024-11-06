@@ -6,14 +6,18 @@ import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setProfile } from "../redux/reducers/profile";
+import { useDispatch } from "react-redux";
 
 function Login() {
+  const dispatch = useDispatch();
+
   const [type, setType] = React.useState("password");
   const [icon, setIcon] = React.useState(<FiEye />);
   const [showAlert, setShowAlert] = React.useState(false);
   const [textAlert, setTextAlert] = React.useState("");
 
-  const registered = useSelector((state) => state.user.data);
+  const registered = useSelector((state) => state.profile.data);
   const navigate = useNavigate();
 
   function formSubmit(e) {
@@ -38,7 +42,10 @@ function Login() {
       setShowAlert(true);
       return;
     }
-    if (showAlert) {
+
+    // setShowAlert(false);
+    if (showAlert === false) {
+      dispatch(setProfile({ email, password }));
       navigate("/");
     }
   }

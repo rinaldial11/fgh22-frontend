@@ -17,6 +17,7 @@ function Register() {
 
   const [showAlert, setShowAlert] = React.useState(false);
   const [textAlert, setTextAlert] = React.useState("");
+  const [isLog, setIsLog] = React.useState(false);
   const [type, setType] = React.useState("password");
   const [icon, setIcon] = React.useState(<FiEye />);
   React.useEffect(() => {
@@ -44,14 +45,20 @@ function Register() {
       setTextAlert("Email sudah terdaftar");
       return;
     }
-
+    setShowAlert(false);
+    setIsLog(true);
     dispatch(
       addUser({
         email,
         password,
       })
     );
-    navigate("/login");
+    setTextAlert(
+      `Selamat! Email ${email} telah terdaftar, anda akan dialihkan ke halaman login.`
+    );
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
   }
 
   function hidePassword() {
@@ -78,6 +85,11 @@ function Register() {
             </div>
             {showAlert && (
               <div className="bg-red w-full p-5 text-lg rounded-lg opacity-80 text-center text-white">
+                {textAlert}
+              </div>
+            )}
+            {isLog === true && (
+              <div className="bg-secondtix w-full p-5 text-lg rounded-lg opacity-80 text-center text-white">
                 {textAlert}
               </div>
             )}

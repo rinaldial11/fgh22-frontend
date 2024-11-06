@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  nama: "",
+  nama: "Rinaldi Ainnurrahman Lengkana",
   email: "rinaldi@mail.com",
   password: "1234",
+  image: "https://i.mydramalist.com/xWAE0_5c.jpg",
 };
 
 const user = createSlice({
@@ -14,6 +15,7 @@ const user = createSlice({
       state.nama = action.payload.nama;
       state.email = action.payload.email;
       state.password = action.payload.password;
+      state.image = action.payload.image;
     },
   },
 });

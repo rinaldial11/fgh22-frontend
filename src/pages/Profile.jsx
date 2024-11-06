@@ -2,10 +2,12 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import ProfileCard from "../components/ProfileCard";
 import ProfileSection from "../components/ProfileSection";
-import AnchorMain from "../components/AnchorMain";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { IoIosArrowBack } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { changeUser } from "../redux/reducers/user";
+import ButtonMain from "../components/ButtonMain";
 
 function Profile() {
   const [type, setType] = React.useState("password");
@@ -13,6 +15,16 @@ function Profile() {
   const [type2, setType2] = React.useState("password");
   const [icon2, setIcon2] = React.useState(<FiEye />);
   const [isShow, setShow] = React.useState(false);
+  const dispatch = useDispatch();
+
+  function formProfile(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const nama = formData.get("firstname");
+    dispatch(changeUser(nama));
+  }
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -151,7 +163,10 @@ function Profile() {
           </div>
         )}
         <ProfileCard fungsi={() => setShow(!isShow)} />
-        <div className="hidden md:flex flex-col gap-12 w-full max-w-screen-xl">
+        <form
+          onSubmit={formProfile}
+          className="hidden md:flex flex-col gap-12 w-full max-w-screen-xl"
+        >
           <ProfileSection page="profile" />
           <div className="text-lg px-8 py-10 bg-white rounded-3xl flex flex-col gap-12">
             <div className="w-full pb-4 border-b border-maintix">
@@ -164,8 +179,8 @@ function Profile() {
                   <input
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
                     type="text"
-                    id="first-name"
-                    name="first name"
+                    id="firstname"
+                    name="firstname"
                     placeholder="Jonas"
                   />
                 </div>
@@ -254,9 +269,9 @@ function Profile() {
             </div>
           </div>
           <div className="w-96 h-14 rounded-2xl overflow-hidden">
-            <AnchorMain content="Update changes" />
+            <ButtonMain content="Update changes" />
           </div>
-        </div>
+        </form>
       </main>
     </>
   );

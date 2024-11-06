@@ -2,8 +2,11 @@ import React from "react";
 import { BsThreeDots } from "react-icons/bs";
 import ProfilePicture from "../assets/images/profile-picture.png";
 import Star from "../assets/icons/star.png";
+import { useSelector } from "react-redux";
 
 function ProfileCard(props) {
+  const registered = useSelector((state) => state.user);
+
   return (
     <>
       <div className="flex w-80 flex-col px-10 pb-28 h-fit pt-10 gap-10 bg-white rounded-3xl">
@@ -14,11 +17,11 @@ function ProfileCard(props) {
           </div>
         </div>
         <div className="flex flex-col items-center gap-8">
-          <div className="w-32 h-32 rounded-full">
-            <img src={ProfilePicture} alt="" />
+          <div className="flex justify-center items-center w-32 h-32 rounded-full overflow-hidden">
+            <img src={registered.image} alt="" />
           </div>
           <div className="flex flex-col text-center gap-3">
-            <div className="text-xl font-semibold">Jonas El Rodriguez</div>
+            <div className="text-xl font-semibold">{registered.nama}</div>
             <div className="text-grey text-sm">Moviegoers</div>
           </div>
         </div>

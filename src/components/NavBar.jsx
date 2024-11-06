@@ -4,9 +4,11 @@ import LogoBrand from "./LogoBrand";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import ProfilePicture from "../assets/images/profile-picture.png";
 import { IoMenu } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 function NavBar(props) {
   const [isShow, setShow] = React.useState(false);
+  const registered = useSelector((state) => state.user);
 
   return (
     <nav className="flex flex-col gap-5 items-center px-6 lg:px-28 py-7 bg-secondtix text-white text-sm shadow-lg h-fit md:h-28">
@@ -74,11 +76,7 @@ function NavBar(props) {
                 to="/profile"
               >
                 {" "}
-                <img
-                  className="w-full h-full"
-                  src={ProfilePicture}
-                  alt="Profile"
-                />
+                <img src={registered.image} alt="Profile" />
               </Link>
             </div>
           )}
@@ -173,7 +171,7 @@ function NavBar(props) {
                 {" "}
                 <img
                   className="w-full h-full"
-                  src={ProfilePicture}
+                  src={registered.image}
                   alt="Profile"
                 />
               </Link>

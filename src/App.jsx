@@ -15,7 +15,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminMovie from "./pages/AdminMovie";
 import AdminAddMovie from "./pages/AdminAddMovie";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { store, persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/es/integration/react";
 
 const router = createBrowserRouter([
   {
@@ -80,7 +81,9 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <PersistGate persistor={persistor}>
+          <RouterProvider router={router} />
+        </PersistGate>
       </Provider>
     </>
   );

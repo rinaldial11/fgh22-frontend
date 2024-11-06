@@ -5,8 +5,6 @@ import ProfileSection from "../components/ProfileSection";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { IoIosArrowBack } from "react-icons/io";
-import { useDispatch } from "react-redux";
-import { changeUser } from "../redux/reducers/user";
 import ButtonMain from "../components/ButtonMain";
 
 function Profile() {
@@ -15,14 +13,12 @@ function Profile() {
   const [type2, setType2] = React.useState("password");
   const [icon2, setIcon2] = React.useState(<FiEye />);
   const [isShow, setShow] = React.useState(false);
-  const dispatch = useDispatch();
 
   function formProfile(e) {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const nama = formData.get("firstname");
-    dispatch(changeUser(nama));
   }
 
   React.useEffect(() => {
@@ -172,7 +168,7 @@ function Profile() {
             <div className="w-full pb-4 border-b border-maintix">
               Details Information
             </div>
-            <div className="text-secondtix grid grid-cols-2 gap-6">
+            <div className="text-secondtix md:flex md:flex-col lg:grid lg:grid-cols-2 gap-6">
               <div className=" flex flex-col gap-3">
                 <label htmlFor="first-name">First Name</label>
                 <div className="w-full">
@@ -227,7 +223,7 @@ function Profile() {
             <div className="w-full pb-4 border-b border-maintix">
               Account and Privacy
             </div>
-            <div className="text-secondtix grid grid-cols-2 gap-6">
+            <div className="text-secondtix md:flex md:flex-col lg:grid lg:grid-cols-2 gap-6">
               <div className=" flex flex-col gap-3">
                 <label htmlFor="password">New Password</label>
                 <div className="relative flex w-full">

@@ -10,7 +10,10 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [type, setType] = React.useState("password");
   const [icon, setIcon] = React.useState(<FiEye />);
-  const registered = useSelector((state) => state.user);
+  const [showAlert, setShowAlert] = React.useState(false);
+  const [textAlert, setTextAlert] = React.useState("");
+
+  const registered = useSelector((state) => state.user.data);
   const navigate = useNavigate();
 
   function formSubmit(e) {
@@ -21,18 +24,23 @@ function Login() {
     const password = data.get("password");
 
     if (!email || !password) {
-      window.alert("form login harus diisi");
+      setShowAlert(true);
+      setTextAlert("Email dan Password harus diisi!");
       return;
     }
     if (email !== registered.email) {
-      window.alert("email salah");
+      setTextAlert("Email belum terdaftar");
+      setShowAlert(true);
       return;
     }
     if (password !== registered.password) {
-      window.alert("password salah");
+      setTextAlert("Password salah");
+      setShowAlert(true);
       return;
     }
-    navigate("/");
+    if (showAlert) {
+      navigate("/");
+    }
   }
 
   function hidePassword() {
@@ -62,6 +70,11 @@ function Login() {
                 Sign in with your data that you entered during your registration
               </div>
             </div>
+            {showAlert && (
+              <div className="bg-red w-full p-5 text-lg rounded-lg opacity-80 text-center text-white">
+                {textAlert}
+              </div>
+            )}
             <form
               action=""
               onSubmit={formSubmit}

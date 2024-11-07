@@ -25,21 +25,21 @@ function ProfileSection(props) {
         </div>
       )}
       {props.page === "profile" && (
-        <div className="w-full text-lg text-center px-12 h-20 items-center bg-secondtix justify-center  md:hidden flex gap-28">
-          <div className="text-maintix border-b-2 h-full flex items-center border-maintix">
+        <div className="w-full text-lg text-center h-20 items-center bg-secondtix justify-center  md:hidden flex gap-20">
+          <div className="text-maintix text-base justify-center border-b-2 h-full flex items-center border-maintix">
             Details Account
           </div>
-          <div className="text-white">
+          <div className="text-white text-base flex justify-center text-center">
             <Link to="/order-history">Order History</Link>
           </div>
         </div>
       )}
       {props.page === "order-history" && (
-        <div className="w-full text-lg px-12 h-20  text-center items-center bg-secondtix  md:hidden flex gap-28">
-          <div className="text-white">
+        <div className="w-full text-lg h-20  text-center items-center bg-secondtix justify-center md:hidden flex gap-20">
+          <div className="text-white text-base flex justify-center text-center">
             <Link to="/profile">Details Account</Link>
           </div>
-          <div className="text-maintix border-b-2 h-full flex items-center justify-center border-secmaintixondtix">
+          <div className="text-maintix text-base justify-center border-b-2 h-full flex items-center border-maintix">
             Order History
           </div>
         </div>

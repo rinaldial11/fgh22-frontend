@@ -6,7 +6,15 @@ import Subscribe from "../components/Subscribe";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
 function HomeList() {
+  const [rick, setRick] = React.useState([]);
+
   React.useEffect(() => {
+    fetch("https://rickandmortyapi.com/api/character")
+      .then((res) => res.json())
+      .then((data) => {
+        setRick(data.results);
+      });
+
     window.scrollTo(0, 0);
   }, []);
   return (
@@ -68,7 +76,18 @@ function HomeList() {
         </div>
         <div className="flex flex-col">
           <div className="flex w-full overflow-scroll gap-5 justify-between py-12">
-            <MovieCard
+            {rick.map((char) => {
+              return (
+                <MovieCard
+                  source={char.image}
+                  charname={char.name}
+                  // tittle={"Black Widow"}
+                  // genre1={"Action"}
+                  // genre2={"Adventure"}
+                />
+              );
+            })}
+            {/* <MovieCard
               tittle={"Black Widow"}
               genre1={"Action"}
               genre2={"Adventure"}
@@ -92,10 +111,21 @@ function HomeList() {
               tittle={"Black Widow"}
               genre1={"Action"}
               genre2={"Adventure"}
-            />
+            /> */}
           </div>
           <div className="flex w-full overflow-scroll gap-5 justify-between py-12">
-            <MovieCard
+            {rick.map((char) => {
+              return (
+                <MovieCard
+                  source={char.image}
+                  charname={char.name}
+                  // tittle={"Black Widow"}
+                  // genre1={"Action"}
+                  // genre2={"Adventure"}
+                />
+              );
+            })}
+            {/* <MovieCard
               tittle={"Black Widow"}
               genre1={"Action"}
               genre2={"Adventure"}
@@ -119,10 +149,21 @@ function HomeList() {
               tittle={"Black Widow"}
               genre1={"Action"}
               genre2={"Adventure"}
-            />
+            /> */}
           </div>
           <div className="flex w-full overflow-scroll gap-5 justify-between py-12">
-            <MovieCard
+            {rick.map((char) => {
+              return (
+                <MovieCard
+                  source={char.image}
+                  charname={char.name}
+                  // tittle={"Black Widow"}
+                  // genre1={"Action"}
+                  // genre2={"Adventure"}
+                />
+              );
+            })}
+            {/* <MovieCard
               tittle={"Black Widow"}
               genre1={"Action"}
               genre2={"Adventure"}
@@ -146,7 +187,7 @@ function HomeList() {
               tittle={"Black Widow"}
               genre1={"Action"}
               genre2={"Adventure"}
-            />
+            /> */}
           </div>
           <div className="w-full flex gap-5 py-10 justify-center text-sm">
             <button className="w-10 h-10 rounded-full bg-maintix hover:bg-secondtix hover:text-maintix">

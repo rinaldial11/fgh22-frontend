@@ -9,8 +9,8 @@ function MovieCard(props) {
   return (
     <>
       <div className="group relative flex flex-col gap-5 text-start">
-        <div className="w-64 rounded-lg h-96 overflow-hidden">
-          {props.tittle === "Black Widow" && (
+        <div className="w-64 rounded-lg h-fit overflow-hidden">
+          {/* {props.tittle === "Black Widow" && (
             <img
               className="group-hover:opacity-40 relative"
               src={BlackWidow}
@@ -37,7 +37,8 @@ function MovieCard(props) {
               src={Spiderman}
               alt="Spiderman"
             />
-          )}
+          )} */}
+          <img src={props.source} alt="" />
         </div>
         {props.tittle === "Tenet" && !props.date && (
           <div className="absolute bg-secondtix mt-2 -ml-2 text-maintix text-sm py-1 px-4 w-32 rounded-e-2xl rounded-tl-xl">
@@ -49,7 +50,7 @@ function MovieCard(props) {
             Recommended
           </div>
         )}
-        <div className="absolute hidden group-hover:flex h-96 w-64 flex-col justify-center items-center gap-3 bg-[#00000066]">
+        <div className="absolute hidden group-hover:flex h-64 rounded-md w-64 flex-col justify-center items-center gap-3 bg-[#00000066]">
           <Link
             className="w-44 h-12 border border-maintix flex justify-center items-center text-maintix rounded-md"
             to="/details"
@@ -63,18 +64,18 @@ function MovieCard(props) {
             Buy Ticket
           </Link>
         </div>
-        <div className="text-2xl font-semibold">{props.tittle}</div>
+        <div className="text-2xl font-semibold">{props.charname}</div>
         {props.date && (
           <div className="text-lg text-grey font-semibold">{props.date}</div>
         )}
-        <div className="flex gap-3">
+        {/* <div className="flex gap-3">
           <div className="bg-abumuda text-secondtix px-3 py-1 rounded-3xl">
             {props.genre1}
           </div>
           <div className="bg-abumuda text-secondtix px-3 py-1 rounded-3xl">
             {props.genre2}
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

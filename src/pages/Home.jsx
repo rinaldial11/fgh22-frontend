@@ -11,7 +11,15 @@ import { GoArrowRight } from "react-icons/go";
 import { GoArrowLeft } from "react-icons/go";
 
 function Home() {
+  const [rick, setRick] = React.useState([]);
+
   React.useEffect(() => {
+    fetch("https://rickandmortyapi.com/api/character")
+      .then((res) => res.json())
+      .then((data) => {
+        setRick(data.results);
+      });
+
     window.scrollTo(0, 0);
   }, []);
   return (
@@ -108,12 +116,19 @@ function Home() {
             </div>
           </div>
           <div className="flex w-full gap-6 justify-between py-12 overflow-x-scroll">
-            <MovieCard
-              tittle={"Black Widow"}
-              genre1={"Action"}
-              genre2={"Adventure"}
-            />
-            <MovieCard
+            {rick.map((char) => {
+              return (
+                <MovieCard
+                  source={char.image}
+                  charname={char.name}
+                  // tittle={"Black Widow"}
+                  // genre1={"Action"}
+                  // genre2={"Adventure"}
+                />
+              );
+            })}
+
+            {/* <MovieCard
               tittle={"The Witches"}
               genre1={"Action"}
               genre2={"Adventure"}
@@ -132,7 +147,7 @@ function Home() {
               tittle={"Black Widow"}
               genre1={"Action"}
               genre2={"Adventure"}
-            />
+            /> */}
           </div>
           <Link className="flex items-center gap-2" to="/home">
             View All <GoArrowRight className="text-xl" />
@@ -158,7 +173,18 @@ function Home() {
             </div>
           </div>
           <div className="flex w-full gap-6 justify-between py-12 overflow-x-scroll">
-            <MovieCard
+            {rick.map((char) => {
+              return (
+                <MovieCard
+                  source={char.image}
+                  charname={char.name}
+                  // tittle={"Black Widow"}
+                  // genre1={"Action"}
+                  // genre2={"Adventure"}
+                />
+              );
+            })}
+            {/* <MovieCard
               date={"December 2024"}
               tittle={"Black Widow"}
               genre1={"Action"}
@@ -187,7 +213,7 @@ function Home() {
               tittle={"Black Widow"}
               genre1={"Action"}
               genre2={"Adventure"}
-            />
+            /> */}
           </div>
         </div>
         <Subscribe />

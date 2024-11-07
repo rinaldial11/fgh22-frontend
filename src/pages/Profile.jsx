@@ -158,7 +158,9 @@ function Profile() {
             </form>
           </div>
         )}
-        <ProfileCard fungsi={() => setShow(!isShow)} />
+        <div>
+          <ProfileCard fungsi={() => setShow(!isShow)} />
+        </div>
         <form
           onSubmit={formProfile}
           className="hidden md:flex flex-col gap-12 w-full max-w-screen-xl"

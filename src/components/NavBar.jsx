@@ -76,7 +76,7 @@ function NavBar(props) {
                 to="/profile"
               >
                 {" "}
-                <img src={registered.image} alt="Profile" />
+                <img src={ProfilePicture} alt="Profile" />
               </Link>
             </div>
           )}
@@ -171,7 +171,7 @@ function NavBar(props) {
                 {" "}
                 <img
                   className="w-full h-full"
-                  src={registered.image}
+                  src={ProfilePicture}
                   alt="Profile"
                 />
               </Link>

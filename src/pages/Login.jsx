@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setProfile } from "../redux/reducers/profile";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Login() {
   const dispatch = useDispatch();
@@ -32,9 +33,18 @@ function Login() {
       setTextAlert("Email dan Password harus diisi!");
       return;
     }
-    const registeredData = registered.find((e) => e.email);
-    // console.log(registeredData.email);
-    // console.log(registeredData.password);
+    const registeredData = registered.find((e) => e.email === email);
+    if (email !== registeredData.email) {
+      setShowAlert(true);
+      setTextAlert("Email belum terdaftar");
+    }
+    if (
+      email !== registeredData.email ||
+      password !== registeredData.password
+    ) {
+      setShowAlert(true);
+      setTextAlert("Password salah");
+    }
     if (
       email === registeredData.email &&
       password === registeredData.password
@@ -45,7 +55,9 @@ function Login() {
           password,
         })
       );
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     }
     // setShowAlert(false);
   }
@@ -122,7 +134,14 @@ function Login() {
                 <ButtonMain content={"Login"} />
               </button>
             </form>
-
+            <div>
+              <div className="text-center text-grey">
+                You already have an account?{" "}
+                <Link className="text-blue" to="/register">
+                  Register
+                </Link>
+              </div>
+            </div>
             <div className="text-center">
               <div></div>
               <div className="text-grey">or</div>

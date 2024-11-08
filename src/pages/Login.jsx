@@ -136,8 +136,8 @@ function Login() {
             </form>
             <div>
               <div className="text-center text-grey">
-                You already have an account?{" "}
-                <Link className="text-blue" to="/register">
+                doesn't have an account?{" "}
+                <Link className="text-blue underline" to="/register">
                   Register
                 </Link>
               </div>

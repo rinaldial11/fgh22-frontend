@@ -9,52 +9,50 @@ import { FiEyeOff } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../redux/reducers/user";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const registered = useSelector((state) => state.user.data);
 
-  const [showAlert, setShowAlert] = React.useState(false);
-  const [textAlert, setTextAlert] = React.useState("");
+  const regisValidation = yup.object({
+    email: yup
+      .string()
+      .required("You must fill the email")
+      .min(8, "Email minimal character length must be 8"),
+    password: yup
+      .string()
+      .required("You must fill the password")
+      .min(6, "Password must be 8 character or above"),
+    agreeTOS: yup
+      .string()
+      .required()
+      .is(["true"], "You have to agree with the terms and conditions"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(regisValidation) });
+
   const [type, setType] = React.useState("password");
   const [icon, setIcon] = React.useState(<FiEye />);
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  function onSubmit(e) {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const email = formData.get("email");
-    const password = formData.get("password");
-
-    if (!email || !password) {
-      setShowAlert(true);
-      setTextAlert("Email dan Password harus diisi!");
+  function onSubmit(value) {
+    const registeredData = registered.find((e) => e.email === value.email);
+    if (registeredData?.email === value.email) {
+      window.alert("email terdaftar");
       return;
     }
-
-    const found = registered.find((e) => e.email === email);
-    // console.log(found);
-
-    if (found !== registered.email) {
-      setShowAlert(true);
-      setTextAlert("Email sudah terdaftar");
-      return;
-    }
-
-    dispatch(
-      addUser({
-        email,
-        password,
-      })
-    );
-
-    setTimeout(() => {
-      navigate("/login");
-    }, 1000);
+    window.alert("berhasil");
+    dispatch(addUser(value));
   }
 
   function hidePassword() {
@@ -79,31 +77,40 @@ function Register() {
               <div>........................</div>
               <Step content={"3"} content2={"Done"} status="ongoing" />
             </div>
-            {showAlert && (
-              <div className="bg-red w-full p-5 text-lg rounded-lg opacity-80 text-center text-white">
-                {textAlert}
-              </div>
-            )}
-            <form onSubmit={onSubmit} className="flex flex-col gap-6">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col gap-6"
+            >
               <div className="w-full flex flex-col gap-3">
                 <label htmlFor="email">Email</label>
                 <div className="w-full h-16">
                   <input
-                    className="w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix box-border"
+                    className={
+                      "w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix" +
+                      (errors.email?.message ? " border-red" : "")
+                    }
                     type="email"
                     id="email"
-                    name="email"
+                    {...register("email", { required: true })}
                     placeholder="Enter your email"
                   />
                 </div>
+                {errors.email?.message && (
+                  <div className="text-red opacity-80">
+                    {errors.email?.message}
+                  </div>
+                )}
               </div>
               <div className="w-full flex flex-col gap-3">
                 <label htmlFor="email">Password</label>
                 <div className="relative flex w-full h-16">
                   <input
-                    className="w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix box-border"
+                    className={
+                      "w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix" +
+                      (errors.password?.message ? " border-red" : "")
+                    }
                     id="password"
-                    name="password"
+                    {...register("password", { required: true })}
                     type={type}
                     placeholder="Enter your password"
                   />
@@ -115,19 +122,29 @@ function Register() {
                     {icon}
                   </button>
                 </div>
+                {errors.password?.message && (
+                  <div className="text-red opacity-80">
+                    {errors.password?.message}
+                  </div>
+                )}
               </div>
               <div className="hidden md:flex items-center gap-5">
                 <input
                   className="w-5 h-5"
                   type="checkbox"
                   id="terms"
-                  name="terms"
+                  {...register("agreeTOS", { required: true })}
                   value="true"
                 />
                 <label className="text-lg text-secondtix" htmlFor="terms">
                   I agree to terms & conditions
                 </label>
               </div>
+              {errors["agreeTOS"]?.message && (
+                <div className="text-red opacity-80">
+                  {errors["agreeTOS"]?.message}
+                </div>
+              )}
               <div className="w-full h-16">
                 <ButtonMain content={"Join For Free Now"} />
               </div>

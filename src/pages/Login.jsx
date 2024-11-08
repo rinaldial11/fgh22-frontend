@@ -7,59 +7,49 @@ import { FiEyeOff } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setProfile } from "../redux/reducers/profile";
+import { logIn } from "../redux/reducers/auth";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 function Login() {
   const dispatch = useDispatch();
-
-  const [type, setType] = React.useState("password");
-  const [icon, setIcon] = React.useState(<FiEye />);
-  const [showAlert, setShowAlert] = React.useState(false);
-  const [textAlert, setTextAlert] = React.useState("");
-
   const registered = useSelector((state) => state.user.data);
   const navigate = useNavigate();
 
-  function formSubmit(e) {
-    e.preventDefault();
+  const [type, setType] = React.useState("password");
+  const [icon, setIcon] = React.useState(<FiEye />);
 
-    const data = new FormData(e.target);
-    const email = data.get("email");
-    const password = data.get("password");
+  const regisValidation = yup.object({
+    email: yup
+      .string()
+      .required("You must fill the email")
+      .min(8, "Email minimal character length must be 8"),
+    password: yup.string().required("You must fill the password"),
+  });
 
-    if (!email || !password) {
-      setShowAlert(true);
-      setTextAlert("Email dan Password harus diisi!");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(regisValidation) });
+
+  function formSubmit(value) {
+    const registeredData = registered.find((e) => e.email === value.email);
+    console.log(value);
+    console.log(registeredData);
+
+    if (value !== registeredData) {
+      window.alert("Email belum terdaftar");
       return;
     }
-    const registeredData = registered.find((e) => e.email === email);
-    if (email !== registeredData.email) {
-      setShowAlert(true);
-      setTextAlert("Email belum terdaftar");
-    }
-    if (
-      email !== registeredData.email ||
-      password !== registeredData.password
-    ) {
-      setShowAlert(true);
-      setTextAlert("Password salah");
-    }
-    if (
-      email === registeredData.email &&
-      password === registeredData.password
-    ) {
-      dispatch(
-        setProfile({
-          email,
-          password,
-        })
-      );
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
-    }
-    // setShowAlert(false);
+    dispatch(logIn());
+    dispatch(setProfile({ value }));
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   }
 
   function hidePassword() {
@@ -90,31 +80,40 @@ function Login() {
                 Sign in with your data that you entered during your registration
               </div>
             </div>
-            {showAlert && (
-              <div className="bg-red w-full p-5 text-lg rounded-lg opacity-80 text-center text-white">
-                {textAlert}
-              </div>
-            )}
-            <form onSubmit={formSubmit} className="flex flex-col gap-6">
+            <form
+              onSubmit={handleSubmit(formSubmit)}
+              className="flex flex-col gap-6"
+            >
               <div className="w-full flex flex-col gap-3">
                 <label htmlFor="email">Email</label>
                 <div className="w-full h-16">
                   <input
-                    className="w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix box-border"
+                    className={
+                      "w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix box-border" +
+                      (errors.email?.message ? " border-red" : "")
+                    }
                     type="email"
                     id="email"
-                    name="email"
+                    {...register("email", { required: true })}
                     placeholder="Enter your email"
                   />
                 </div>
+                {errors.email?.message && (
+                  <div className="text-red opacity-80">
+                    {errors.email?.message}
+                  </div>
+                )}
               </div>
               <div className="w-full flex flex-col gap-3">
                 <label htmlFor="email">Password</label>
                 <div className="relative flex w-full h-16">
                   <input
-                    className="w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix box-border"
+                    className={
+                      "w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix box-border" +
+                      (errors.password?.message ? " border-red" : "")
+                    }
                     id="password"
-                    name="password"
+                    {...register("password", { required: true })}
                     type={type}
                     placeholder="Enter your password"
                   />
@@ -126,6 +125,11 @@ function Login() {
                     {icon}
                   </button>
                 </div>
+                {errors.password?.message && (
+                  <div className="text-red opacity-80">
+                    {errors.password?.message}
+                  </div>
+                )}
               </div>
               <div className="w-full text-end text-birmud">
                 <a href="#">Forgot your password?</a>

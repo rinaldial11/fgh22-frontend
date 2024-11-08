@@ -46,12 +46,6 @@ function Register() {
   }, []);
 
   function onSubmit(value) {
-    const registeredData = registered.find((e) => e.email === value.email);
-    if (registeredData?.email === value.email) {
-      window.alert("email terdaftar");
-      return;
-    }
-    window.alert("berhasil");
     dispatch(addUser(value));
   }
 

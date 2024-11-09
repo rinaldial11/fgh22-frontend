@@ -106,9 +106,7 @@ function Login() {
                   />
                 </div>
                 {showError === "yes email" && (
-                  <div className="text-red opacity-80">
-                    Email belum terdaftar
-                  </div>
+                  <div className="text-red opacity-80">Invalid email</div>
                 )}
                 {errors.email?.message && (
                   <div className="text-red opacity-80">
@@ -138,7 +136,7 @@ function Login() {
                   </button>
                 </div>
                 {showError === "yes pass" && (
-                  <div className="text-red opacity-80">Password salah</div>
+                  <div className="text-red opacity-80">Invalid password</div>
                 )}
                 {errors.password?.message && (
                   <div className="text-red opacity-80">
@@ -155,7 +153,7 @@ function Login() {
             </form>
             <div>
               <div className="text-center text-grey">
-                doesn't have an account?{" "}
+                Doesn't have an account?{" "}
                 <Link className="text-blue underline" to="/register">
                   Register
                 </Link>

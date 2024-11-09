@@ -108,7 +108,7 @@ function Register() {
                 </div>
                 {showError === "yes" && (
                   <div className="text-red opacity-80">
-                    Email sudah terdaftar
+                    Email is not available
                   </div>
                 )}
                 {errors.email?.message && (

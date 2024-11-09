@@ -6,20 +6,28 @@ import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { IoIosArrowBack } from "react-icons/io";
 import ButtonMain from "../components/ButtonMain";
+import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 function Profile() {
+  const isLog = useSelector((state) => state.profile);
+
   const [type, setType] = React.useState("password");
   const [icon, setIcon] = React.useState(<FiEye />);
   const [type2, setType2] = React.useState("password");
   const [icon2, setIcon2] = React.useState(<FiEye />);
   const [isShow, setShow] = React.useState(false);
 
-  function formProfile(e) {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-    const formData = new FormData(e.target);
-    const nama = formData.get("firstname");
-  }
+  function formProfile(value) {}
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -78,7 +86,7 @@ function Profile() {
                       type="text"
                       id="name"
                       name="name"
-                      placeholder="Jonas El Rodriguez"
+                      placeholder="Write your  Full name"
                     />
                   </div>
                 </div>
@@ -90,7 +98,7 @@ function Profile() {
                       type="email"
                       id="email"
                       name="email"
-                      placeholder="jonasrodrigu123@gmail.com"
+                      placeholder="Write your email"
                     />
                   </div>
                 </div>
@@ -102,7 +110,7 @@ function Profile() {
                       type="number"
                       id="phone-number"
                       name="phone-number"
-                      placeholder="81445687121"
+                      placeholder="Your phone number"
                     />
                   </div>
                 </div>
@@ -162,7 +170,7 @@ function Profile() {
           <ProfileCard fungsi={() => setShow(!isShow)} />
         </div>
         <form
-          onSubmit={formProfile}
+          onSubmit={handleSubmit(formProfile)}
           className="hidden md:flex flex-col gap-12 w-full max-w-screen-xl"
         >
           <ProfileSection page="profile" />
@@ -179,7 +187,7 @@ function Profile() {
                     type="text"
                     id="firstname"
                     name="firstname"
-                    placeholder="Jonas"
+                    placeholder="Write your first name"
                   />
                 </div>
               </div>
@@ -191,7 +199,7 @@ function Profile() {
                     type="text"
                     id="last-name"
                     name="last name"
-                    placeholder="El Rodriguez"
+                    placeholder="Write your last name"
                   />
                 </div>
               </div>
@@ -203,7 +211,7 @@ function Profile() {
                     type="email"
                     id="email"
                     name="email"
-                    placeholder="jonasrodrigu123@gmail.com"
+                    placeholder="Write your email"
                   />
                 </div>
               </div>
@@ -215,7 +223,7 @@ function Profile() {
                     type="number"
                     id="phone-number"
                     name="phone-number"
-                    placeholder="Jonas"
+                    placeholder="Your phone number"
                   />
                 </div>
               </div>

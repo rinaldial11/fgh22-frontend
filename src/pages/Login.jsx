@@ -17,6 +17,7 @@ import * as yup from "yup";
 function Login() {
   const dispatch = useDispatch();
   const registered = useSelector((state) => state.user.data);
+  const isLog = useSelector((state) => state.token);
   const navigate = useNavigate();
 
   const [showError, setShowError] = React.useState("no");
@@ -52,7 +53,8 @@ function Login() {
     }
     setShowError("no");
 
-    dispatch(setProfile({ value }));
+    dispatch(setProfile(value));
+    dispatch(logIn(true));
     reset();
     setTimeout(() => {
       navigate("/");
@@ -71,7 +73,10 @@ function Login() {
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    if (isLog === true) {
+      navigate("/");
+    }
+  }, [isLog]);
   return (
     <>
       <div>
@@ -106,7 +111,9 @@ function Login() {
                   />
                 </div>
                 {showError === "yes email" && (
-                  <div className="text-red opacity-80">Invalid email</div>
+                  <div className="text-red opacity-80">
+                    Email is not registered
+                  </div>
                 )}
                 {errors.email?.message && (
                   <div className="text-red opacity-80">

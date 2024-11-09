@@ -1,15 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LogoBrand from "./LogoBrand";
+import ButtonMain from "./ButtonMain";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import ProfilePicture from "../assets/images/profile-picture.png";
 import { IoMenu } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { logIn } from "../redux/reducers/auth";
+import { logOut } from "../redux/reducers/auth";
+import { deleteProfile } from "../redux/reducers/profile";
+import { useSelector, useDispatch } from "react-redux";
 
 function NavBar(props) {
   const [isShow, setShow] = React.useState(false);
+  const dispatch = useDispatch();
   const registered = useSelector((state) => state.user);
-  const token = useSelector((state) => state.token);
+  const isLog = useSelector((state) => state.token);
+
+  function logout() {
+    dispatch(deleteProfile());
+    dispatch(logOut());
+  }
+
+  console.log(isLog?.token);
 
   return (
     <nav className="flex flex-col gap-5 items-center px-6 lg:px-28 py-7 bg-secondtix text-white text-sm shadow-lg h-fit md:h-28">
@@ -52,8 +64,13 @@ function NavBar(props) {
             </ul>
           )}
 
-          {props.isLog && (
+          {isLog?.token === true && (
             <div className="hidden md:flex gap-3 items-center">
+              <div>
+                <button type="button" onClick={logout}>
+                  Log Out
+                </button>
+              </div>
               <div>
                 <select
                   className="bg-secondtix w-full h-full"
@@ -81,7 +98,7 @@ function NavBar(props) {
               </Link>
             </div>
           )}
-          {!props.isLog && (
+          {isLog?.token === false && (
             <div className="hidden md:flex gap-3">
               <Link
                 to="/login"
@@ -145,7 +162,7 @@ function NavBar(props) {
             </ul>
           )}
 
-          {props.isLog && (
+          {isLog?.token === true && (
             <div className="md:hidden flex gap-3 items-center">
               <div>
                 <select
@@ -178,7 +195,7 @@ function NavBar(props) {
               </Link>
             </div>
           )}
-          {!props.isLog && (
+          {isLog?.token === false && (
             <div className="md:hidden flex flex-col w-screen px-6 gap-3">
               <Link
                 to="/login"

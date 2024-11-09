@@ -18,6 +18,8 @@ function Register() {
   const navigate = useNavigate();
   const registered = useSelector((state) => state.user.data);
 
+  const [showError, setShowError] = React.useState("no");
+
   const regisValidation = yup.object({
     email: yup
       .string()
@@ -26,7 +28,11 @@ function Register() {
     password: yup
       .string()
       .required("You must fill the password")
-      .min(6, "Password must be 8 character or above"),
+      .min(8, "Password must be at least 8 character")
+      .matches(
+        /^.*((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+        "Password must contain at least 8 characters, one uppercase, one number and one special case character"
+      ),
     agreeTOS: yup
       .string()
       .required()
@@ -36,17 +42,25 @@ function Register() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(regisValidation) });
 
   const [type, setType] = React.useState("password");
   const [icon, setIcon] = React.useState(<FiEye />);
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   function onSubmit(value) {
+    const registeredData = registered.find((e) => e.email === value.email);
+    if (registeredData?.email === value.email) {
+      setShowError("yes");
+      return;
+    }
+    setShowError("no");
     dispatch(addUser(value));
+    reset();
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
   }
 
   function hidePassword() {
@@ -58,6 +72,9 @@ function Register() {
       setIcon(<FiEye />);
     }
   }
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div>
@@ -89,6 +106,11 @@ function Register() {
                     placeholder="Enter your email"
                   />
                 </div>
+                {showError === "yes" && (
+                  <div className="text-red opacity-80">
+                    Email sudah terdaftar
+                  </div>
+                )}
                 {errors.email?.message && (
                   <div className="text-red opacity-80">
                     {errors.email?.message}

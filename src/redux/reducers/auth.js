@@ -8,8 +8,8 @@ const token = createSlice({
   name: "token",
   initialState,
   reducers: {
-    logIn: (state) => {
-      state.token = true;
+    logIn: (state, action) => {
+      state.token = action.payload;
     },
     logOut: () => {
       return initialState;

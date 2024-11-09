@@ -19,6 +19,8 @@ function Login() {
   const registered = useSelector((state) => state.user.data);
   const navigate = useNavigate();
 
+  const [showError, setShowError] = React.useState("no");
+
   const [type, setType] = React.useState("password");
   const [icon, setIcon] = React.useState(<FiEye />);
 
@@ -33,20 +35,25 @@ function Login() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(regisValidation) });
 
   function formSubmit(value) {
     const registeredData = registered.find((e) => e.email === value.email);
-    console.log(value);
-    console.log(registeredData);
 
-    if (value !== registeredData) {
-      window.alert("Email belum terdaftar");
+    if (value.email !== registeredData?.email) {
+      setShowError("yes email");
       return;
     }
-    dispatch(logIn());
+    if (value.password !== registeredData?.password) {
+      setShowError("yes pass");
+      return;
+    }
+    setShowError("no");
+
     dispatch(setProfile({ value }));
+    reset();
     setTimeout(() => {
       navigate("/");
     }, 1000);
@@ -98,6 +105,11 @@ function Login() {
                     placeholder="Enter your email"
                   />
                 </div>
+                {showError === "yes email" && (
+                  <div className="text-red opacity-80">
+                    Email belum terdaftar
+                  </div>
+                )}
                 {errors.email?.message && (
                   <div className="text-red opacity-80">
                     {errors.email?.message}
@@ -125,6 +137,9 @@ function Login() {
                     {icon}
                   </button>
                 </div>
+                {showError === "yes pass" && (
+                  <div className="text-red opacity-80">Password salah</div>
+                )}
                 {errors.password?.message && (
                   <div className="text-red opacity-80">
                     {errors.password?.message}

@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 function NavBar(props) {
   const [isShow, setShow] = React.useState(false);
   const registered = useSelector((state) => state.user);
+  const token = useSelector((state) => state.token);
 
   return (
     <nav className="flex flex-col gap-5 items-center px-6 lg:px-28 py-7 bg-secondtix text-white text-sm shadow-lg h-fit md:h-28">

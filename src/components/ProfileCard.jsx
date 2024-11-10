@@ -5,6 +5,8 @@ import Star from "../assets/icons/star.png";
 import { useSelector } from "react-redux";
 
 function ProfileCard(props) {
+  const profileData = useSelector((state) => state.profile);
+
   return (
     <>
       <div className="flex w-80 flex-col px-10 pb-28 h-fit pt-10 gap-10 bg-white rounded-3xl">
@@ -19,7 +21,9 @@ function ProfileCard(props) {
             <img src={ProfilePicture} alt="" />
           </div>
           <div className="flex flex-col text-center gap-3">
-            <div className="text-xl font-semibold">Jonas El Rodriguez</div>
+            <div className="text-xl font-semibold">
+              {profileData.profile?.firstname} {profileData.profile?.lastname}
+            </div>
             <div className="text-grey text-sm">Moviegoers</div>
           </div>
         </div>

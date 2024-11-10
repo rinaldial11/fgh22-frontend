@@ -2,17 +2,24 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import ProfileCard from "../components/ProfileCard";
 import ProfileSection from "../components/ProfileSection";
+import { setProfile } from "../redux/reducers/profile";
+import { addUser } from "../redux/reducers/user";
+import { useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { IoIosArrowBack } from "react-icons/io";
 import ButtonMain from "../components/ButtonMain";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 function Profile() {
-  const isLog = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
+  const profileData = useSelector((state) => state.profile);
+  const registered = useSelector((state) => state.user.data);
+  const isLog = useSelector((state) => state.token);
+  const navigate = useNavigate();
 
   const [type, setType] = React.useState("password");
   const [icon, setIcon] = React.useState(<FiEye />);
@@ -20,18 +27,47 @@ function Profile() {
   const [icon2, setIcon2] = React.useState(<FiEye />);
   const [isShow, setShow] = React.useState(false);
 
+  const profileValidSchema = yup.object({
+    firstname: yup
+      .string()
+      .required("What your name?")
+      .min(3, "Name minimal character at least 3"),
+    lastname: yup.string(),
+    email: yup
+      .string()
+      .required("You must fill the email")
+      .min(8, "Email minimal character length must be 8"),
+    phonenumber: yup.string().min(4, "Phone number at least must 4 number"),
+    password: yup
+      .string()
+      .min(8, "Password must be at least 8 character")
+      .matches(
+        /^.*((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+        "Password must contain at least 8 characters, one uppercase, one number and one special case character"
+      ),
+    confirmpassword: yup
+      .string()
+      .oneOf([yup.ref("password")], "Your passwords do not match."),
+  });
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(profileValidSchema) });
 
-  function formProfile(value) {}
+  function formProfile(value) {
+    dispatch(setProfile(value));
+    dispatch(addUser(value));
+  }
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    if (isLog.token === false) {
+      navigate("/");
+    }
+  }, [isLog]);
 
   function hidePassword() {
     if (type === "password") {
@@ -186,10 +222,15 @@ function Profile() {
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
                     type="text"
                     id="firstname"
-                    name="firstname"
-                    placeholder="Write your first name"
+                    {...register("firstname")}
+                    placeholder={profileData.profile?.firstname}
                   />
                 </div>
+                {errors.firstname?.message && (
+                  <div className="text-red opacity-80">
+                    {errors.firstname?.message}
+                  </div>
+                )}
               </div>
               <div className=" flex flex-col gap-3">
                 <label htmlFor="last-name">Last Name</label>
@@ -198,10 +239,15 @@ function Profile() {
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
                     type="text"
                     id="last-name"
-                    name="last name"
-                    placeholder="Write your last name"
+                    {...register("lastname")}
+                    placeholder={profileData.profile?.lastname}
                   />
                 </div>
+                {errors.lastname?.message && (
+                  <div className="text-red opacity-80">
+                    {errors.lastname?.message}
+                  </div>
+                )}
               </div>
               <div className=" flex flex-col gap-3">
                 <label htmlFor="email">E-mail</label>
@@ -210,10 +256,15 @@ function Profile() {
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
                     type="email"
                     id="email"
-                    name="email"
-                    placeholder="Write your email"
+                    {...register("email")}
+                    placeholder={profileData.profile.email}
                   />
                 </div>
+                {errors.email?.message && (
+                  <div className="text-red opacity-80">
+                    {errors.email?.message}
+                  </div>
+                )}
               </div>
               <div className=" flex flex-col gap-3">
                 <label htmlFor="phone-number">Phone Number</label>
@@ -222,10 +273,15 @@ function Profile() {
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
                     type="number"
                     id="phone-number"
-                    name="phone-number"
-                    placeholder="Your phone number"
+                    {...register("phonenumber")}
+                    placeholder={profileData.profile?.phonenumber}
                   />
                 </div>
+                {errors.phonenumber?.message && (
+                  <div className="text-red opacity-80">
+                    {errors.phonenumber?.message}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -241,7 +297,7 @@ function Profile() {
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
                     type={type}
                     id="password"
-                    name="password"
+                    {...register("password")}
                     placeholder="Write your password"
                   />
                   <button
@@ -252,6 +308,11 @@ function Profile() {
                     {icon}
                   </button>
                 </div>
+                {errors.password?.message && (
+                  <div className="text-red opacity-80">
+                    {errors.password?.message}
+                  </div>
+                )}
               </div>
               <div className=" flex flex-col gap-3">
                 <label htmlFor="confirm-password">Confirm Password</label>
@@ -260,7 +321,7 @@ function Profile() {
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
                     type={type2}
                     id="confirm-password"
-                    name="confirm-password"
+                    {...register("confirmpassword")}
                     placeholder="Confirm your password"
                   />
                   <button
@@ -271,11 +332,18 @@ function Profile() {
                     {icon2}
                   </button>
                 </div>
+                {errors.confirmpassword?.message && (
+                  <div className="text-red opacity-80">
+                    {errors.confirmpassword?.message}
+                  </div>
+                )}
               </div>
             </div>
           </div>
           <div className="w-96 h-14 rounded-2xl overflow-hidden">
-            <ButtonMain content="Update changes" />
+            <button className="w-full h-full rounded-lg text-maintix bg-secondtix">
+              Update Changes
+            </button>
           </div>
         </form>
       </main>

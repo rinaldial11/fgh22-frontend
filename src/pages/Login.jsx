@@ -73,7 +73,7 @@ function Login() {
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
-    if (isLog === true) {
+    if (isLog.token === true) {
       navigate("/");
     }
   }, [isLog]);

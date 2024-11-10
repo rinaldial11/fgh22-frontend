@@ -14,11 +14,10 @@ const userConfig = {
   storage,
 };
 
-// persistReducer(userConfig, user);
 const reducer = combineReducers({
   profile,
   token: persistReducer(tokenConfig, token),
-  user,
+  user: persistReducer(userConfig, user),
 });
 
 export default reducer;

@@ -17,8 +17,8 @@ function ProfileCard(props) {
           </div>
         </div>
         <div className="flex flex-col items-center gap-8">
-          <div className="flex justify-center items-center w-32 h-32 rounded-full overflow-hidden">
-            <img src={ProfilePicture} alt="" />
+          <div className="flex justify-center bg-secondtix items-center w-32 h-32 rounded-full overflow-hidden">
+            <img src="https://i.mydramalist.com/xWAE0_5c.jpg" alt="" />
           </div>
           <div className="flex flex-col text-center gap-3">
             <div className="text-xl font-semibold">

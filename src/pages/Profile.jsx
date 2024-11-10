@@ -66,6 +66,10 @@ function Profile() {
     window.scrollTo(0, 0);
     if (isLog.token === false) {
       navigate("/");
+      return;
+    }
+    if (isLog.token === true) {
+      dispatch(setProfile({ registered }));
     }
   }, [isLog]);
 
@@ -257,7 +261,7 @@ function Profile() {
                     type="email"
                     id="email"
                     {...register("email")}
-                    placeholder={profileData.profile.email}
+                    placeholder={profileData.profile?.email}
                   />
                 </div>
                 {errors.email?.message && (

@@ -89,12 +89,15 @@ function NavBar(props) {
                 <FaMagnifyingGlass />
               </div>
               <Link
-                className="w-14 h-14 rounded-full overflow-hidden flex items-center
+                className="w-14 h-14 rounded-full bg-maintix overflow-hidden flex items-center
             justify-center"
                 to="/profile"
               >
                 {" "}
-                <img src={ProfilePicture} alt="Profile" />
+                <img
+                  src="https://i.mydramalist.com/xWAE0_5c.jpg"
+                  alt="Avatar"
+                />
               </Link>
             </div>
           )}
@@ -182,15 +185,15 @@ function NavBar(props) {
                 <FaMagnifyingGlass />
               </div>
               <Link
-                className="w-14 h-14 rounded-full overflow-hidden flex items-center
+                className="w-14 h-14 bg-maintix rounded-full overflow-hidden flex items-center
             justify-center"
                 to="/profile"
               >
                 {" "}
                 <img
                   className="w-full h-full"
-                  src={ProfilePicture}
-                  alt="Profile"
+                  src="https://i.mydramalist.com/xWAE0_5c.jpg"
+                  alt="Avatar"
                 />
               </Link>
             </div>

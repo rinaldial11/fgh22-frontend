@@ -3,6 +3,7 @@ import { BsThreeDots } from "react-icons/bs";
 import ProfilePicture from "../assets/images/profile-picture.png";
 import Star from "../assets/icons/star.png";
 import { useSelector } from "react-redux";
+import Woshik from "../assets/images/woshik.jpeg";
 
 function ProfileCard(props) {
   const profileData = useSelector((state) => state.profile);
@@ -18,7 +19,7 @@ function ProfileCard(props) {
         </div>
         <div className="flex flex-col items-center gap-8">
           <div className="flex justify-center bg-secondtix items-center w-32 h-32 rounded-full overflow-hidden">
-            <img src="https://i.mydramalist.com/xWAE0_5c.jpg" alt="" />
+            <img src={Woshik} alt="" />
           </div>
           <div className="flex flex-col text-center gap-3">
             <div className="text-xl font-semibold">

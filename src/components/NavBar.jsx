@@ -9,7 +9,7 @@ import { logIn } from "../redux/reducers/auth";
 import { logOut } from "../redux/reducers/auth";
 import { deleteProfile } from "../redux/reducers/profile";
 import { useSelector, useDispatch } from "react-redux";
-import Woshik from "../assets/images/woshik.png";
+import Woshik from "../assets/images/woshik.jpeg";
 
 function NavBar(props) {
   const [isShow, setShow] = React.useState(false);

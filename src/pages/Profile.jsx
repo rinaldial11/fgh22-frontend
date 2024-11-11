@@ -54,6 +54,7 @@ function Profile() {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({ resolver: yupResolver(profileValidSchema) });
 
@@ -224,8 +225,11 @@ function Profile() {
                     type="text"
                     id="firstname"
                     {...register("firstname")}
-                    placeholder="Write your firstname"
-                    value={profileData.profile?.firstname}
+                    placeholder={
+                      profileData.profile?.firstname
+                        ? profileData.profile?.firstname
+                        : "Write your firstname"
+                    }
                   />
                 </div>
                 {errors.firstname?.message && (
@@ -242,8 +246,11 @@ function Profile() {
                     type="text"
                     id="last-name"
                     {...register("lastname")}
-                    placeholder="Write your lastname"
-                    value={profileData.profile?.lastname}
+                    placeholder={
+                      profileData.profile?.lastname
+                        ? profileData.profile?.lastname
+                        : "Write your lastname"
+                    }
                   />
                 </div>
                 {errors.lastname?.message && (
@@ -260,8 +267,11 @@ function Profile() {
                     type="email"
                     id="email"
                     {...register("email")}
-                    placeholder="Write your email"
-                    value={profileData.profile?.email}
+                    placeholder={
+                      profileData.profile?.email
+                        ? profileData.profile?.email
+                        : "Write your email"
+                    }
                   />
                 </div>
                 {errors.email?.message && (
@@ -278,8 +288,11 @@ function Profile() {
                     type="number"
                     id="phone-number"
                     {...register("phonenumber")}
-                    placeholder="Write your phone number"
-                    value={profileData.profile?.phonenumber}
+                    placeholder={
+                      profileData.profile?.phonenumber
+                        ? profileData.profile?.phonenumber
+                        : "Write your phonenumber"
+                    }
                   />
                 </div>
                 {errors.phonenumber?.message && (
@@ -304,7 +317,6 @@ function Profile() {
                     id="password"
                     {...register("password")}
                     placeholder="Write your password"
-                    value={profileData.profile?.password}
                   />
                   <button
                     type="button"

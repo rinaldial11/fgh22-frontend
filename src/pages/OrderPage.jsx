@@ -7,12 +7,20 @@ import ButtonMain from "../components/ButtonMain";
 import Cineone from "../assets/icons/cineone.png";
 import AnchorMain from "../components/AnchorMain";
 import { FaArrowDown, FaArrowRight } from "react-icons/fa6";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function OrderPage() {
+  const isLog = useSelector((state) => state.token);
+  const navigate = useNavigate();
+
   const [isShow, setShow] = React.useState(false);
   React.useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    if (isLog.token === false) {
+      navigate("/login");
+    }
+  }, [isLog]);
   return (
     <>
       <NavBar />

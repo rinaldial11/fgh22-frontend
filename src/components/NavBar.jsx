@@ -22,8 +22,6 @@ function NavBar(props) {
     dispatch(logOut());
   }
 
-  console.log(isLog?.token);
-
   return (
     <nav className="flex flex-col gap-5 items-center px-6 lg:px-28 py-7 bg-secondtix text-white text-sm shadow-lg h-fit md:h-28">
       <div className="flex w-full justify-between items-center">

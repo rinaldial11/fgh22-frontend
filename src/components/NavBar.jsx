@@ -9,7 +9,7 @@ import { logIn } from "../redux/reducers/auth";
 import { logOut } from "../redux/reducers/auth";
 import { deleteProfile } from "../redux/reducers/profile";
 import { useSelector, useDispatch } from "react-redux";
-import Woshik from "../assets/images/woshik.jpeg";
+import DefaultPict from "../assets/images/default-picture.png";
 
 function NavBar(props) {
   const [isShow, setShow] = React.useState(false);
@@ -66,12 +66,7 @@ function NavBar(props) {
           )}
 
           {isLog?.token === true && (
-            <div className="hidden md:flex gap-3 items-center">
-              <div>
-                <button type="button" onClick={logout}>
-                  Log Out
-                </button>
-              </div>
+            <div className="hidden md:flex gap-5 items-center">
               <div>
                 <select
                   className="bg-secondtix w-full h-full"
@@ -95,8 +90,17 @@ function NavBar(props) {
                 to="/profile"
               >
                 {" "}
-                <img src={Woshik} alt="Avatar" />
+                <img src={DefaultPict} alt="Avatar" />
               </Link>
+              <div className="shadow-xl">
+                <button
+                  className="bg-secondtix rounded-md text-maintix border border-maintix px-3 py-1"
+                  type="button"
+                  onClick={logout}
+                >
+                  Log Out
+                </button>
+              </div>
             </div>
           )}
           {isLog?.token === false && (
@@ -188,8 +192,17 @@ function NavBar(props) {
                 to="/profile"
               >
                 {" "}
-                <img className="w-full h-full" src={Woshik} alt="Avatar" />
+                <img className="w-full h-full" src={DefaultPict} alt="Avatar" />
               </Link>
+              <div className="shadow-xl">
+                <button
+                  className="bg-secondtix rounded-md text-maintix border border-maintix px-3 py-1"
+                  type="button"
+                  onClick={logout}
+                >
+                  Log Out
+                </button>
+              </div>
             </div>
           )}
           {isLog?.token === false && (

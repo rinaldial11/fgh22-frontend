@@ -43,17 +43,17 @@ function Home() {
             </div>
           </div>
           <div className="columns-2 gap-3">
-            <div className="mb-4 bg-maintext w-44 h-36 md:w-52 md:h-44 rounded-t-2xl overflow-hidden">
+            <div className="flex justify-center items-center mb-4 bg-maintext w-44 h-36 md:w-52 md:h-44 rounded-t-2xl overflow-hidden">
               <img src={Spiderman} alt="John Wick" />
             </div>
-            <div className="bg-maintext w-44 h-52 md:h-60 md:w-52 rounded-b-2xl overflow-hidden">
+            <div className="flex justify-center items-center bg-maintext w-44 h-52 md:h-60 md:w-52 rounded-b-2xl overflow-hidden">
               <img src={Tenet} alt="Spiderman" />
             </div>
-            <div className="mb-4 bg-maintext w-44 h-52 md:w-52 md:h-60 rounded-t-2xl overflow-hidden">
+            <div className="flex justify-center items-center mb-4 bg-maintext w-44 h-52 md:w-52 md:h-60 rounded-t-2xl overflow-hidden">
               <img src={Widow} alt="Lion King" />
             </div>
-            <div className="flex bg-maintext w-44 h-36 md:w-52 md:h-44 rounded-b-2xl overflow-hidden">
-              <img className="object-cover" src={Witches} alt="Roblox" />
+            <div className="flex justify-center items-center bg-maintext w-44 h-36 md:w-52 md:h-44 rounded-b-2xl overflow-hidden">
+              <img src={Witches} alt="Roblox" />
             </div>
           </div>
         </div>

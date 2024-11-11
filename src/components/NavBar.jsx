@@ -9,6 +9,7 @@ import { logIn } from "../redux/reducers/auth";
 import { logOut } from "../redux/reducers/auth";
 import { deleteProfile } from "../redux/reducers/profile";
 import { useSelector, useDispatch } from "react-redux";
+import Woshik from "../assets/images/woshik.png";
 
 function NavBar(props) {
   const [isShow, setShow] = React.useState(false);
@@ -94,10 +95,7 @@ function NavBar(props) {
                 to="/profile"
               >
                 {" "}
-                <img
-                  src="https://i.mydramalist.com/xWAE0_5c.jpg"
-                  alt="Avatar"
-                />
+                <img src={Woshik} alt="Avatar" />
               </Link>
             </div>
           )}
@@ -190,11 +188,7 @@ function NavBar(props) {
                 to="/profile"
               >
                 {" "}
-                <img
-                  className="w-full h-full"
-                  src="https://i.mydramalist.com/xWAE0_5c.jpg"
-                  alt="Avatar"
-                />
+                <img className="w-full h-full" src={Woshik} alt="Avatar" />
               </Link>
             </div>
           )}

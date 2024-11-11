@@ -53,7 +53,7 @@ function Login() {
     }
     setShowError("no");
 
-    dispatch(setProfile(value));
+    dispatch(setProfile(registeredData));
     dispatch(logIn(true));
     reset();
     setTimeout(() => {

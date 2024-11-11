@@ -5,6 +5,10 @@ import profile from "./profile.js";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 
+const profileConfig = {
+  key: "profile",
+  storage,
+};
 const tokenConfig = {
   key: "token",
   storage,
@@ -15,7 +19,7 @@ const userConfig = {
 };
 
 const reducer = combineReducers({
-  profile,
+  profile: persistReducer(profileConfig, profile),
   token: persistReducer(tokenConfig, token),
   user: persistReducer(userConfig, user),
 });

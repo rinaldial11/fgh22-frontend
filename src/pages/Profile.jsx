@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import ProfileCard from "../components/ProfileCard";
 import ProfileSection from "../components/ProfileSection";
 import { setProfile } from "../redux/reducers/profile";
-import { addUser } from "../redux/reducers/user";
+import { editUser } from "../redux/reducers/user";
 import { useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
@@ -59,7 +59,7 @@ function Profile() {
 
   function formProfile(value) {
     dispatch(setProfile(value));
-    dispatch(addUser(value));
+    dispatch(editUser(value));
   }
 
   React.useEffect(() => {
@@ -67,9 +67,6 @@ function Profile() {
     if (isLog.token === false) {
       navigate("/");
       return;
-    }
-    if (isLog.token === true) {
-      dispatch(setProfile({ registered }));
     }
   }, [isLog]);
 
@@ -227,7 +224,8 @@ function Profile() {
                     type="text"
                     id="firstname"
                     {...register("firstname")}
-                    placeholder={profileData.profile?.firstname}
+                    placeholder="Write your firstname"
+                    value={profileData.profile?.firstname}
                   />
                 </div>
                 {errors.firstname?.message && (
@@ -244,7 +242,8 @@ function Profile() {
                     type="text"
                     id="last-name"
                     {...register("lastname")}
-                    placeholder={profileData.profile?.lastname}
+                    placeholder="Write your lastname"
+                    value={profileData.profile?.lastname}
                   />
                 </div>
                 {errors.lastname?.message && (
@@ -261,7 +260,8 @@ function Profile() {
                     type="email"
                     id="email"
                     {...register("email")}
-                    placeholder={profileData.profile?.email}
+                    placeholder="Write your email"
+                    value={profileData.profile?.email}
                   />
                 </div>
                 {errors.email?.message && (
@@ -278,7 +278,8 @@ function Profile() {
                     type="number"
                     id="phone-number"
                     {...register("phonenumber")}
-                    placeholder={profileData.profile?.phonenumber}
+                    placeholder="Write your phone number"
+                    value={profileData.profile?.phonenumber}
                   />
                 </div>
                 {errors.phonenumber?.message && (
@@ -303,6 +304,7 @@ function Profile() {
                     id="password"
                     {...register("password")}
                     placeholder="Write your password"
+                    value={profileData.profile?.password}
                   />
                   <button
                     type="button"

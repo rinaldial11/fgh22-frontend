@@ -7,6 +7,7 @@ import Woshik from "../assets/images/woshik.jpeg";
 
 function ProfileCard(props) {
   const profileData = useSelector((state) => state.profile);
+  const registeredUser = useSelector((state) => state.user.data);
 
   return (
     <>
@@ -23,7 +24,10 @@ function ProfileCard(props) {
           </div>
           <div className="flex flex-col text-center gap-3">
             <div className="text-xl font-semibold">
-              {profileData.profile?.firstname} {profileData.profile?.lastname}
+              {profileData.profile?.firstname
+                ? profileData.profile?.firstname
+                : profileData.profile?.email}{" "}
+              {profileData.profile?.lastname}
             </div>
             <div className="text-grey text-sm">Moviegoers</div>
           </div>

@@ -144,7 +144,7 @@ function Register() {
                   </div>
                 )}
               </div>
-              <div className="hidden md:flex items-center gap-5">
+              <div className="flex items-center gap-5">
                 <input
                   className="w-5 h-5"
                   type="checkbox"

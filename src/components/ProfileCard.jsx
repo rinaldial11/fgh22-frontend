@@ -20,14 +20,7 @@ function ProfileCard(props) {
         </div>
         <div className="flex flex-col items-center gap-8">
           <div className="flex justify-center bg-secondtix items-center w-32 h-32 rounded-full overflow-hidden">
-            <img
-              src={
-                profileData.profile?.image
-                  ? URL.createObjectURL(profileData.profile?.image[0])
-                  : DefaultPict
-              }
-              alt=""
-            />
+            <img src={DefaultPict} alt="" />
           </div>
           <div className="flex flex-col text-center gap-3">
             <div className="text-xl font-semibold">

@@ -16,6 +16,7 @@ function NavBar(props) {
   const dispatch = useDispatch();
   const registered = useSelector((state) => state.user);
   const isLog = useSelector((state) => state.token);
+  const profileData = useSelector((state) => state.profile);
 
   function logout() {
     dispatch(deleteProfile());
@@ -88,7 +89,14 @@ function NavBar(props) {
                 to="/profile"
               >
                 {" "}
-                <img src={DefaultPict} alt="Avatar" />
+                <img
+                  src={
+                    profileData.profile?.image
+                      ? URL.createObjectURL(profileData.profile?.image[0])
+                      : DefaultPict
+                  }
+                  alt="Avatar"
+                />
               </Link>
               <div className="shadow-xl">
                 <button
@@ -190,7 +198,15 @@ function NavBar(props) {
                 to="/profile"
               >
                 {" "}
-                <img className="w-full h-full" src={DefaultPict} alt="Avatar" />
+                <img
+                  className="w-full h-full"
+                  src={
+                    profileData.profile?.image
+                      ? URL.createObjectURL(profileData.profile?.image[0])
+                      : DefaultPict
+                  }
+                  alt="Avatar"
+                />
               </Link>
               <div className="shadow-xl">
                 <button

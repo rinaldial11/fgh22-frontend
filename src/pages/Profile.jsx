@@ -301,9 +301,6 @@ function Profile() {
                   </div>
                 )}
               </div>
-              <div>
-                <input type="file" {...register("image")} id="" />
-              </div>
             </div>
           </div>
           <div className="text-lg px-8 py-10 bg-white rounded-3xl flex flex-col gap-12">

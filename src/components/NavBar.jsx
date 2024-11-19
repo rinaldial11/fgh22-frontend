@@ -89,14 +89,7 @@ function NavBar(props) {
                 to="/profile"
               >
                 {" "}
-                <img
-                  src={
-                    profileData.profile?.image
-                      ? URL.createObjectURL(profileData.profile?.image[0])
-                      : DefaultPict
-                  }
-                  alt="Avatar"
-                />
+                <img src={DefaultPict} alt="Avatar" />
               </Link>
               <div className="shadow-xl">
                 <button
@@ -198,15 +191,7 @@ function NavBar(props) {
                 to="/profile"
               >
                 {" "}
-                <img
-                  className="w-full h-full"
-                  src={
-                    profileData.profile?.image
-                      ? URL.createObjectURL(profileData.profile?.image[0])
-                      : DefaultPict
-                  }
-                  alt="Avatar"
-                />
+                <img className="w-full h-full" src={DefaultPict} alt="Avatar" />
               </Link>
               <div className="shadow-xl">
                 <button

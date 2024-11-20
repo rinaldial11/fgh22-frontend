@@ -111,9 +111,7 @@ function OrderPage() {
               </div>
               <div className="hidden pl-4 w-full md:flex gap-20">
                 <div className="w-64 grid grid-cols-8 gap-2">
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    A
-                  </button>
+                  <button className=" w-6 h-6 bg-white rounded">A</button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -121,9 +119,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    B
-                  </button>
+                  <button className=" w-6 h-6 bg-white rounded">B</button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
@@ -131,9 +127,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    C
-                  </button>
+                  <button className=" w-6 h-6 bg-white rounded">C</button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -141,9 +135,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    D
-                  </button>
+                  <button className=" w-6 h-6 bg-white rounded">D</button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -151,9 +143,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    E
-                  </button>
+                  <button className=" w-6 h-6 bg-white rounded">E</button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -161,9 +151,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    F
-                  </button>
+                  <button className=" w-6 h-6 bg-white rounded">F</button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -171,9 +159,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    G
-                  </button>
+                  <button className=" w-6 h-6 bg-white rounded">G</button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
@@ -182,30 +168,16 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-white rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    1
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    2
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    3
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    4
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    5
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    6
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    7
-                  </button>
+                  <button className=" w-6 h-6 bg-white rounded">1</button>
+                  <button className=" w-6 h-6 bg-white rounded">2</button>
+                  <button className=" w-6 h-6 bg-white rounded">3</button>
+                  <button className=" w-6 h-6 bg-white rounded">4</button>
+                  <button className=" w-6 h-6 bg-white rounded">5</button>
+                  <button className=" w-6 h-6 bg-white rounded">6</button>
+                  <button className=" w-6 h-6 bg-white rounded">7</button>
                 </div>
                 <div className="w-64 grid grid-cols-8 gap-2">
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded"></button>
+                  <button className=" w-6 h-6 bg-white rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -213,7 +185,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded"></button>
+                  <button className=" w-6 h-6 bg-white rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -221,15 +193,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded"></button>
+                  <button className=" w-6 h-6 bg-white rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -237,7 +201,15 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded"></button>
+                  <button className=" w-6 h-6 bg-white rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className=" w-6 h-6 bg-white rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -245,7 +217,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded"></button>
+                  <button className=" w-6 h-6 bg-white rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-14 h-6 bg-pink rounded"></button>
@@ -253,7 +225,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded"></button>
+                  <button className=" w-6 h-6 bg-white rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -261,28 +233,14 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    8
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    9
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    10
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    11
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    12
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    13
-                  </button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-white rounded">
-                    14
-                  </button>
+                  <button className=" w-6 h-6 bg-white rounded"></button>
+                  <button className=" w-6 h-6 bg-white rounded">8</button>
+                  <button className=" w-6 h-6 bg-white rounded">9</button>
+                  <button className=" w-6 h-6 bg-white rounded">10</button>
+                  <button className=" w-6 h-6 bg-white rounded">11</button>
+                  <button className=" w-6 h-6 bg-white rounded">12</button>
+                  <button className=" w-6 h-6 bg-white rounded">13</button>
+                  <button className=" w-6 h-6 bg-white rounded">14</button>
                 </div>
               </div>
               <div className="md:hidden pl-1 w-full flex gap-5">

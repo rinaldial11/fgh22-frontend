@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import ButtonMain from "../components/ButtonMain";
@@ -8,76 +8,155 @@ import { CiLocationOn } from "react-icons/ci";
 import AnchorMain from "../components/AnchorMain";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
-import Spiderman from "../assets/images/Spiderman.png";
 import Ebv from "../assets/icons/ebv.png";
 import Cineone from "../assets/icons/cineone.png";
 import Hiflix from "../assets/icons/hiflix.png";
+import { useParams } from "react-router-dom";
+import { API_URL } from "../config/apiConfig";
+import { convertDateDetails, convertTime } from "../lib/parsedate";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 function Details() {
+  const dispatch = useDispatch;
+  const [isInitialLoad, setIsInitialLoad] = React.useState(true);
+  const { id } = useParams();
+  const [movie, setMovie] = useState({});
+  const [cinemaId, setCinemaId] = useState([]);
+  const [cinema, setCinema] = useState([]);
+  const [dateId, setDateId] = React.useState([]);
+  const [timeId, setTimeId] = React.useState([]);
+  const [locationId, setLocationId] = React.useState([]);
+  const [date, setDate] = React.useState([]);
+  const [time, setTime] = React.useState([]);
+  const [locations, setLocations] = React.useState([]);
   const [isShow, setShow] = React.useState(false);
   const [isShow2, setShow2] = React.useState(false);
   const [isShow3, setShow3] = React.useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  // const searchForm = useForm();
+  const searchForm = useForm();
+
+  function fetchData(dateid, timeid, locationid) {
+    const url = new URL(`${API_URL}/movies/${id}/cinema`);
+    const params = new URLSearchParams();
+
+    if (date) {
+      url.searchParams.append("date", dateid);
+      params.set("date", dateid);
+    }
+    if (time) {
+      url.searchParams.append("time", timeid);
+      params.set("time", timeid);
+    }
+    if (location) {
+      url.searchParams.append("location", locationid);
+      params.set("location", locationid);
+    }
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setCinemaId(data.results?.cinemaId) || [];
+        setCinema(data.results?.cinema) || [];
+        setSearchParams(params);
+      });
+  }
+
+  function searchCinema(v) {
+    console.log(v);
+    fetchData(v.date, v.time, v.location);
+  }
 
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    // const queryString = new URLSearchParams(location.search);
+    // fetchData(
+    //   queryString.get("date"),
+    //   queryString.get("time"),
+    //   queryString.get("location")
+    // );
+
+    fetch(`${API_URL}/movies/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setMovie(data.results);
+        // setCinema(data.results);
+        setDateId(data.results.dateId) || [];
+        setTimeId(data.results.timeId) || [];
+        setLocationId(data.results.locationId) || [];
+        setDate(data.results.date) || [];
+        setTime(data.results.time) || [];
+        setLocations(data.results.location) || [];
+      });
+    if (isInitialLoad) {
+      window.scrollTo(0, 0);
+      setIsInitialLoad(false); // Tandai bahwa ini bukan load pertama lagi
+    }
+  }, [location.search]);
 
   return (
     <>
       <NavBar />
-      <div className="bg-[url(/src/assets/images/spiderman-details.png)] w-screen h-[550px] bg-no-repeat bg-cover"></div>
+      <div className="2xl:h-[800px] flex justify-center items-center lg:items-start overflow-hidden">
+        <img
+          className="w-full min-w-[712px]"
+          src={`${API_URL}/movie/banner/${movie?.banner}`}
+          alt={`${movie?.title}`}
+        />
+      </div>
       <main className="px-6 md:px-28 py-14 text-base flex flex-col gap-8 text-maintext">
-        <div className="flex justify-center md:justify-start flex-wrap -mt-80 md:-mt-48 items-end gap-5">
-          <div className="">
-            <img src={Spiderman} alt="Spiderman" />
+        <div className="flex top-80 justify-center md:justify-start flex-wrap -mt-72 md:-mt-40 items-end gap-5">
+          <div className="w-64 rounded-md overflow-hidden">
+            <img
+              src={`${API_URL}/movie/image/${movie?.image}`}
+              alt={`${movie?.title}`}
+            />
           </div>
           <div className="flex items-center md:items-start flex-col gap-5">
             <div className="text-3xl text-center md:text-left font-bold">
-              Spider-Man: Homecoming
+              {movie?.title}
             </div>
-            <div className="flex gap-2">
-              <div className="bg-abumuda text-secondtix px-3 py-1 rounded-3xl">
-                Action
-              </div>
-              <div className="bg-abumuda text-secondtix px-3 py-1 rounded-3xl">
-                Adventure
-              </div>
+            <div className="flex gap-5">
+              {movie?.genre?.slice(0, 2).map((v) => {
+                return (
+                  <div className="bg-abumuda text-secondtix px-5 py-1 rounded-3xl">
+                    {v}
+                  </div>
+                );
+              })}
             </div>
             <div className="grid grid-cols-2 gap-8">
               <div className="flex flex-col gap-2">
                 <div className="text-sm text-grey">Release date</div>
-                <div>June 28, 2017</div>
+                <div>{convertDateDetails(movie?.releaseDate)}</div>
               </div>
               <div className="flex flex-col gap-2">
                 <div className="text-sm text-grey">Directed by</div>
-                <div>Jon Watss</div>
+                <div>{movie?.author}</div>
               </div>
               <div className="flex flex-col gap-2">
                 <div className="text-sm text-grey">Duration</div>
-                <div>2 hours 13 minutes </div>
+                <div>{convertTime(movie?.duration)}</div>
               </div>
               <div className="flex flex-col gap-2">
                 <div className="text-sm text-grey">Casts</div>
-                <div>Tom Holland, Michael Keaton, Robert Downey Jr</div>
+                <div>{movie?.casts?.join(", ")}</div>
               </div>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-1">
           <div className="text-xl font-semibold">Synopsis</div>
-          <div className="text-grey w-full max-w-4xl">
-            Thrilled by his experience with the Avengers, Peter returns home,
-            where he lives with his Aunt May, under the watchful eye of his new
-            mentor Tony Stark, Peter tries to fall back into his normal daily
-            routine - distracted by thoughts of proving himself to be more than
-            just your friendly neighborhood Spider-Man - but when the Vulture
-            emerges as a new villain, everything that Peter holds most important
-            will be threatened.{" "}
-          </div>
+          <div className="text-grey w-full max-w-4xl">{movie?.synopsis}</div>
         </div>
         <div className="flex text-center md:text-left flex-col gap-9">
           <div className="text-4xl">Book Tickets</div>
-          <div className="flex flex-wrap gap-8 items-end">
+          <form
+            onSubmit={searchForm.handleSubmit(searchCinema)}
+            className="flex flex-wrap gap-8 items-end"
+          >
             <div className="flex w-full md:w-72 flex-col gap-3">
               <label
                 className="hidden md:block text-xl font-semibold"
@@ -94,18 +173,20 @@ function Details() {
               <div className="relative w-full md:w-72 h-14">
                 <CiCalendar className="absolute top-1/3 left-6" />
                 <select
-                  className="w-full h-full bg-maintix px-16 rounded-sm"
-                  name="date"
+                  className="w-full h-full bg-abumuda px-16 rounded-sm"
+                  {...searchForm.register("date")}
                   id="date"
                 >
-                  <option disabled selected value="30/10/24">
+                  <option disabled selected value={dateId[1]}>
                     Choose date
                   </option>
-                  <option value="30/10/24">30/10/24</option>
-                  <option value="01/11/24">01/11/24</option>
-                  <option value="02/11/24">02/11/24</option>
-                  <option value="03/11/24">03/11/24</option>
-                  <option value="04/11/24">04/11/24</option>
+                  {date.map((v, index) => {
+                    return (
+                      <option value={dateId[index]}>
+                        {convertDateDetails(v)}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             </div>
@@ -116,17 +197,16 @@ function Details() {
               <div className="relative w-72 h-14">
                 <IoMdTime className="absolute top-1/3 left-6" />
                 <select
-                  className="w-full h-full bg-maintix px-16 rounded-sm"
-                  name="date"
+                  className="w-full h-full bg-abumuda px-16 rounded-sm"
+                  {...searchForm.register("time")}
                   id="date"
                 >
-                  <option disabled selected value="30/10/24">
+                  <option disabled selected value={timeId[0]}>
                     Choose Time
                   </option>
-                  <option value="08 : 30 AM">08 : 30 AM</option>
-                  <option value="08 : 30 AM">08 : 30 AM</option>
-                  <option value="08 : 30 AM">08 : 30 AM</option>
-                  <option value="08 : 30 AM">08 : 30 AM</option>
+                  {time.map((v, index) => {
+                    return <option value={timeId[index]}>{v}</option>;
+                  })}
                 </select>
               </div>
             </div>
@@ -140,51 +220,70 @@ function Details() {
               <div className="relative w-full md:w-72 h-14">
                 <CiLocationOn className="absolute top-1/3 left-6" />
                 <select
-                  className="w-full h-full bg-maintix px-16 rounded-sm"
-                  name="date"
+                  className="w-full h-full bg-abumuda px-16 rounded-sm"
+                  {...searchForm.register("location")}
                   id="date"
                 >
-                  <option disabled selected value="30/10/24">
+                  <option disabled selected value={locationId[0]}>
                     Choose Location
                   </option>
-                  <option value="Purwokerto">Purwokerto</option>
-                  <option value="Purwokerto">Purwokerto</option>
-                  <option value="Purwokerto">Purwokerto</option>
-                  <option value="Purwokerto">Purwokerto</option>
-                  <option value="Purwokerto">Purwokerto</option>
+                  {locations.map((v, index) => {
+                    return <option value={locationId[index]}>{v}</option>;
+                  })}
                 </select>
               </div>
             </div>
             <div className="h-14 w-full md:w-44">
               <ButtonMain content="Filter" />
             </div>
-          </div>
+          </form>
         </div>
         <div className="flex flex-col gap-9 py-5">
           <div className="flex gap-9">
             <div className="text-xl md:block hidden font-semibold">
               Choose Cinema
             </div>
-            <div className="text-lg text-center w-full md:max-w-xs md:text-left text-grey font-bold">
+            {/* <div className="text-lg text-center w-full md:max-w-xs md:text-left text-grey font-bold">
               39 Result{" "}
-            </div>
+            </div> */}
           </div>
-          <div className="hidden md:flex w-full max-w-full min-w-full gap-4 overflow-x-scroll">
-            <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
-              <img
-                className="group-hover:brightness-0 group-hover:invert"
-                src={Ebv}
-                alt="ebv"
-              />
-            </div>
-            <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
+          <div className="hidden md:flex justify-start w-full max-w-full min-w-full gap-10 overflow-x-scroll">
+            {/* {cinema?.map((v) => (
+              <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
+                {" "}
+                {v}
+                <img
+                  className="group-hover:brightness-0 group-hover:invert"
+                  // src={}
+                  alt="ebv"
+                />
+              </div>
+            ))} */}
+            {cinema.map((v, index) => {
+              return (
+                <div
+                  onClick={() => {
+                    console.log(cinemaId[index]);
+                  }}
+                  className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center"
+                >
+                  {v}
+                  {/* <img
+                    className="group-hover:brightness-0 group-hover:invert"
+                    src={v}
+                    alt="hiflix"
+                  /> */}
+                </div>
+              );
+            })}
+            {/* <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
                 src={Hiflix}
                 alt="hiflix"
               />
-            </div>
-            <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
+            </div> */}
+            {/* <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
               <img
                 className="group-hover:brightness-0 group-hover:invert"
                 src={Cineone}
@@ -211,49 +310,7 @@ function Details() {
                 src={Cineone}
                 alt="cineone"
               />
-            </div>
-            <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
-              <img
-                className="group-hover:brightness-0 group-hover:invert"
-                src={Ebv}
-                alt="ebv"
-              />
-            </div>
-            <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
-              <img
-                className="group-hover:brightness-0 group-hover:invert"
-                src={Hiflix}
-                alt="hiflix"
-              />
-            </div>
-            <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
-              <img
-                className="group-hover:brightness-0 group-hover:invert"
-                src={Cineone}
-                alt="cineone"
-              />
-            </div>
-            <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
-              <img
-                className="group-hover:brightness-0 group-hover:invert"
-                src={Ebv}
-                alt="ebv"
-              />
-            </div>
-            <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
-              <img
-                className="group-hover:brightness-0 group-hover:invert"
-                src={Hiflix}
-                alt="hiflix"
-              />
-            </div>
-            <div className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center">
-              <img
-                className="group-hover:brightness-0 group-hover:invert"
-                src={Cineone}
-                alt="cineone"
-              />
-            </div>
+            </div> */}
           </div>
           <div className="flex flex-col md:hidden gap-11">
             <div className="flex flex-col w-full border border-maintix rounded-xl px-8 py-5">
@@ -573,7 +630,7 @@ function Details() {
           </div>
           <div className="w-full flex justify-center">
             <div className="hidden md:block w-44 h-14">
-              <AnchorMain content="Book Now" page="/order" />
+              <AnchorMain content="Book Now" page={`/order/${movie?.id}`} />
             </div>
           </div>
         </div>

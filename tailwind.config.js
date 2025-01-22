@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import { API_URL } from "./src/config/apiConfig";
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 

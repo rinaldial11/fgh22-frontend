@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ButtonMain from "../components/ButtonMain";
 import ButtonSos from "../components/ButtonSos";
@@ -7,24 +7,24 @@ import LogoBrand from "../components/LogoBrand";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../redux/reducers/user";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { API_URL } from "../config/apiConfig.js";
 
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const registered = useSelector((state) => state.user.data);
-
-  const [showError, setShowError] = React.useState("no");
+  const token = useSelector((state) => state.auth.token);
+  const [isSuccess, setIsSuccess] = React.useState(null);
+  const [message, setMessage] = React.useState("");
 
   const regisValidation = yup.object({
     email: yup
       .string()
       .required("You must fill the email")
-      .min(8, "Email minimal character length must be 8"),
+      .min(12, "Email minimal character length must be 12"),
     password: yup
       .string()
       .required("You must fill the password")
@@ -42,7 +42,6 @@ function Register() {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(regisValidation) });
 
@@ -50,17 +49,23 @@ function Register() {
   const [icon, setIcon] = React.useState(<FiEye />);
 
   function onSubmit(value) {
-    const registeredData = registered.find((e) => e.email === value.email);
-    if (registeredData?.email === value.email) {
-      setShowError("yes");
-      return;
-    }
-    setShowError("no");
-    dispatch(addUser(value));
-    reset();
-    setTimeout(() => {
-      navigate("/login");
-    }, 1000);
+    const query = new URLSearchParams(value);
+    const queryString = query.toString();
+
+    fetch(`${API_URL}/auth/register`, {
+      method: "POST",
+      body: queryString,
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    })
+      .then((response) => response.json())
+      .then((v) => {
+        setIsSuccess(v.success);
+        setMessage(v.message);
+
+        if (v.success) {
+          navigate("/login");
+        }
+      });
   }
 
   function hidePassword() {
@@ -73,14 +78,18 @@ function Register() {
     }
   }
   React.useEffect(() => {
+    if (token) {
+      navigate("/");
+      return;
+    }
     window.scrollTo(0, 0);
-  }, []);
+  }, [token, navigate]);
   return (
     <>
       <div>
-        <div className="bg-[url(/src/assets/images/avengers-darken.png)] items-center py-16 px-5 md:px-10 w-screen h-screen bg-no-repeat bg-cover flex flex-col gap-5 text-maintext">
+        <div className="bg-[url(/src/assets/images/avengers-darken.png)] items-center py-16 px-5 md:px-10 w-screen h-screen md:h-full 2xl:h-screen bg-no-repeat bg-cover flex flex-col gap-5 text-maintext">
           <LogoBrand />
-          <div className="flex flex-col gap-6 bg-white rounded-md w-full min-w-80 max-w-xl md:h-fit px-5 md:px-20 py-14">
+          <div className="flex flex-col gap-6 bg-white rounded-md w-full min-w-80 max-w-xl px-5 md:px-20 py-14">
             <div className="hidden md:flex items-center gap-3">
               <Step content={"1"} content2={"Fill Form"} status={"done"} />
               <div>........................</div>
@@ -88,6 +97,13 @@ function Register() {
               <div>........................</div>
               <Step content={"3"} content2={"Done"} status="ongoing" />
             </div>
+            {isSuccess === false && (
+              <>
+                <div className="bg-red text-white text-center flex-col opacity-60 h-16 flex items-center justify-center rounded">
+                  <span>{message}</span>
+                </div>
+              </>
+            )}
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col gap-6"
@@ -106,11 +122,6 @@ function Register() {
                     placeholder="Enter your email"
                   />
                 </div>
-                {showError === "yes" && (
-                  <div className="text-red opacity-80">
-                    Email is not available
-                  </div>
-                )}
                 {errors.email?.message && (
                   <div className="text-red opacity-80">
                     {errors.email?.message}

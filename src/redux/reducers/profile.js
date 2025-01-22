@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { data } from "autoprefixer";
 
-const initialState = {};
+const initialState = {
+  data: {},
+};
 
 const profile = createSlice({
   name: "profile",
   initialState,
   reducers: {
     setProfile: (state, action) => {
-      state.profile = action.payload;
+      state.data = action.payload;
     },
     deleteProfile: () => {
       return initialState;

@@ -3,8 +3,26 @@ import NavBar from "../components/NavBar";
 import ButtonMain from "../components/ButtonMain";
 import { CiCalendar } from "react-icons/ci";
 import { HiPlus } from "react-icons/hi";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { API_URL } from "../config/apiConfig.js";
 
 function AdminAddMovie() {
+  const { register, handleSubmit } = useForm();
+
+  function formMovie(value) {
+    const query = new URLSearchParams(value);
+    const queryString = query.toString();
+
+    fetch(`${API_URL}/movies`, {
+      method: "POST",
+      body,
+    });
+    console.log(value);
+    console.log(queryString);
+  }
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -19,7 +37,10 @@ function AdminAddMovie() {
             <div className="w-28 h-8 text-xs">
               <ButtonMain content="Upload" />
             </div>
-            <form className="flex text-secondtix flex-col gap-6">
+            <form
+              className="flex text-secondtix flex-col gap-6"
+              onSubmit={handleSubmit(formMovie)}
+            >
               <div className="flex flex-col gap-3">
                 <label htmlFor="movie-name">Movie Name</label>
                 <div className="h-16">
@@ -27,20 +48,20 @@ function AdminAddMovie() {
                     className="w-full px-9 h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
                     type="text"
                     id="movie-name"
-                    name="movie"
-                    placeholder="Spider-Man: Homecoming"
+                    {...register("title")}
+                    placeholder="Movie title"
                   />
                 </div>
               </div>
               <div className="flex flex-col gap-3">
-                <label htmlFor="category">Category</label>
+                <label htmlFor="genre">Category</label>
                 <div className="h-16">
                   <input
                     className="w-full px-9 h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
                     type="text"
-                    id="category"
-                    name="category"
-                    placeholder="Action, Adventure, Sci-Fi"
+                    id="genre"
+                    {...register("genre_name")}
+                    placeholder="Movie genre"
                   />
                 </div>
               </div>
@@ -50,29 +71,32 @@ function AdminAddMovie() {
                   <div className="h-16">
                     <input
                       className="w-full px-9 h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
-                      type="date"
+                      type="text"
                       id="date"
-                      name="date"
+                      {...register("release_date")}
+                      placeholder="YYYY-MM-DD"
                     />
                   </div>
                 </div>
-                <div className="flex flex-col gap-3">
-                  <label htmlFor="hour">Duration (hour / minute)</label>
+                <div className="flex flex-col gap-3 w-1/3">
+                  <label htmlFor="duration">
+                    Duration (hour / minute / second)
+                  </label>
                   <div className="flex md:flex-row flex-col md:h-16 gap-6">
                     <input
-                      className="placeholder:md:text-center w-full px-9 h-16 md:h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
-                      type="number"
-                      id="hour"
-                      name="hour"
-                      placeholder="2"
+                      className="px-9 w-full h-16 md:h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
+                      type="text"
+                      id="duration"
+                      {...register("duration")}
+                      placeholder="HH:MM:SS"
                     />
-                    <input
+                    {/* <input
                       className="placeholder:md:text-center w-full px-9 h-16 md:h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
                       type="number"
                       id="minute"
                       name="minute"
                       placeholder="13"
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -83,8 +107,8 @@ function AdminAddMovie() {
                     className="w-full px-9 h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
                     type="text"
                     id="director-name"
-                    name="director-name"
-                    placeholder="Jon Watts"
+                    {...register("author")}
+                    placeholder="Movie director"
                   />
                 </div>
               </div>
@@ -95,8 +119,8 @@ function AdminAddMovie() {
                     className="w-full px-9 h-full outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
                     type="text"
                     id="cast"
-                    name="cast"
-                    placeholder="Tom Holland, Michael Keaton, Robert Dow.."
+                    {...register("cast_name")}
+                    placeholder="Movie cast"
                   />
                 </div>
               </div>
@@ -105,10 +129,10 @@ function AdminAddMovie() {
                 <div className="w-full h-52">
                   <textarea
                     className="w-full h-full p-6 outline-none rounded bg-abumuda border border-maintix placeholder:text-secondtix"
-                    name="synopsis"
+                    {...register("synopsis")}
                     id="synopsis"
                     rows="10"
-                    placeholder="Thrilled by his experience with the Avengers, Peter returns home, where he lives with his Aunt May, | "
+                    placeholder="Movie synopsis..."
                   ></textarea>
                 </div>
               </div>
@@ -120,7 +144,7 @@ function AdminAddMovie() {
                     type="text"
                     id="location"
                     name="location"
-                    placeholder="Purwokerto, Bandung, Bekasi"
+                    placeholder="Movie location"
                   />
                 </div>
               </div>

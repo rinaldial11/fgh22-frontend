@@ -13,15 +13,15 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { API_URL } from "../config/apiConfig.js";
 
 function Login() {
   const dispatch = useDispatch();
-  const registered = useSelector((state) => state.user.data);
-  const isLog = useSelector((state) => state.token);
+  const token = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
 
-  const [showError, setShowError] = React.useState("no");
-
+  const [message, setMessage] = React.useState("");
+  const [isSuccess, setIsSuccess] = React.useState(null);
   const [type, setType] = React.useState("password");
   const [icon, setIcon] = React.useState(<FiEye />);
 
@@ -29,36 +29,38 @@ function Login() {
     email: yup
       .string()
       .required("You must fill the email")
-      .min(8, "Email minimal character length must be 8"),
+      .min(12, "Email minimal character length must be 12"),
     password: yup.string().required("You must fill the password"),
   });
 
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(regisValidation) });
 
   function formSubmit(value) {
-    const registeredData = registered.find((e) => e.email === value.email);
+    const query = new URLSearchParams(value);
+    const queryString = query.toString();
 
-    if (value.email !== registeredData?.email) {
-      setShowError("yes email");
-      return;
-    }
-    if (value.password !== registeredData?.password) {
-      setShowError("yes pass");
-      return;
-    }
-    setShowError("no");
+    fetch(`${API_URL}/auth/login`, {
+      method: "POST",
+      body: queryString,
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    })
+      .then((response) => response.json())
+      .then((v) => {
+        dispatch(logIn(v.results));
+        setMessage(v.message);
+        setIsSuccess(v.success);
 
-    dispatch(setProfile(registeredData));
-    dispatch(logIn(true));
-    reset();
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
+        if (v.success) {
+          dispatch(logIn(v.results));
+          navigate("/profile"); // Navigasi ke halaman profile
+        } else {
+          setMessage(v.message); // Set error message
+        }
+      });
   }
 
   function hidePassword() {
@@ -72,11 +74,12 @@ function Login() {
   }
 
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-    if (isLog.token === true) {
+    if (isSuccess || token) {
       navigate("/");
+      return;
     }
-  }, [isLog]);
+    window.scrollTo(0, 0);
+  }, [isSuccess, token]);
   return (
     <>
       <div>
@@ -87,11 +90,15 @@ function Login() {
               <div className="text-2xl md:text-3xl font-semibold">
                 Welcome Back👋
               </div>
-              <div>{registered.email}</div>
               <div className="text-grey w-full max-w-80 md:w-full md:max-w-full text-lg">
                 Sign in with your data that you entered during your registration
               </div>
             </div>
+            {isSuccess === false && (
+              <div className="bg-red text-white text-center flex-col opacity-60 h-16 flex items-center justify-center rounded">
+                <span>{message}</span>
+              </div>
+            )}
             <form
               onSubmit={handleSubmit(formSubmit)}
               className="flex flex-col gap-6"
@@ -110,11 +117,6 @@ function Login() {
                     placeholder="Enter your email"
                   />
                 </div>
-                {showError === "yes email" && (
-                  <div className="text-red opacity-80">
-                    Email is not registered
-                  </div>
-                )}
                 {errors.email?.message && (
                   <div className="text-red opacity-80">
                     {errors.email?.message}
@@ -142,9 +144,6 @@ function Login() {
                     {icon}
                   </button>
                 </div>
-                {showError === "yes pass" && (
-                  <div className="text-red opacity-80">Invalid password</div>
-                )}
                 {errors.password?.message && (
                   <div className="text-red opacity-80">
                     {errors.password?.message}

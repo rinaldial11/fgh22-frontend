@@ -1,27 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LogoBrand from "./LogoBrand";
-import ButtonMain from "./ButtonMain";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import ProfilePicture from "../assets/images/profile-picture.png";
 import { IoMenu } from "react-icons/io5";
-import { logIn } from "../redux/reducers/auth";
 import { logOut } from "../redux/reducers/auth";
-import { deleteProfile } from "../redux/reducers/profile";
+import { deleteProfile, setProfile } from "../redux/reducers/profile";
 import { useSelector, useDispatch } from "react-redux";
 import DefaultPict from "../assets/images/default-picture.png";
+import { API_URL } from "../config/apiConfig.js";
 
 function NavBar(props) {
   const [isShow, setShow] = React.useState(false);
   const dispatch = useDispatch();
-  const registered = useSelector((state) => state.user);
-  const isLog = useSelector((state) => state.token);
-  const profileData = useSelector((state) => state.profile);
+  const token = useSelector((state) => state.auth.token);
+  const profileData = useSelector((state) => state.profile.data);
 
   function logout() {
     dispatch(deleteProfile());
     dispatch(logOut());
   }
+
+  async function getProfile(tokenProfile) {
+    const data = await (
+      await fetch(`${API_URL}/users`, {
+        headers: {
+          Authorization: `Bearer ${tokenProfile}`,
+        },
+      })
+    ).json();
+    dispatch(setProfile(data.results));
+  }
+
+  React.useEffect(() => {
+    if (token !== "") {
+      getProfile(token);
+    }
+  }, [token]);
 
   return (
     <nav className="flex flex-col gap-5 items-center px-6 lg:px-28 py-7 bg-secondtix text-white text-sm shadow-lg h-fit md:h-28">
@@ -64,9 +78,9 @@ function NavBar(props) {
             </ul>
           )}
 
-          {isLog?.token === true && (
+          {token !== "" && (
             <div className="hidden md:flex gap-5 items-center">
-              <div>
+              {/* <div>
                 <select
                   className="bg-secondtix w-full h-full"
                   name="location"
@@ -79,30 +93,43 @@ function NavBar(props) {
                   <option value="">Bandung</option>
                   <option value="">Surabaya</option>
                 </select>
-              </div>
-              <div>
+              </div> */}
+              {/* <div>
                 <FaMagnifyingGlass />
-              </div>
+              </div> */}
               <Link
-                className="w-14 h-14 rounded-full bg-maintix overflow-hidden flex items-center
-            justify-center"
+                className="w-14 h-14 rounded-full bg-maintix overflow-hidden flex items-center justify-center border shadow-lg"
                 to="/profile"
               >
                 {" "}
-                <img src={DefaultPict} alt="Avatar" />
+                <img
+                  src={
+                    profileData.picture === ""
+                      ? DefaultPict
+                      : `${API_URL}/profile/images/${profileData.picture}`
+                  }
+                  alt="Avatar"
+                />
               </Link>
-              <div className="shadow-xl">
-                <button
-                  className="bg-secondtix rounded-md text-maintix border border-maintix px-3 py-1"
-                  type="button"
-                  onClick={logout}
-                >
-                  Log Out
-                </button>
+              <div className="flex flex-col gap-3 justify-center items-center">
+                <div className="text-white">
+                  {profileData.firstName === ""
+                    ? `Hallo, ${profileData.email} !`
+                    : `Hallo, ${profileData.firstName} !`}
+                </div>
+                <div className="shadow-xl">
+                  <button
+                    className="bg-secondtix rounded-md text-maintix border border-maintix px-3 py-1"
+                    type="button"
+                    onClick={logout}
+                  >
+                    Log Out
+                  </button>
+                </div>
               </div>
             </div>
           )}
-          {isLog?.token === false && (
+          {token === "" && (
             <div className="hidden md:flex gap-3">
               <Link
                 to="/login"
@@ -166,7 +193,7 @@ function NavBar(props) {
             </ul>
           )}
 
-          {isLog?.token === true && (
+          {token !== "" && (
             <div className="md:hidden flex gap-3 items-center">
               <div>
                 <select
@@ -186,12 +213,19 @@ function NavBar(props) {
                 <FaMagnifyingGlass />
               </div>
               <Link
-                className="w-14 h-14 bg-maintix rounded-full overflow-hidden flex items-center
-            justify-center"
+                className="w-14 h-14 bg-maintix rounded-full overflow-hidden flex items-center justify-center border shadow-lg"
                 to="/profile"
               >
                 {" "}
-                <img className="w-full h-full" src={DefaultPict} alt="Avatar" />
+                <img
+                  className="w-full"
+                  src={
+                    profileData.picture === ""
+                      ? DefaultPict
+                      : `${API_URL}/profile/images/${profileData.picture}`
+                  }
+                  alt="Avatar"
+                />
               </Link>
               <div className="shadow-xl">
                 <button
@@ -204,7 +238,7 @@ function NavBar(props) {
               </div>
             </div>
           )}
-          {isLog?.token === false && (
+          {token === "" && (
             <div className="md:hidden flex flex-col w-screen px-6 gap-3">
               <Link
                 to="/login"

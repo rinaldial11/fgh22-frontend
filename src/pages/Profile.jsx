@@ -13,12 +13,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { API_URL } from "../config/apiConfig.js";
 
 function Profile() {
   const dispatch = useDispatch();
-  const profileData = useSelector((state) => state.profile);
-  const registered = useSelector((state) => state.user.data);
-  const isLog = useSelector((state) => state.token);
+  const profileData = useSelector((state) => state.profile.data);
+  // const registered = useSelector((state) => state.user.data);
+  const token = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
 
   const [type, setType] = React.useState("password");
@@ -28,16 +29,16 @@ function Profile() {
   const [isShow, setShow] = React.useState(false);
 
   const profileValidSchema = yup.object({
-    firstname: yup
+    first_name: yup
       .string()
       .required("What your name?")
       .min(3, "Name minimal character at least 3"),
-    lastname: yup.string(),
+    last_name: yup.string(),
     email: yup
       .string()
       .required("You must fill the email")
       .min(8, "Email minimal character length must be 8"),
-    phonenumber: yup.string().min(4, "Phone number at least must 4 number"),
+    phone_number: yup.string().min(4, "Phone number at least must 4 number"),
     password: yup
       .string()
       .min(8, "Password must be at least 8 character")
@@ -45,7 +46,7 @@ function Profile() {
         /^.*((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
         "Password must contain at least 8 characters, one uppercase, one number and one special case character"
       ),
-    confirmpassword: yup
+    confirm_password: yup
       .string()
       .oneOf([yup.ref("password")], "Your passwords do not match."),
   });
@@ -54,22 +55,32 @@ function Profile() {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(profileValidSchema) });
-
+  } = useForm({
+    resolver: yupResolver(profileValidSchema),
+  });
   function formProfile(value) {
-    dispatch(setProfile(value));
-    dispatch(editUser(value));
+    const query = new URLSearchParams(value);
+    const queryString = query.toString();
+
+    fetch(`${API_URL}/profiles`, {
+      method: "PATCH",
+      body: queryString,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((results) => dispatch(setProfile(results.results)));
   }
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
-    if (isLog.token === false) {
-      navigate("/");
-      return;
+    if (token === "") {
+      navigate("/login");
     }
-  }, [isLog]);
+  }, [token]);
 
   function hidePassword() {
     if (type === "password") {
@@ -92,7 +103,7 @@ function Profile() {
 
   return (
     <>
-      <NavBar isLog={true} />
+      <NavBar />
       <main className="relative justify-center md:px-20 md:pt-14 md:pb-32 text-base flex items-center md:items-start flex-col md:flex-row bg-abumuda gap-8 text-maintext">
         <div className="flex w-full items-start md:hidden">
           <ProfileSection page="profile" />
@@ -223,18 +234,20 @@ function Profile() {
                   <input
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
                     type="text"
-                    id="firstname"
-                    {...register("firstname")}
-                    placeholder={
-                      profileData.profile?.firstname
-                        ? profileData.profile?.firstname
-                        : "Write your firstname"
-                    }
+                    id="first_name"
+                    {...register("first_name")}
+                    placeholder="Write your first_name"
+                    // placeholder={
+                    //   profileData.first_name === ""
+                    //     ? "Write your first name"
+                    //     : profileData.first_name
+                    // }
+                    defaultValue={profileData.firstName}
                   />
                 </div>
-                {errors.firstname?.message && (
+                {errors.first_name?.message && (
                   <div className="text-red opacity-80">
-                    {errors.firstname?.message}
+                    {errors.first_name?.message}
                   </div>
                 )}
               </div>
@@ -245,17 +258,18 @@ function Profile() {
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
                     type="text"
                     id="last-name"
-                    {...register("lastname")}
+                    {...register("last_name")}
                     placeholder={
-                      profileData.profile?.lastname
-                        ? profileData.profile?.lastname
-                        : "Write your lastname"
+                      profileData.profile?.last_name
+                        ? profileData.profile?.last_name
+                        : "Write your last_name"
                     }
+                    defaultValue={profileData.lastName}
                   />
                 </div>
-                {errors.lastname?.message && (
+                {errors.last_name?.message && (
                   <div className="text-red opacity-80">
-                    {errors.lastname?.message}
+                    {errors.last_name?.message}
                   </div>
                 )}
               </div>
@@ -272,6 +286,7 @@ function Profile() {
                         ? profileData.profile?.email
                         : "Write your email"
                     }
+                    defaultValue={profileData.email}
                   />
                 </div>
                 {errors.email?.message && (
@@ -287,20 +302,27 @@ function Profile() {
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
                     type="number"
                     id="phone-number"
-                    {...register("phonenumber")}
+                    {...register("phone_number")}
                     placeholder={
-                      profileData.profile?.phonenumber
-                        ? profileData.profile?.phonenumber
-                        : "Write your phonenumber"
+                      profileData.profile?.phone_number
+                        ? profileData.profile?.phone_number
+                        : "Write your phone_number"
                     }
+                    defaultValue={profileData.phoneNumber}
                   />
                 </div>
-                {errors.phonenumber?.message && (
+                {errors.phone_number?.message && (
                   <div className="text-red opacity-80">
-                    {errors.phonenumber?.message}
+                    {errors.phone_number?.message}
                   </div>
                 )}
               </div>
+              {/* <div className="flex flex-col gap-3">
+                <label htmlFor="picture">Upload your profile picture</label>
+                <div>
+                  <input type="file" id="picture" {...register("picture")} />
+                </div>
+              </div> */}
             </div>
           </div>
           <div className="text-lg px-8 py-10 bg-white rounded-3xl flex flex-col gap-12">
@@ -339,7 +361,7 @@ function Profile() {
                     className="p-6 border placeholder:text-secondtix border-maintix rounded-2xl w-full"
                     type={type2}
                     id="confirm-password"
-                    {...register("confirmpassword")}
+                    {...register("confirm_password")}
                     placeholder="Confirm your password"
                   />
                   <button
@@ -350,9 +372,9 @@ function Profile() {
                     {icon2}
                   </button>
                 </div>
-                {errors.confirmpassword?.message && (
+                {errors.confirm_password?.message && (
                   <div className="text-red opacity-80">
-                    {errors.confirmpassword?.message}
+                    {errors.confirm_password?.message}
                   </div>
                 )}
               </div>

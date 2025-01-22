@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Step from "../components/Step";
@@ -8,19 +8,25 @@ import Cineone from "../assets/icons/cineone.png";
 import AnchorMain from "../components/AnchorMain";
 import { FaArrowDown, FaArrowRight } from "react-icons/fa6";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { API_URL } from "../config/apiConfig";
 
 function OrderPage() {
-  const isLog = useSelector((state) => state.token);
+  const { id } = useParams();
+  const [movie, setMovie] = useState({});
+  const token = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
 
   const [isShow, setShow] = React.useState(false);
   React.useEffect(() => {
+    fetch(`${API_URL}/movies/${id}`)
+      .then((response) => response.json())
+      .then((data) => setMovie(data.results));
     window.scrollTo(0, 0);
-    if (isLog.token === false) {
+    if (token === "") {
       navigate("/login");
     }
-  }, [isLog]);
+  }, [token]);
   return (
     <>
       <NavBar />
@@ -49,9 +55,7 @@ function OrderPage() {
                 <div className="flex flex-col gap-4 w-full">
                   <div className="flex justify-between gap-5">
                     <div className="text-sm text-grey">Movie selected</div>
-                    <div className="text-sm font-semibold">
-                      Spider-Man: Homecoming
-                    </div>
+                    <div className="text-sm font-semibold">{movie.title}</div>
                   </div>
                   <div className="flex justify-between gap-5">
                     <div className="text-sm text-grey">
@@ -81,25 +85,32 @@ function OrderPage() {
           <div className="bg-white mt-14 px-5 py-10 rounded-2xl md:rounded-md flex flex-col gap-9">
             <div className="w-full px-6 py-3 border md:flex-row flex-col items-center md:items-end flex border-maintix gap-4 rounded-sm">
               <div className="w-64 h-44 md:w-48 md:h-32 overflow-hidden">
-                <img src={Spiderman} alt="" />
+                <img src={`${API_URL}/movie/image/${movie.image}`} alt="" />
               </div>
               <div className="flex flex-col items-center md:items-start gap-4">
                 <div className="text-3xl text-center md:text-left font-semibold">
-                  Spiderman: Homecoming
+                  {movie.title}
                 </div>
                 <div className="flex gap-2">
-                  <div className="bg-abumuda text-secondtix px-3 py-1 rounded-3xl">
+                  {movie.genre?.slice(0, 2).map((v) => {
+                    return (
+                      <div className="bg-abumuda text-secondtix px-5 py-1 rounded-3xl">
+                        {v}
+                      </div>
+                    );
+                  })}
+                  {/* <div className="bg-abumuda text-secondtix px-3 py-1 rounded-3xl">
                     Action
                   </div>
                   <div className="bg-abumuda text-secondtix px-3 py-1 rounded-3xl">
                     Adventure
-                  </div>
+                  </div> */}
                 </div>
                 <div>Regular - 13:00 PM</div>
               </div>
               <div className="md:h-full flex items-end">
                 <div className="w-28 h-8">
-                  <AnchorMain content="Change" page="/home" />
+                  <AnchorMain content="Change" page="/movies" />
                 </div>
               </div>
             </div>
@@ -220,10 +231,10 @@ function OrderPage() {
                   <button className=" w-6 h-6 bg-white rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-14 h-6 bg-pink rounded"></button>
+                  <button className="hover:bg-secondtix w-14 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 invisible h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className=" w-6 h-6 bg-white rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>

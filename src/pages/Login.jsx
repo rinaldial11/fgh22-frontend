@@ -2,84 +2,22 @@ import React from "react";
 import ButtonMain from "../components/ButtonMain";
 import ButtonSos from "../components/ButtonSos";
 import LogoBrand from "../components/LogoBrand";
-import { FiEye } from "react-icons/fi";
-import { FiEyeOff } from "react-icons/fi";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setProfile } from "../redux/reducers/profile";
-import { logIn } from "../redux/reducers/auth";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { API_URL } from "../config/apiConfig.js";
+import { Alert } from "antd";
+import { useLogin } from "../hooks/useLogin";
 
-function Login() {
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token);
-  const navigate = useNavigate();
-
-  const [message, setMessage] = React.useState("");
-  const [isSuccess, setIsSuccess] = React.useState(null);
-  const [type, setType] = React.useState("password");
-  const [icon, setIcon] = React.useState(<FiEye />);
-
-  const regisValidation = yup.object({
-    email: yup
-      .string()
-      .required("You must fill the email")
-      .min(12, "Email minimal character length must be 12"),
-    password: yup.string().required("You must fill the password"),
-  });
-
+const LoginPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(regisValidation) });
-
-  function formSubmit(value) {
-    const query = new URLSearchParams(value);
-    const queryString = query.toString();
-
-    fetch(`${API_URL}/auth/login`, {
-      method: "POST",
-      body: queryString,
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    })
-      .then((response) => response.json())
-      .then((v) => {
-        dispatch(logIn(v.results));
-        setMessage(v.message);
-        setIsSuccess(v.success);
-
-        if (v.success) {
-          dispatch(logIn(v.results));
-          navigate("/profile"); // Navigasi ke halaman profile
-        } else {
-          setMessage(v.message); // Set error message
-        }
-      });
-  }
-
-  function hidePassword() {
-    if (type === "password") {
-      setType("text");
-      setIcon(<FiEyeOff />);
-    } else {
-      setType("password");
-      setIcon(<FiEye />);
-    }
-  }
-
-  React.useEffect(() => {
-    if (isSuccess || token) {
-      navigate("/");
-      return;
-    }
-    window.scrollTo(0, 0);
-  }, [isSuccess, token]);
+    errors,
+    formSubmit,
+    isSuccess,
+    message,
+    type,
+    icon,
+    hidePassword,
+  } = useLogin();
   return (
     <>
       <div>
@@ -95,20 +33,37 @@ function Login() {
               </div>
             </div>
             {isSuccess === false && (
-              <div className="bg-red text-white text-center flex-col opacity-60 h-16 flex items-center justify-center rounded">
-                <span>{message}</span>
-              </div>
+              <>
+                <Alert
+                  className="rounded-lg"
+                  type="error"
+                  message={message}
+                  banner
+                />
+              </>
+            )}
+            {isSuccess === true && (
+              <>
+                <Alert
+                  className="rounded-lg"
+                  type="success"
+                  message={message}
+                  banner
+                />
+              </>
             )}
             <form
               onSubmit={handleSubmit(formSubmit)}
               className="flex flex-col gap-6"
             >
               <div className="w-full flex flex-col gap-3">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email" className="cursor-pointer">
+                  Email
+                </label>
                 <div className="w-full h-16">
                   <input
                     className={
-                      "w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix box-border" +
+                      "w-full h-full rounded outline-none px-6 border border-abu placeholder-secondary-content hover:border-secondary focus:border-secondary focus:shadow-sm" +
                       (errors.email?.message ? " border-red" : "")
                     }
                     type="email"
@@ -124,11 +79,13 @@ function Login() {
                 )}
               </div>
               <div className="w-full flex flex-col gap-3">
-                <label htmlFor="email">Password</label>
+                <label htmlFor="password" className="cursor-pointer">
+                  Password
+                </label>
                 <div className="relative flex w-full h-16">
                   <input
                     className={
-                      "w-full h-full rounded outline-none px-6 border border-maintix placeholder-secondtix box-border" +
+                      "w-full h-full rounded outline-none px-6 border border-abu placeholder-secondary-content hover:border-secondary focus:border-secondary focus:shadow-sm" +
                       (errors.password?.message ? " border-red" : "")
                     }
                     id="password"
@@ -139,7 +96,7 @@ function Login() {
                   <button
                     type="button"
                     onClick={hidePassword}
-                    className="absolute right-6 top-1/3 text-xl"
+                    className="absolute text-secondary-content right-6 top-1/3 text-xl"
                   >
                     {icon}
                   </button>
@@ -178,6 +135,6 @@ function Login() {
       </div>
     </>
   );
-}
+};
 
-export default Login;
+export default LoginPage;

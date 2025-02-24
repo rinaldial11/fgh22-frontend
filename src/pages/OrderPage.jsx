@@ -2,20 +2,26 @@ import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Step from "../components/Step";
-import Spiderman from "../assets/images/Spiderman.png";
-import ButtonMain from "../components/ButtonMain";
 import Cineone from "../assets/icons/cineone.png";
+import Ebv from "../assets/icons/ebv.png";
+import Hiflix from "../assets/icons/hiflix.png";
 import AnchorMain from "../components/AnchorMain";
 import { FaArrowDown, FaArrowRight } from "react-icons/fa6";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config/apiConfig";
+import { cancelOrder } from "../redux/reducers/order";
+import { formatRupiah } from "../lib/rupiah";
+import { useAtom } from "jotai";
+import { OrderAtom } from "../jotai/order";
 
 function OrderPage() {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const [movie, setMovie] = useState({});
   const token = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
+  const [cinemaAtom] = useAtom(OrderAtom);
 
   const [isShow, setShow] = React.useState(false);
   React.useEffect(() => {
@@ -31,14 +37,15 @@ function OrderPage() {
     <>
       <NavBar />
       <main className="md:px-28 md:pb-32 text-base items-center flex flex-col bg-abumuda gap-5 text-maintext">
-        <div className="hidden md:flex pt-14 items-center gap-3 w-full justify-center">
-          <Step content2={"Dates And Time"} status={"activated"} />
-          <div>........................</div>
-          <Step content={"2"} content2={"Seat"} status="done" />
-          <div>........................</div>
-          <Step content={"3"} content2={"Payment"} status="on" />
+        <div className="hidden md:flex pt-14 items-center gap-3 w-full px-96 justify-center">
+          <Step
+            step={1}
+            content1={"Dates And Time"}
+            content2={"Seat"}
+            content3={"Payment"}
+          />
         </div>
-        <div className="flex px-6 pb-8 relative md:flex-wrap md:flex-row flex-col md:items-start items-center gap-8 md:gap-4">
+        <div className="flex px-6 pb-8 relative md:flex-wrap md:flex-row flex-col md:items-start items-center justify-center gap-8 md:gap-4">
           {isShow && (
             <button
               type="button"
@@ -106,10 +113,10 @@ function OrderPage() {
                     Adventure
                   </div> */}
                 </div>
-                <div>Regular - 13:00 PM</div>
+                <div>13:00 PM</div>
               </div>
               <div className="md:h-full flex items-end">
-                <div className="w-28 h-8">
+                <div onClick={dispatch(cancelOrder())} className="w-28 h-8">
                   <AnchorMain content="Change" page="/movies" />
                 </div>
               </div>
@@ -118,22 +125,24 @@ function OrderPage() {
             <div className="flex flex-col gap-6">
               <div className="pl-5 md:pl-12 md:pr-32 text-center flex flex-col gap-2">
                 <div className="text-sm hidden md:block">Screen</div>
-                <div className="w-[345px] md:w-full h-2 bg-blue md:h-2 md:bg-abu rounded-md"></div>
+                <div className="w-[345px] md:w-[480px] h-2 bg-blue md:h-2 md:bg-abu rounded-md"></div>
               </div>
-              <div className="hidden pl-4 w-full md:flex gap-20">
+              <div className="hidden pl-4 w-full md:flex">
                 <div className="w-64 grid grid-cols-8 gap-2">
-                  <button className=" w-6 h-6 bg-white rounded">A</button>
+                  <button className="cursor-default w-6 h-6 bg-white rounded">
+                    A
+                  </button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className=" w-6 h-6 bg-white rounded">B</button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -148,7 +157,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className=" w-6 h-6 bg-white rounded">D</button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -158,7 +167,7 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -173,7 +182,7 @@ function OrderPage() {
                   <button className=" w-6 h-6 bg-white rounded">G</button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -193,31 +202,15 @@ function OrderPage() {
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className=" w-6 h-6 bg-white rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className=" w-6 h-6 bg-white rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className=" w-6 h-6 bg-white rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 h-6 bg-maintext rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className=" w-6 h-6 bg-white rounded"></button>
@@ -231,8 +224,24 @@ function OrderPage() {
                   <button className=" w-6 h-6 bg-white rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-14 h-6 bg-abu rounded"></button>
-                  <button className="hover:bg-secondtix w-6 invisible h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className=" w-6 h-6 bg-white rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className=" w-6 h-6 bg-white rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
+                  <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
                   <button className="hover:bg-secondtix w-6 h-6 bg-abu rounded"></button>
@@ -446,16 +455,24 @@ function OrderPage() {
             <div className="mt-14 bg-white w-96 px-6 py-4 h-full flex flex-col items-center rounded-md shadow-md gap-8">
               <div className="text-center flex flex-col items-center gap-6">
                 <div className="pt-8">
-                  <img src={Cineone} alt="" />
+                  {cinemaAtom.cinemaName === "hiflix" && (
+                    <img src={Hiflix} alt="hiflix" />
+                  )}
+                  {cinemaAtom.cinemaName === "cineone21" && (
+                    <img src={Cineone} alt="cineone" />
+                  )}
+                  {cinemaAtom.cinemaName === "ebv.id" && (
+                    <img src={Ebv} alt="ebv" />
+                  )}
                 </div>
-                <div className="text-2xl font-semibold">CineOne21 Cinema</div>
+                <div className="text-2xl font-semibold">
+                  {cinemaAtom.cinemaName}
+                </div>
               </div>
               <div className="flex flex-col gap-4 w-full">
                 <div className="flex justify-between gap-5">
                   <div className="text-sm text-grey">Movie selected</div>
-                  <div className="text-sm font-semibold">
-                    Spider-Man: Homecoming
-                  </div>
+                  <div className="text-sm font-semibold">{movie.title}</div>
                 </div>
                 <div className="flex justify-between gap-5">
                   <div className="text-sm text-grey">Tuesday, 07 July 2020</div>
@@ -463,7 +480,9 @@ function OrderPage() {
                 </div>
                 <div className="flex justify-between gap-5">
                   <div className="text-sm text-grey">One ticket price</div>
-                  <div className="text-sm font-semibold">$10</div>
+                  <div className="text-sm font-semibold">
+                    {formatRupiah(35000)}
+                  </div>
                 </div>
                 <div className="flex justify-between gap-5">
                   <div className="text-sm text-grey">Seat choosed</div>
@@ -475,8 +494,8 @@ function OrderPage() {
                 <div className="text-2xl font-bold text-secondtix">$30</div>
               </div>
             </div>
-            <div className="shadow-xl flex w-full h-14">
-              <AnchorMain content="Checkout now" page="/payment" />
+            <div className="shadow-xl btn btn-primary text-secondary flex w-full h-14">
+              Checkout Now
             </div>
           </div>
         </div>

@@ -1,10 +1,8 @@
 import React from "react";
-import { BsThreeDots } from "react-icons/bs";
 import { MdOutlineFileUpload } from "react-icons/md";
 import Star from "../assets/icons/star.png";
 import { useDispatch, useSelector } from "react-redux";
 import DefaultPict from "../assets/images/default-picture.png";
-import { object } from "yup";
 import { setProfile } from "../redux/reducers/profile";
 import { API_URL } from "../config/apiConfig.js";
 

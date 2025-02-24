@@ -3,12 +3,10 @@ import NavBar from "../components/NavBar";
 import ProfileCard from "../components/ProfileCard";
 import ProfileSection from "../components/ProfileSection";
 import { setProfile } from "../redux/reducers/profile";
-import { editUser } from "../redux/reducers/user";
 import { useNavigate } from "react-router-dom";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { IoIosArrowBack } from "react-icons/io";
-import ButtonMain from "../components/ButtonMain";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,7 +16,6 @@ import { API_URL } from "../config/apiConfig.js";
 function Profile() {
   const dispatch = useDispatch();
   const profileData = useSelector((state) => state.profile.data);
-  // const registered = useSelector((state) => state.user.data);
   const token = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
 

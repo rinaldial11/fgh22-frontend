@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import daisyui from "daisyui";
 import { API_URL } from "./src/config/apiConfig";
 
 export default {
@@ -27,5 +28,20 @@ export default {
       },
     },
   },
-  plugins: [],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#405D72",
+          "primary-content": "#1E3E62",
+          secondary: "#F3E9BE",
+          "secondary-content": "#A0A3BD",
+          neutral: "#ffffff",
+          success: "#1CA350",
+          error: "#ff6961",
+        },
+      },
+    ],
+  },
+  plugins: [daisyui],
 };

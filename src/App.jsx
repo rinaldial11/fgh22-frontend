@@ -1,8 +1,8 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
+import HomePage from "./pages/Home";
+import RegisterPage from "./pages/Register";
+import LoginPage from "./pages/Login";
 import HomeList from "./pages/HomeList";
 import Details from "./pages/Details";
 import OrderPage from "./pages/OrderPage";
@@ -21,15 +21,15 @@ import { PersistGate } from "redux-persist/es/integration/react";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <HomePage />,
   },
   {
     path: "/register",
-    element: <Register />,
+    element: <RegisterPage />,
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <LoginPage />,
   },
   {
     path: "/movies",

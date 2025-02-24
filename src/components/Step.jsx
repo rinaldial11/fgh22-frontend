@@ -1,35 +1,70 @@
 import React from "react";
-import { FaCheck } from "react-icons/fa6";
+// import { FaCheck } from "react-icons/fa6";
+import { ConfigProvider, Popover, Steps } from "antd";
+
+const customDot = (dot, { status, index }) => (
+  <Popover
+    content={
+      <span>
+        step {index + 1} status: {status}
+      </span>
+    }
+  >
+    {dot}
+  </Popover>
+);
 
 function Step(props) {
   return (
-    <div className="flex flex-col gap-2 items-center text-center">
-      {props.status === "activated" && (
-        <div className="w-14 h-14 rounded-full bg-maintext text-maintix flex items-center justify-center">
-          <FaCheck />
-        </div>
-      )}
-      {props.status === "done" && (
-        <div className="w-14 h-14 rounded-full bg-secondtix text-maintix flex items-center justify-center">
-          {props.content}
-        </div>
-      )}
-      {props.status === "ongoing" && (
-        <div className="w-14 h-14 rounded-full bg-maintix text-secondtix flex items-center justify-center">
-          {props.content}
-        </div>
-      )}
-      {props.status === "on" && (
-        <div className="w-14 h-14 rounded-full bg-white text-secondtix flex items-center justify-center">
-          {props.content}
-        </div>
-      )}
-      {props.status === "done" && <div>{props.content2}</div>}
-      {props.status === "activated" && <div>{props.content2}</div>}
-      {props.status !== "done" && props.status !== "activated" && (
-        <div className="text-grey">{props.content2}</div>
-      )}
-    </div>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#405D72", // Warna primary
+          colorText: "#1E3E62",
+          // colorTextDisabled: "#fff",
+        },
+      }}
+    >
+      <Steps
+        current={props.step}
+        progressDot={customDot}
+        items={[
+          {
+            title: (
+              <span
+                className={`${
+                  props.step === 0 ? "text-primary" : "text-gray-500"
+                }`}
+              >
+                {props.content1}
+              </span>
+            ),
+          },
+          {
+            title: (
+              <span
+                className={`${
+                  props.step === 1 ? "text-primary" : "text-gray-500"
+                }`}
+              >
+                {props.content2}
+              </span>
+            ),
+          },
+          {
+            title: (
+              <span
+                className={`${
+                  props.step === 2 ? "text-primary" : "text-gray-500"
+                }`}
+              >
+                {props.content3}
+              </span>
+            ),
+          },
+        ]}
+      />
+    </ConfigProvider>
   );
 }
 

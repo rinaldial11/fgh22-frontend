@@ -14,12 +14,23 @@ import Hiflix from "../assets/icons/hiflix.png";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../config/apiConfig";
 import { convertDateDetails, convertTime } from "../lib/parsedate";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useSearchParams,
+  useNavigate,
+} from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addOrder } from "../redux/reducers/order";
+import { useAtom } from "jotai";
+import { OrderAtom } from "../jotai/order";
 
 function Details() {
-  const dispatch = useDispatch;
+  const navigate = useNavigate();
+  const order = useSelector((state) => state.order.data);
+  const userId = useSelector((state) => state.profile.data.id);
+  const dispatch = useDispatch();
   const [isInitialLoad, setIsInitialLoad] = React.useState(true);
   const { id } = useParams();
   const [movie, setMovie] = useState({});
@@ -38,6 +49,7 @@ function Details() {
   const location = useLocation();
   // const searchForm = useForm();
   const searchForm = useForm();
+  const [cinemaAtom, setCinemaAtom] = useAtom(OrderAtom);
 
   function fetchData(dateid, timeid, locationid) {
     const url = new URL(`${API_URL}/movies/${id}/cinema`);
@@ -66,8 +78,16 @@ function Details() {
   }
 
   function searchCinema(v) {
-    console.log(v);
     fetchData(v.date, v.time, v.location);
+    dispatch(
+      addOrder({
+        user_id: userId,
+        movie_id: id,
+        date_id: v.date,
+        time_id: v.time,
+        location_id: v.location,
+      })
+    );
   }
 
   React.useEffect(() => {
@@ -89,6 +109,10 @@ function Details() {
         setDate(data.results.date) || [];
         setTime(data.results.time) || [];
         setLocations(data.results.location) || [];
+        setCinemaAtom({
+          dateName: data.results.date,
+          timeName: data.results.time,
+        });
       });
     if (isInitialLoad) {
       window.scrollTo(0, 0);
@@ -263,11 +287,19 @@ function Details() {
               return (
                 <div
                   onClick={() => {
-                    console.log(cinemaId[index]);
+                    console.log(cinema[index]);
+                    dispatch(addOrder({ cinema_id: cinemaId[index] }));
+                    setCinemaAtom({
+                      dateName: date,
+                      timeName: time,
+                      cinemaName: cinema[index],
+                    });
                   }}
                   className="group hover:bg-secondtix flex-shrink-0 w-64 h-36 border border-abu rounded-lg flex justify-center items-center"
                 >
-                  {v}
+                  {v === "ebv.id" && <img src={Ebv} />}
+                  {v === "cineone21" && <img src={Cineone} />}
+                  {v === "hiflix" && <img src={Hiflix} />}
                   {/* <img
                     className="group-hover:brightness-0 group-hover:invert"
                     src={v}

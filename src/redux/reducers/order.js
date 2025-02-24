@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   data: {
-    time: "",
-    date: "",
-    location: "",
-    cinema: "",
-    seat: [],
-    count: "",
-    price: "",
-    paymentMethod: "",
+    user_id: 0,
+    movie_id: 0,
+    time_id: 0,
+    date_id: 0,
+    location_id: 0,
+    cinema_id: 0,
+    "[]seat_id": [],
+    method: "",
   },
 };
 

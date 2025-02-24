@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Subscribe from "../components/Subscribe";
@@ -42,9 +42,6 @@ function HomeList() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        // const availableMovie = data.results.filter(
-        //   (v) => v.status === "available"
-        // );
         setMovie(data.results) || [];
         setInfo(data.pageInfo);
         setSearchParams(params);

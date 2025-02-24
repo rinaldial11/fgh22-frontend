@@ -5,7 +5,7 @@ function ButtonMain(props) {
     <button
       type={props.type}
       onClick={props.click}
-      className="w-full h-full text-maintix rounded-md bg-secondtix"
+      className="btn btn-primary text-secondary w-full h-full"
     >
       {props.content}
     </button>
